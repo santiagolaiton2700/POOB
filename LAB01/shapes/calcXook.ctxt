@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=calcXook
+comment1.params=numero1\ numero2
+comment1.target=calcXook(int,\ int)
+comment2.params=numero2
+comment2.target=void\ meterNumero(int)
+comment3.params=
+comment3.target=void\ suma()
+comment4.params=
+comment4.target=void\ resta()
+comment5.params=
+comment5.target=void\ Multiplicar()
+comment6.params=
+comment6.target=void\ Division()
+comment7.params=
+comment7.target=void\ Potencia()
+numComments=8
