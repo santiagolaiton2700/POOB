@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Xook
+comment1.params=value
+comment1.target=Xook(int)
+comment10.params=color
+comment10.target=void\ changeColor(java.lang.String)
+comment2.params=
+comment2.target=int\ getValue()
+comment3.params=
+comment3.target=void\ makeVisible()
+comment4.params=
+comment4.target=void\ makeInvisible()
+comment5.params=
+comment5.target=void\ pintarXxok()
+comment6.params=
+comment6.target=void\ random()
+comment7.params=value
+comment7.target=void\ setValue(int)
+comment8.params=
+comment8.target=void\ dibujarBorrar()
+comment9.params=distancia
+comment9.target=void\ moverHorizontal(int)
+numComments=11
