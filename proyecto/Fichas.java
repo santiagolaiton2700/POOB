@@ -16,5 +16,7 @@ public class Fichas
         ficha=new Circle(posicionX,posicionY);
         ficha.makeVisible();
     }
-    
+    public void changeColor(String color){
+        ficha.changeColor(color);
+    }
 }

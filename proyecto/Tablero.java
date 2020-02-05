@@ -12,8 +12,11 @@ public class Tablero{
     public Tablero(int width)
     {
         medida=width;
+        this.simulacion=new ArrayList<ArrayList<String>>();
+        this.tablero=new ArrayList<ArrayList<Rectangle>>();
         isVisible=true;
         comprobacion();
+        
     }
     private void comprobacion(){
         if (medida%2==0){
@@ -25,8 +28,8 @@ public class Tablero{
     }
     private void pintarTableroPar(){
         Rectangle rectangleTempo;
-        tablero=new ArrayList<ArrayList<Rectangle>>();
-        simulacion=new ArrayList<ArrayList<String>>();
+        
+       
         int numeroFilas=medida;
         int numeroColumnas=medida;
         int moverCuadradox=medida;
@@ -61,12 +64,9 @@ public class Tablero{
 
             }
         }
-        System.out.println(simulacion);
     }
     private void pintarTableroImpar(){
         Rectangle rectangleTempo;
-        tablero=new ArrayList<ArrayList<Rectangle>>();
-        simulacion=new ArrayList<ArrayList<String>>();
         int numeroFilas=medida;
         int numeroColumnas=medida;
         int moverCuadradox=medida;
@@ -87,18 +87,29 @@ public class Tablero{
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
-
             }
         }
-        System.out.println(simulacion);
      }
-     public int getposxCuadrado(int fila,int columna){
+    public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
         }
-     public int getposyCuadrado(int fila,int columna){
+    public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
         }
-
+    public ArrayList<ArrayList<String>> getSimulacion(){
+        return simulacion;
+     }
+    public String getSimulacion(int x,int y)
+     {
+        return simulacion.get(x).get(y);
+     }
+    public void changePosition(int fila,int columna,String jugador){
+        simulacion.get(fila).set(columna,jugador);
+        System.out.println(simulacion);
+    }
+    public void moveHorizontal(){
+        
+    }
 }      
 
 

@@ -2,4 +2,6 @@
 comment0.target=Fichas
 comment1.params=fila\ columna\ posX\ posY
 comment1.target=Fichas(int,\ int,\ int,\ int)
-numComments=2
+comment2.params=color
+comment2.target=void\ changeColor(java.lang.String)
+numComments=3
