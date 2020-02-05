@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Fichas
+comment1.params=fila\ columna\ posX\ posY
+comment1.target=Fichas(int,\ int,\ int,\ int)
+numComments=2

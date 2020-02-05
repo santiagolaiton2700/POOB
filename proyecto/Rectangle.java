@@ -22,8 +22,8 @@ public class Rectangle{
      * Create a new rectangle at default position with default color.
      */
     public Rectangle(){
-        height = 30;
-        width = 30;
+        height = 50;
+        width = 50;
         xPosition = 0;
         yPosition = 0;
         color = "magenta";
@@ -178,6 +178,12 @@ public class Rectangle{
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);
         }
+    }
+    public int getPosicionX(){
+        return  xPosition;
+    }
+    public int getPosicionY(){
+        return  yPosition;
     }
 }
 

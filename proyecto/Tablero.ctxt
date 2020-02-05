@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Tablero
+comment1.params=width
+comment1.target=Tablero(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ checkers\r\n
+comment2.params=
+comment2.target=void\ comprobacion()
+comment3.params=
+comment3.target=void\ pintarTableroPar()
+comment4.params=
+comment4.target=void\ pintarTableroImpar()
+numComments=5

@@ -1,72 +1,65 @@
-
-/**
- * Write a description of class checkers here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-import java.util.ArrayList;
-public class checkers
+import javax.swing.JOptionPane;
+public class Checkers
 {
-    private ArrayList<ArrayList<Rectangle>> tablero;
-    private ArrayList<ArrayList<String>> simulacion;
-    private boolean isVisible;
-    private int medida;
-    /**
-     * Constructor for objects of class checkers
-     */
-    public checkers(int width)
+    Tablero configuracion;
+    Tablero juego;
+    Tablero simulador;
+    int medida;
+    public Checkers(int width)
     {
         medida=width;
-        isVisible=true;
-        pintarTablero();
+        configuracion=new Tablero(width);
+        juego=new Tablero(width);
     }
-    public void pintarTablero(){
-        Rectangle rectangleTempo;
-        Circle circuloTempo;
-        tablero=new ArrayList<ArrayList<Rectangle>>();
-        simulacion=new ArrayList<ArrayList<String>>();
-        int numeroFichas=24;
-        int numeroFilas=8;
-        int numeroColumnas=8;
-        int moverCuadradox=medida;
-        String color="white";
-        int moverCuadradoy=10;
-        for (int i=0;numeroFilas>i;i++){
-            tablero.add(new ArrayList<Rectangle>());
-            simulacion.add(new ArrayList<String>());
-            for (int j=0;numeroColumnas>j;j++){
-                rectangleTempo= new Rectangle();
-                rectangleTempo.changeSize(medida);
-                rectangleTempo.moveHorizontal(moverCuadradox*j);
-                rectangleTempo.moveVertical(moverCuadradox*i);
-                if (i%2==0){
-                    rectangleTempo.changeColor(color);
 
-                    if(color=="white"){
-                        simulacion.get(i).add("W");
-                        color="black";
-                        
-                    }else{
-                        simulacion.get(i).add("B");
-                        color="white";
-                        
-                    }
-                }else{
-                    if (color=="white"){
-                        simulacion.get(i).add("W");
-                        color="black";
-                    }else{
-                        simulacion.get(i).add("B"); 
-                        color="white";
-                    }
-                    rectangleTempo.changeColor(color);
-                }
-                rectangleTempo.makeVisible();
-                tablero.get(i).add(rectangleTempo);
-                System.out.println(simulacion);
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void select(int filas,int columnas){
+        // put your code here
+    }
+    public void shift(boolean top,boolean right  ) {
+    
+    }
+    public void jump(boolean top,boolean right){
+    }
+    public void move(String notation){
+    }
+    public void add(boolean king, int fila,int columna){
+         if(fila==0 || fila>medida && columna==0 ||fila>medida){
+             JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
+        }else if((fila+columna)%2==0){
+                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");
+        }else{
+            int posX=configuracion.getposxCuadrado(fila,columna);
+            int posY=configuracion.getposyCuadrado(fila,columna);
+            String posS=simulador.get(fila-1).get(columna-1);
+            if(posS=="black" || posS=="white"){
+                Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10);
+                //simulacion.get(fila).set(columna, lo que entre);
+            }else{
+                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");
+                
             }
         }
+     }
+    public void add(int[][] men){
+    }
+    public void remove(int [][]pieces){
+    }
+    public void swap(){
+    }
+    public int[][] consult(){
+    }
+    public void makeVisible(){
+    }
+    public void makeInvisible(){
+    }
+    public void finish(){
+    }
+    public void ok(){
     }
 }
-

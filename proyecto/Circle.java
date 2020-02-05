@@ -21,11 +21,11 @@ public class Circle{
     /**
      * Create a new circle at default position with default color.
      */
-    public Circle(){
+    public Circle(int posicionX,int posicionY){
         diameter = 30;
-        xPosition = 20;
-        yPosition = 15;
-        color = "blue";
+        xPosition = posicionX;
+        yPosition = posicionY;
+        color = "red";
         isVisible = false;
     }
 
