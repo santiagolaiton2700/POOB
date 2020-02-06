@@ -11,8 +11,7 @@ public class Tablero{
     /**
      * Constructor for objects of class checkers
      */
-    public Tablero(int width)
-    {
+    public Tablero(int width){
         medida=width;
         this.simulacion=new ArrayList<ArrayList<String>>();
         this.tablero=new ArrayList<ArrayList<Rectangle>>();
