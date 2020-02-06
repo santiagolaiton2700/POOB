@@ -6,6 +6,9 @@ public class Tablero{
     private boolean isVisible;
     private int medida;
     private ArrayList<Fichas>Fichas;
+    public int xPos=0;
+    public int yPos=0;
+    
     /**
      * Constructor for objects of class checkers
      */
@@ -16,7 +19,16 @@ public class Tablero{
         this.tablero=new ArrayList<ArrayList<Rectangle>>();
         isVisible=true;
         comprobacion();
-        
+    }
+    public Tablero(int width,int xPos,int yPos)
+    {
+        medida=width;
+        this.xPos=xPos;
+        this.yPos=yPos;
+        this.simulacion=new ArrayList<ArrayList<String>>();
+        this.tablero=new ArrayList<ArrayList<Rectangle>>();
+        isVisible=true;
+        comprobacion();
     }
     private void comprobacion(){
         if (medida%2==0){
@@ -28,18 +40,15 @@ public class Tablero{
     }
     private void pintarTableroPar(){
         Rectangle rectangleTempo;
-        
-       
         int numeroFilas=medida;
         int numeroColumnas=medida;
         int moverCuadradox=medida;
         String color="white";
-        
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
             for (int j=0;numeroColumnas>j;j++){
-                rectangleTempo= new Rectangle();
+                rectangleTempo= new Rectangle(xPos,yPos);
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 if (i%2==0){
@@ -61,9 +70,9 @@ public class Tablero{
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
-
             }
-        }
+       }
+       System.out.println(simulacion);
     }
     private void pintarTableroImpar(){
         Rectangle rectangleTempo;
@@ -75,7 +84,7 @@ public class Tablero{
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
             for (int j=0;numeroColumnas>j;j++){
-                rectangleTempo= new Rectangle();
+                rectangleTempo= new Rectangle(xPos,yPos);
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 rectangleTempo.changeColor(color);
@@ -89,10 +98,10 @@ public class Tablero{
                 tablero.get(i).add(rectangleTempo);
             }
         }
-     }
+    }
     public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
-        }
+     }
     public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
         }
@@ -107,9 +116,29 @@ public class Tablero{
         simulacion.get(fila).set(columna,jugador);
         System.out.println(simulacion);
     }
-    public void moveHorizontal(){
-        
+    public void makeVisibleTablero(){
+        for(int i=0;i<tablero.size();i++){
+            for(int j=0;j<tablero.size();j++){
+                tablero.get(i).get(j).makeVisible();
+            }
+        }
     }
+    public void makeInvisibleTablero(){
+        for(int i=0;i<tablero.size();i++){
+            for(int j=0;j<tablero.size();j++){
+                tablero.get(i).get(j).makeInvisible();
+            }
+        }
+    }
+    public void moveTableroHorizontal(){
+            for(int i=0;tablero.size()>i;i++){
+                for(int j=0;tablero.size()>i;i++){
+                    tablero.get(i).get(j).makeInvisible();
+                    tablero.get(i).get(j).moveHorizontal(200);
+                    tablero.get(i).get(j).makeVisible();
+            }
+        }
+    }       
 }      
 
 

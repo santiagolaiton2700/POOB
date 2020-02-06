@@ -29,7 +29,14 @@ public class Rectangle{
         color = "magenta";
         isVisible = false;
     }
-    
+    public Rectangle(int xPos,int yPos){
+        height = 50;
+        width = 50;
+        xPosition = xPos;
+        yPosition = yPos;
+        color = "magenta";
+        isVisible = false;
+    }
 
     /**
      * Make this rectangle visible. If it was already visible, do nothing.
