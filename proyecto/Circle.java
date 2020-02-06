@@ -178,4 +178,12 @@ public class Circle{
     public String getColor(){
         return color;
     }
+    public void changePos(int x,int y){
+        erase();
+        xPosition=x;
+        yPosition=y;
+        draw();
+        
+  
+    }
 }

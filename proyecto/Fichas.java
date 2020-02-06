@@ -30,17 +30,6 @@ public class Fichas
     public void changeColor(String color){
         ficha.changeColor(color);
     }
-    //public void seleccionar(int fila,int columna){
-      //  Circle x;
-      //  for (int i=0;i<fichas.size();i++){
-      ///      System.out.println(i);
-      //      x=fichas.get(i);
-      //      int y=x.getFila();
-      //      if (x.fila==fila && x.columna==columna){
-      //          x.changeColor("green");
-      //      }
-      //  }
-    //}
     public int getFila(){
         return fila;
     }
@@ -52,14 +41,13 @@ public class Fichas
     }
     public String getColor(){
         return ficha.getColor();
-    
     }
     public String getJugador(){
         return jugador;
     }
     public void moveFicha(int fila, int columna){
-        
-    }
+        ficha.changePos(fila+10,columna+10);
+     }
     public void MakeInvisible(){
         ficha.makeInvisible();
     }

@@ -1,29 +1,30 @@
-
-import javax.swing.JOptionPane;
-import java.util.ArrayList;
-/**
- * Tablero de tamaño nxn dibujado sobre un canvas.
- * 
- * @author  Lina Buitrago and Santiago Laiton
- * @version 4.0.  (02 Febrero 2020) 
- */
-public class checkers {
+    
+    import javax.swing.JOptionPane;
+    import java.util.ArrayList;
+    /**
+    * Tablero de tamaño nxn dibujado sobre un canvas.
+    * 
+    * @author  Lina Buitrago and Santiago Laiton
+    * @version 4.0.  (02 Febrero 2020) 
+    */
+    public class checkers {
     Tablero juego;
     Tablero configuracion;
     int medida;
     private ArrayList<Fichas>fichas;
-  
-     /**
-     * Crea dos tableros de tamaño "width" cada uno a una distancia de 800 del otro
-     */
+    private Fichas fichaSelecionada;
+    
+    /**
+    * Crea dos tableros de tamaño "width" cada uno a una distancia de 800 del otro
+    */
     public checkers(int width)
     {
         medida=width;
         configuracion=new Tablero(width);
         juego= new Tablero(width,800,0);
         fichas=new ArrayList<Fichas>();
-        //configuracion
-        //juego.moveTableroHorizontal();
+            //configuracion
+            //juego.moveTableroHorizontal();
     }
     
     /**
@@ -38,19 +39,21 @@ public class checkers {
     }
     public void jump(boolean top,boolean right){
     }
-    /**public void move(String notation){
-        for(int i=0;i<fichas.size();i++){
-           if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
-            if notacion.equals("izq"){
-                //fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna
-            }    ficha.get(i).erase()
-            if else notacion.equals("der"){
+    public void move(String notacion){
+        if(fichaSelecionada!= null){
+            int filaCuadrado=fichaSelecionada.getFila();
+            int columnaCuadrado=fichaSelecionada.getColumna();
+            if (notacion.equals("izq")){
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
+            }else{
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado+1));
+            }
+            }
                 
-            }  
+            
         }
-    }*/
     /**
-     * Adiciona una ficha king en el tablero en la coordenada fila,columna indicando el jugador , en caso de intentar adicionar la ficha en una posicon incorrecta se mostrara el respectivo mensaje de error al usuario 
+     * Adiciona una ficha king en el tablero  fila,columna indicando el jugador , en caso de intentar adicionar la ficha en una posicon incorrecta se mostrara el respectivo mensaje de error al usuario 
      */
     public void add(boolean king, int fila,int columna,String jugador){
         if(fila==0 || fila>medida && columna==0 ||fila>medida){
@@ -62,7 +65,7 @@ public class checkers {
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);
             if(posS.equals("black") || posS.equals("white")){
-                System.out.println(fila+"fila");
+                System.out.println(columna+"holIII");
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
@@ -112,18 +115,16 @@ public class checkers {
        for(int i=0;i<fichas.size();i++){
            if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
                 fichas.get(i).changeColor("white");   
-             
+                fichaSelecionada=null;
             }
             else if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j2"){
                 fichas.get(i).changeColor("red");
             }
             else if(fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
-               System.out.print("aqui voy");
                fichas.get(i).changeColor("green");
-               
+               fichaSelecionada=fichas.get(i);
             } 
             else if(fichas.get(i).getFila() + fichas.get(i).getColumna() % 2==0){
-            
                 JOptionPane.showMessageDialog(null,"Esta ficha no se puede seleccionar");                
             }
         }
@@ -157,6 +158,7 @@ public class checkers {
      * Termina el juego y no permite ejecutar mas metodos
      */
     public void finish(){
+        System.exit(0);
     }
     public void ok(){
     }
