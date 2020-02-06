@@ -5,7 +5,6 @@ public class Tablero{
     private ArrayList<ArrayList<String>> simulacion;
     private boolean isVisible;
     private int medida;
-    private ArrayList<Fichas>Fichas;
     public int xPos=0;
     public int yPos=0;
     
@@ -119,7 +118,7 @@ public class Tablero{
     public void makeVisibleTablero(){
         for(int i=0;i<tablero.size();i++){
             for(int j=0;j<tablero.size();j++){
-                tablero.get(i).get(j).makeVisible();
+                tablero.get(i).get(j).makeVisible();                
             }
         }
     }

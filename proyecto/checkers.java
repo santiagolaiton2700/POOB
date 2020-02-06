@@ -5,11 +5,13 @@ public class Checkers
     Tablero juego;
     Tablero configuracion;
     int medida;
+    private ArrayList<Fichas>fichas;
     public Checkers(int width)
     {
         medida=width;
         configuracion=new Tablero(width);
-        juego= new Tablero(width,500,0);
+        juego= new Tablero(width,800,0);
+        fichas=new ArrayList<Fichas>();
         //configuracion
         //juego.moveTableroHorizontal();
     }
@@ -20,9 +22,7 @@ public class Checkers
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void select(int filas,int columnas){
-        // put your code here
-    }
+    
     public void shift(boolean top,boolean right  ) {
     
     }
@@ -39,9 +39,10 @@ public class Checkers
             int posX=configuracion.getposxCuadrado(fila,columna);
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);
-            
             if(posS.equals("black") || posS.equals("white")){
+                System.out.println(fila+"fila");
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10);
+                fichas.add(Ficha);
                 if(jugador.equals("j1")){
                     Ficha.changeColor("white");
                 }
@@ -51,6 +52,7 @@ public class Checkers
                 
             }
         }
+        
     }
     public void add(int[][] men,String jugador){
         for(int i=0;men.length>i;i++){
@@ -77,9 +79,21 @@ public class Checkers
             }        
       }   
      }
-     //System.out.println(simulador);
     }
-    
+     public void select(int fila,int columna){
+       for(int i=0;i<fichas.size();i++){
+           if (fichas.get(i).getColor()=="green"){
+                fichas.get(i).changeColor("white");   
+            }else if(fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
+               System.out.print("aqui voy");
+               fichas.get(i).changeColor("green");
+               
+            }else{
+                JOptionPane.showMessageDialog(null,"Esta ficha no se puede seleccionar");                
+            }
+        }
+       
+    }
     public void remove(int [][]pieces){
     }
     public void swap(){

@@ -175,4 +175,7 @@ public class Circle{
             canvas.erase(this);
         }
     }
+    public String getColor(){
+        return color;
+    }
 }

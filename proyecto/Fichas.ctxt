@@ -1,7 +1,15 @@
 #BlueJ class context
 comment0.target=Fichas
-comment1.params=fila\ columna\ posX\ posY
+comment1.params=filaa\ columnaa\ posX\ posY
 comment1.target=Fichas(int,\ int,\ int,\ int)
 comment2.params=color
 comment2.target=void\ changeColor(java.lang.String)
-numComments=3
+comment3.params=
+comment3.target=int\ getFila()
+comment4.params=
+comment4.target=int\ getColumna()
+comment5.params=
+comment5.target=void\ setcolorgreen()
+comment6.params=
+comment6.target=java.lang.String\ getColor()
+numComments=7
