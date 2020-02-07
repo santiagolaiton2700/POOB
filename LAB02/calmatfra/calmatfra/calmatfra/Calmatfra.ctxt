@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Calmatfra
+comment1.params=
+comment1.target=Calmatfra()
+comment2.params=variable\ matriz
+comment2.target=void\ asigne(java.lang.String,\ int[][][])
+comment3.params=respuesta\ operando1\ operacion\ operando2
+comment3.target=void\ opere(java.lang.String,\ java.lang.String,\ char,\ java.lang.String)
+comment4.params=variable
+comment4.target=java.lang.String\ consulta(java.lang.String)
+comment5.params=
+comment5.target=boolean\ ok()
+numComments=6
