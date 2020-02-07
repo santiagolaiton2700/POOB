@@ -1,20 +1,45 @@
 
+
 import java.util.ArrayList;
+/**
+    * Matriz de cuadrados dibujado sobre un canvas.
+    * 
+    * @author  Lina Buitrago and Santiago Laiton
+    * @version 8.0.  (06 Febrero 2020) 
+    */
 public class Tablero{
     private ArrayList<ArrayList<Rectangle>> tablero;
     private ArrayList<ArrayList<String>> simulacion;
     private boolean isVisible;
     private int medida;
-    private ArrayList<Fichas>Fichas;
+    public int xPos=0;
+    public int yPos=0;
+    
     /**
-     * Constructor for objects of class checkers
-     */
-    public Tablero(int width)
-    {
+    * Crea matrices de tipo Rectangle con los parametros indicados
+    * @param width
+    */
+    public Tablero(int width){
         medida=width;
+        this.simulacion=new ArrayList<ArrayList<String>>();
+        this.tablero=new ArrayList<ArrayList<Rectangle>>();
         isVisible=true;
         comprobacion();
     }
+    public Tablero(int width,int xPos,int yPos)
+    {
+        medida=width;
+        this.xPos=xPos;
+        this.yPos=yPos;
+        this.simulacion=new ArrayList<ArrayList<String>>();
+        this.tablero=new ArrayList<ArrayList<Rectangle>>();
+        isVisible=true;
+        comprobacion();
+    }
+    /**
+    * Comprueba si las matrices de rectangulos son pares o impares
+    h
+    */
     private void comprobacion(){
         if (medida%2==0){
             pintarTableroPar();
@@ -23,20 +48,21 @@ public class Tablero{
         }
         
     }
+    /**
+    * Pinta matrices de rectangulos de tamaño par 
+    
+    */
     private void pintarTableroPar(){
         Rectangle rectangleTempo;
-        tablero=new ArrayList<ArrayList<Rectangle>>();
-        simulacion=new ArrayList<ArrayList<String>>();
         int numeroFilas=medida;
         int numeroColumnas=medida;
         int moverCuadradox=medida;
         String color="white";
-        
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
             for (int j=0;numeroColumnas>j;j++){
-                rectangleTempo= new Rectangle();
+                rectangleTempo= new Rectangle(xPos,yPos);
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 if (i%2==0){
@@ -58,15 +84,17 @@ public class Tablero{
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
-
             }
-        }
-        System.out.println(simulacion);
+       }
+       
     }
+    /**
+    * Pinta matrices de rectangulos de tamaño impar 
+    
+    */
+    
     private void pintarTableroImpar(){
         Rectangle rectangleTempo;
-        tablero=new ArrayList<ArrayList<Rectangle>>();
-        simulacion=new ArrayList<ArrayList<String>>();
         int numeroFilas=medida;
         int numeroColumnas=medida;
         int moverCuadradox=medida;
@@ -75,7 +103,7 @@ public class Tablero{
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
             for (int j=0;numeroColumnas>j;j++){
-                rectangleTempo= new Rectangle();
+                rectangleTempo= new Rectangle(xPos,yPos);
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 rectangleTempo.changeColor(color);
@@ -87,18 +115,86 @@ public class Tablero{
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
-
             }
         }
-        System.out.println(simulacion);
-     }
-     public int getposxCuadrado(int fila,int columna){
+    }
+    /**
+    * Entrega la posicion en X del rectangulo en la matriz
+    *@param fila ,columna
+    *@return tablero.get(fila-1).get(columna-1).getPosicionX()
+    */
+    public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
-        }
-     public int getposyCuadrado(int fila,int columna){
+     }
+    /**
+    * Entrega la posicion en Y del rectangulo en la matriz
+    *@param fila ,columna
+    *@return tablero.get(fila-1).get(columna-1).getPosicionY()
+    */
+    public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
         }
-
+    /**
+    * Entrega la matriz simulacion
+    
+    *@return simulacion
+    */
+    public ArrayList<ArrayList<String>> getSimulacion(){
+        return simulacion;
+     }
+     /**
+    * Entrega la posicion en X y Y de la matriz simulacion
+    *@param x,y
+    *@return simulacion.get(x).get(y);
+    */
+    public String getSimulacion(int x,int y)
+     {
+        return simulacion.get(x).get(y);
+     }
+     /**
+    *Cambia la posicion 
+    *@param fila,columna,jugador
+  
+    */
+    public void changePosition(int fila,int columna,String jugador){
+        simulacion.get(fila).set(columna,jugador);
+      
+    }
+      /**
+    * Hace visible la matriz, si ya es visible no hace nada.
+    
+    */
+    public void makeVisibleTablero(){
+        for(int i=0;i<tablero.size();i++){
+            for(int j=0;j<tablero.size();j++){
+                tablero.get(i).get(j).makeVisible();                
+            }
+        }
+    }
+      /**
+    * Hace invisible la matriz, si ya es visible no hace nada.
+    
+    */
+    public void makeInvisibleTablero(){
+        for(int i=0;i<tablero.size();i++){
+            for(int j=0;j<tablero.size();j++){
+                tablero.get(i).get(j).makeInvisible();
+            }
+        }
+    }
+      /**
+    * Mueve la matriz horizontalmente
+    
+    */
+    public void moveTableroHorizontal(){
+            for(int i=0;tablero.size()>i;i++){
+                for(int j=0;tablero.size()>i;i++){
+                    tablero.get(i).get(j).makeInvisible();
+                    tablero.get(i).get(j).moveHorizontal(200);
+                    tablero.get(i).get(j).makeVisible();
+            }
+        }
+    }       
 }      
 
 

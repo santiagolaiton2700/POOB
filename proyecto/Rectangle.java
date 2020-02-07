@@ -29,7 +29,14 @@ public class Rectangle{
         color = "magenta";
         isVisible = false;
     }
-    
+    public Rectangle(int xPos,int yPos){
+        height = 50;
+        width = 50;
+        xPosition = xPos;
+        yPosition = yPos;
+        color = "magenta";
+        isVisible = false;
+    }
 
     /**
      * Make this rectangle visible. If it was already visible, do nothing.
@@ -157,7 +164,7 @@ public class Rectangle{
         draw();
     }
 
-    /*
+    /**
      * Draw the rectangle with current specifications on screen.
      */
 
@@ -170,7 +177,7 @@ public class Rectangle{
         }
     }
 
-    /*
+    /**
      * Erase the rectangle on screen.
      */
     private void erase(){
@@ -179,9 +186,17 @@ public class Rectangle{
             canvas.erase(this);
         }
     }
+    /**
+     * Retorna la posicion en x del rectangulo
+     * @return xPosition
+     */
     public int getPosicionX(){
         return  xPosition;
     }
+    /**
+     * Retorna la posicion en y del rectangulo
+     * @return yPosition
+     */
     public int getPosicionY(){
         return  yPosition;
     }
