@@ -153,7 +153,7 @@ public class Circle{
         draw();
     }
 
-    /*
+    /**
      * Draw the circle with current specifications on screen.
      */
     private void draw(){
@@ -166,7 +166,7 @@ public class Circle{
         }
     }
 
-    /*
+    /**
      * Erase the circle on screen.
      */
     private void erase(){
@@ -175,9 +175,17 @@ public class Circle{
             canvas.erase(this);
         }
     }
+    /**
+     * @return el color del circulo
+    
+     */
     public String getColor(){
         return color;
     }
+    /**
+     * Borra y dibuja de nuevo 
+     * @param entero x y entero y 
+     */
     public void changePos(int x,int y){
         erase();
         xPosition=x;

@@ -5,7 +5,7 @@
     * Tablero de tamaño nxn dibujado sobre un canvas.
     * 
     * @author  Lina Buitrago and Santiago Laiton
-    * @version 4.0.  (02 Febrero 2020) 
+    * @version 4.0.  (06 Febrero 2020) 
     */
     public class checkers {
     Tablero juego;
@@ -15,7 +15,8 @@
     private Fichas fichaSelecionada;
     
     /**
-    * Crea dos tableros de tamaño "width" cada uno a una distancia de 800 del otro
+    * Crea tableros de tamaño "width" cada uno a una distancia de 800 del otro
+    * @param width
     */
     public checkers(int width)
     {
@@ -23,28 +24,39 @@
         configuracion=new Tablero(width);
         juego= new Tablero(width,800,0);
         fichas=new ArrayList<Fichas>();
-            //configuracion
-            //juego.moveTableroHorizontal();
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     
+    /**
+     * Intercambian fichas de posición
+     * @param top,right
+     */
     public void shift(boolean top,boolean right  ) {
     
     }
+    /**
+     * Salta una ficha sobre otra 
+     * @param top,right
+     */
     public void jump(boolean top,boolean right){
     }
+    /**
+     * Mueve la ficha en el tablero
+     * @param notacion
+     */
     public void move(String notacion){
         if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
-            if (notacion.equals("izq")){
+            if (notacion.equals("izqarriba")){
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
+               
+            }else if(notacion.equals("izqabajo")){
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1));
+
+            }else if(notacion.equals("derabajo")){
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado+1));
+
             }else{
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado+1));
             }
@@ -53,7 +65,8 @@
             
         }
     /**
-     * Adiciona una ficha king en el tablero  fila,columna indicando el jugador , en caso de intentar adicionar la ficha en una posicon incorrecta se mostrara el respectivo mensaje de error al usuario 
+     * Adiciona una ficha king en el tablero y entrega mensajes al usuario en caso de error
+     * @param king,fila,columna,jugador  
      */
     public void add(boolean king, int fila,int columna,String jugador){
         if(fila==0 || fila>medida && columna==0 ||fila>medida){
@@ -80,7 +93,8 @@
         
     }
     /**
-     * Adiciona fichas men por medio de una matriz de enteros donde 1 es ficha y 0 espacio vacio e indicando el jugador ;en caso de intentar adicionar la ficha en una posicon incorrecta se mostrara el respectivo mensaje de error al usuario
+     * Adiciona fichas men en el tablero y entrega mensajes al usuario en caso de error
+     * @param men,jugador
      */
     public void add(int[][] men,String jugador){
         for(int i=0;men.length>i;i++){
@@ -109,7 +123,8 @@
      }
     }
     /**
-     * Selecciona la ficha ubicada en la coordenada (fila,columna) y la cambia de color 
+     * Selecciona la ficha y la identifica cambiandola de color a verde
+     * @param fila,columna
      */
      public void select(int fila,int columna){
        for(int i=0;i<fichas.size();i++){
@@ -130,6 +145,10 @@
         }
        
     }
+    /**
+     * Remueve una ficha del tablero
+     * @param pieces
+     */
     public void remove(int [][]pieces){
     }
     /**
@@ -137,6 +156,10 @@
      */
     public void swap(){
     }
+    /**
+     * Consulta posicion de la ficha
+     * @return null
+     */
     public int[][] consult(){
         return null;
     }
@@ -160,6 +183,9 @@
     public void finish(){
         System.exit(0);
     }
+    /**
+     * Indica si la ultima operación se realizo 
+     */
     public void ok(){
     }
 }
