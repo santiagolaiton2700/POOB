@@ -86,12 +86,16 @@ public class Fichas
      */
     public void MakeInvisible(){
         ficha.makeInvisible();
-    }
+     }
     /**
      * Hace la ficha visible , si ya esta visible no hace nada
      
      */
     public void MakeVisible(){
         ficha.makeVisible();
+    }
+    public void changePosition(int nuevaFila,int nuevaColumna){
+        fila=nuevaFila;
+        columna=nuevaColumna;
     }
 }

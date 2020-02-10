@@ -48,22 +48,22 @@
         if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
-            if (notacion.equals("izqarriba")){
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
-               
-            }else if(notacion.equals("izqabajo")){
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1));
-
+            if (notacion.equals("izqarriba")){                      
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));                                                                                                                                                                                                 
+                fichaSelecionada.changePosition(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
+                fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado-1);
+            }else if(notacion.equals("izqabajo")){                
+                    fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1)); 
+                    fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado-1);
             }else if(notacion.equals("derabajo")){
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado+1));
-
-            }else{
+                fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado+1);
+            }else{                
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado+1));
+                fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado+1);
             }
-            }
-                
-            
-        }
+    }
+    }
     /**
      * Adiciona una ficha king en el tablero y entrega mensajes al usuario en caso de error
      * @param king,fila,columna,jugador  
@@ -78,7 +78,6 @@
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);
             if(posS.equals("black") || posS.equals("white")){
-                System.out.println(columna+"holIII");
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
@@ -105,12 +104,13 @@
                 JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");            
              }else{
                 int posX=configuracion.getposxCuadrado(i+1,j+1);
-                int posY=configuracion.getposyCuadrado(i+1,j+1);
+                int posY=configuracion.getposyCuadrado(i+1,j+1);               
                 String posS=configuracion.getSimulacion(i,j);
                if(posS.equals("j1")||posS.equals("j2")){
                    JOptionPane.showMessageDialog(null,"No esta libre");            
                 }else if(posS.equals("black") || posS.equals("white")){
-                Fichas Ficha= new Fichas(i,j,posX+10,posY+10,jugador);
+                Fichas Ficha= new Fichas(i+1,j+1,posX+10,posY+10,jugador);
+                fichas.add(Ficha);
                 if(jugador.equals("j1")){
                     Ficha.changeColor("white");
                 }
@@ -142,8 +142,7 @@
             else if(fichas.get(i).getFila() + fichas.get(i).getColumna() % 2==0){
                 JOptionPane.showMessageDialog(null,"Esta ficha no se puede seleccionar");                
             }
-        }
-       
+        }       
     }
     /**
      * Remueve una ficha del tablero
