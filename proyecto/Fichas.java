@@ -3,19 +3,16 @@ import java.util.ArrayList;
  * Fichas de tipo circulo dibujadas sobre un canvas.
  * 
  * @author  Lina Buitrago and Santiago Laiton
- * @version 2.0.  (02 Febrero 2020) 
+ * @version 2.0.  (06 Febrero 2020) 
  */
 public class Fichas
-{
-   
+{   
     private int posicionX;
     private int posicionY;
     private int columna;
     private int fila;
     private Circle ficha;
-    private String jugador;
-    
-     
+    private String jugador;         
      /**
      * 
      * Crea una ficha de tipo circulo a partir de los parametros dados
@@ -61,7 +58,7 @@ public class Fichas
     }
     /**
      * Retorna el color actual de la ficha
-     * @return ficha.getColor()
+     * @return color de la ficha
      */
     public String getColor(){
         return ficha.getColor();
@@ -80,20 +77,24 @@ public class Fichas
     public void moveFicha(int fila, int columna){
         ficha.changePos(fila+10,columna+10);
      }
-     /**
+    /**
      * Hace la ficha invisible , si ya esta invisible no hace nada
 
      */
     public void MakeInvisible(){
-        ficha.makeInvisible();
+        this.ficha.makeInvisible();
      }
     /**
      * Hace la ficha visible , si ya esta visible no hace nada
      
      */
     public void MakeVisible(){
-        ficha.makeVisible();
+        this.ficha.makeVisible();    
     }
+    /**
+     * cambia la posicion de la fila y de la columna en una ficha
+     * @param nuevafila y nueva columna
+     */
     public void changePosition(int nuevaFila,int nuevaColumna){
         fila=nuevaFila;
         columna=nuevaColumna;

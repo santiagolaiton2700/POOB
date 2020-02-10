@@ -28,51 +28,44 @@ public class Circle{
         color = "red";
         isVisible = false;
     }
-
     /**
      * Make this circle visible. If it was already visible, do nothing.
      */
     public void makeVisible(){
         isVisible = true;
         draw();
-    }
-    
+    }   
     /**
      * Make this circle invisible. If it was already invisible, do nothing.
      */
     public void makeInvisible(){
         erase();
         isVisible = false;
-    }
-    
+    }    
     /**
      * Move the circle a few pixels to the right.
      */
     public void moveRight(){
         moveHorizontal(20);
     }
-
     /**
      * Move the circle a few pixels to the left.
      */
     public void moveLeft(){
         moveHorizontal(-20);
     }
-
     /**
      * Move the circle a few pixels up.
      */
     public void moveUp(){
         moveVertical(-20);
     }
-
     /**
      * Move the circle a few pixels down.
      */
     public void moveDown(){
         moveVertical(20);
     }
-
     /**
      * Move the circle horizontally.
      * @param distance the desired distance in pixels
@@ -82,7 +75,6 @@ public class Circle{
         xPosition += distance;
         draw();
     }
-
     /**
      * Move the circle vertically.
      * @param distance the desired distance in pixels
@@ -92,27 +84,23 @@ public class Circle{
         yPosition += distance;
         draw();
     }
-
     /**
      * Slowly move the circle horizontally.
      * @param distance the desired distance in pixels
      */
     public void slowMoveHorizontal(int distance){
         int delta;
-
         if(distance < 0) {
             delta = -1;
             distance = -distance;
         } else {
             delta = 1;
         }
-
         for(int i = 0; i < distance; i++){
             xPosition += delta;
             draw();
         }
     }
-
     /**
      * Slowly move the circle vertically
      * @param distance the desired distance in pixels
@@ -126,13 +114,11 @@ public class Circle{
         }else {
             delta = 1;
         }
-
         for(int i = 0; i < distance; i++){
             yPosition += delta;
             draw();
         }
     }
-
     /**
      * Change the size.
      * @param newDiameter the new size (in pixels). Size must be >=0.
@@ -142,7 +128,6 @@ public class Circle{
         diameter = newDiameter;
         draw();
     }
-
     /**
      * Change the color. 
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",

@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 /**
     * Matriz de cuadrados dibujado sobre un canvas.
@@ -13,8 +11,7 @@ public class Tablero{
     private boolean isVisible;
     private int medida;
     public int xPos=0;
-    public int yPos=0;
-    
+    public int yPos=0;   
     /**
     * Crea matrices de tipo Rectangle con los parametros indicados
     * @param width
@@ -45,9 +42,9 @@ public class Tablero{
             pintarTableroPar();
         }else{
             pintarTableroImpar();
-        }
-        
+        }        
     }
+    
     /**
     * Pinta matrices de rectangulos de tamaño par 
     
@@ -121,7 +118,7 @@ public class Tablero{
     /**
     * Entrega la posicion en X del rectangulo en la matriz
     *@param fila ,columna
-    *@return tablero.get(fila-1).get(columna-1).getPosicionX()
+    *@return posicionX
     */
     public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
@@ -129,7 +126,7 @@ public class Tablero{
     /**
     * Entrega la posicion en Y del rectangulo en la matriz
     *@param fila ,columna
-    *@return tablero.get(fila-1).get(columna-1).getPosicionY()
+    *@return posicionY
     */
     public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
@@ -145,7 +142,7 @@ public class Tablero{
      /**
     * Entrega la posicion en X y Y de la matriz simulacion
     *@param x,y
-    *@return simulacion.get(x).get(y);
+    *@return posicionX y posicionY
     */
     public String getSimulacion(int x,int y)
      {
@@ -160,7 +157,7 @@ public class Tablero{
         simulacion.get(fila).set(columna,jugador);
       
     }
-      /**
+    /**
     * Hace visible la matriz, si ya es visible no hace nada.
     
     */
@@ -176,24 +173,26 @@ public class Tablero{
     
     */
     public void makeInvisibleTablero(){
+        System.out.println(simulacion);
         for(int i=0;i<tablero.size();i++){
             for(int j=0;j<tablero.size();j++){
                 tablero.get(i).get(j).makeInvisible();
             }
         }
     }
-      /**
+    /**
     * Mueve la matriz horizontalmente
     
     */
     public void moveTableroHorizontal(){
+            System.out.println(simulacion);
             for(int i=0;tablero.size()>i;i++){
                 for(int j=0;tablero.size()>i;i++){
                     tablero.get(i).get(j).makeInvisible();
                     tablero.get(i).get(j).moveHorizontal(200);
                     tablero.get(i).get(j).makeVisible();
             }
-        }
+            }
     }       
 }      
 

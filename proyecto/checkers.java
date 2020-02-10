@@ -1,4 +1,3 @@
-    
     import javax.swing.JOptionPane;
     import java.util.ArrayList;
     /**
@@ -47,23 +46,40 @@
     public void move(String notacion){
         if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
-            int columnaCuadrado=fichaSelecionada.getColumna();
-            if (notacion.equals("izqarriba")){                      
+            int columnaCuadrado=fichaSelecionada.getColumna();        
+            if (notacion.equals("izqarriba")){
+                if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));                                                                                                                                                                                                 
                 fichaSelecionada.changePosition(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
                 fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado-1);
-            }else if(notacion.equals("izqabajo")){                
-                    fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1)); 
-                    fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado-1);
+                }            
+            }else if(notacion.equals("izqabajo")){
+                if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                   fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1)); 
+                   fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado-1);
+                }                   
             }else if(notacion.equals("derabajo")){
+                if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado+1));
-                fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado+1);
-            }else{                
+                fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado+1);}
+            }else if(notacion.equals("derarriba")){
+                if(filaCuadrado-1<1 ||columnaCuadrado+1>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
+                }else{
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado+1));
                 fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado+1);
-            }
-    }
-    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Solo puede moverse izqarriba,izqabajo,derabajo,derarriba"); 
+                }
+         }
+    }    
     /**
      * Adiciona una ficha king en el tablero y entrega mensajes al usuario en caso de error
      * @param king,fila,columna,jugador  
@@ -82,6 +98,7 @@
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
                     Ficha.changeColor("white");
+                    
                 }
                 juego.changePosition(fila-1,columna-1,jugador);
             }else{
@@ -166,15 +183,23 @@
      * Hace el tablero visible.Si ya esta visible no hace nada.
      */
     public void makeVisible(){
+        for (int i=0;i>fichas.size();i++){
+            fichas.get(i).MakeVisible();
+        }       
         juego.makeVisibleTablero();
         configuracion.makeVisibleTablero();
+        System.out.println(fichas.size());
     }  
     /**
      * Hace el tablero invisible.Si ya esta invisible no hace nada.
      */
-    public void makeInvisible(){
+    public void makeInvisible(){       
+        for (int i=0;i>fichas.size();i++){
+            fichas.get(i).MakeInvisible();
+        }
         juego.makeInvisibleTablero();
         configuracion.makeInvisibleTablero();
+        System.out.println(fichas.size());
     }
     /**
      * Termina el juego y no permite ejecutar mas metodos
