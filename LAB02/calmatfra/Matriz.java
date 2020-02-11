@@ -1,9 +1,13 @@
+import java.sql.Array;
+import java.util.ArrayList;
+
 /**
  * @author ECI, 2019
  *
  */
-public class Matriz{
 
+public class Matriz{
+	private ArrayList<Fraccionario> listaFraccionario;
     private Fraccionario [][] matriz;
     
     /**
@@ -15,8 +19,15 @@ public class Matriz{
     }
     
     public Matriz (int [][][] elementos) {
-
-    }    
+        for (int i=0; i<elementos.length;++i){
+        	for(int j=0; j<elementos[i].length;++i) {
+        		matriz= new Fraccionario[elementos[i][j][0]][elementos[i][j][1]];
+        		listaFraccionario.add(matriz);
+        	}
+        }
+        //matriz.toString();
+    }
+    
     
     /**
      * Retorna una matriz dados sus elementos. 

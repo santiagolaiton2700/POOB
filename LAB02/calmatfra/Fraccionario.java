@@ -31,9 +31,9 @@ public class Fraccionario {
      * @param denominador. denominador <> 0
      */
     public Fraccionario (int numerador, int denominador) {
-    fraccionario[0]= numerador;
-    fraccionario[1]= denominador;
-    resultado=numerador/denominador;
+        fraccionario[0]= numerador;
+        fraccionario[1]= denominador;
+        resultado=numerador/denominador;
     
     }
     
@@ -61,7 +61,9 @@ public class Fraccionario {
      * el maximo comun divisor de p y q es 1.
      * @return El numerador simplificado del fraccionario
      */
-    public int numerador() {
+    public int numerador(){
+    
+  
         return fraccionario[0];
     }
     
@@ -127,7 +129,8 @@ public class Fraccionario {
      */
     @Override
     public String toString() {
-        return (fraccionario[0]+"/"+fraccionario[1]);
+        return (String.valueOf(fraccionario[0])+"/"+String.valueOf(fraccionario[1]));
+       
     }
     
 }

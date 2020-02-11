@@ -1,16 +1,16 @@
 #BlueJ package file
-dependency1.from=Matriz
+dependency1.from=FraccionarioTest
 dependency1.to=Fraccionario
 dependency1.type=UsesDependency
 dependency2.from=Calmatfra
 dependency2.to=Matriz
 dependency2.type=UsesDependency
-dependency3.from=FraccionarioTest
+dependency3.from=Matriz
 dependency3.to=Fraccionario
 dependency3.type=UsesDependency
 editor.fx.0.height=867
-editor.fx.0.width=814
-editor.fx.0.x=793
+editor.fx.0.width=939
+editor.fx.0.x=668
 editor.fx.0.y=0
 objectbench.height=109
 objectbench.width=774
