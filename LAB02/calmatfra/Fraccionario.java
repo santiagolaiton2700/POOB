@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public class Fraccionario {
     private int [] fraccionario =new int[2];
+    private float resultado;
+    
     /**Calcula el maximo comun divisor de dos enteros
      * Lo implementaremos mediante el algoritmo recursivo
      * @param a primer entero
@@ -31,12 +33,17 @@ public class Fraccionario {
     public Fraccionario (int numerador, int denominador) {
     fraccionario[0]= numerador;
     fraccionario[1]= denominador;
+    resultado=numerador/denominador;
+    
     }
     
     /**Crea un fraccionario correspondiente a un entero
      * @param entero el entero a crear
      */
     public Fraccionario (int entero) {
+        fraccionario[0]=entero;
+        fraccionario[1]=1;
+        resultado=entero;
     }
 
      /**Crea un fraccionario, a partir de su representacion mixta. 
@@ -55,7 +62,7 @@ public class Fraccionario {
      * @return El numerador simplificado del fraccionario
      */
     public int numerador() {
-        return 0;
+        return fraccionario[0];
     }
     
     /**
@@ -64,7 +71,7 @@ public class Fraccionario {
      * @return el denominador simplificado del fraccionario
      */
     public int denominador() {
-        return 0;
+        return fraccionario[1];
     }
     
     /**Suma este fraccionario con otro fraccionario
@@ -95,9 +102,17 @@ public class Fraccionario {
     
     @Override
     public boolean equals(Object obj) {
-        return equals((Fraccionario)obj);
+        if (!obj.getClass().getSimpleName().equals("Fraccionario")){
+            return false;
+        }
+        else{
+            Fraccionario aux = (Fraccionario) obj;
+            return (this.getResultado()==(aux.getResultado()));
+        }                
     }    
-    
+    public float getResultado(){
+        return this.resultado;
+    }
     /**Compara este fraccionario con otro fraccionario
      * @param otro eL otro fraccionario
      * @return true si este fraccionario es igual matem�ticamente al otro fraccionario, False d.l.c.
@@ -112,7 +127,7 @@ public class Fraccionario {
      */
     @Override
     public String toString() {
-        return "";
+        return (fraccionario[0]+"/"+fraccionario[1]);
     }
     
 }
