@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.fail;
 
 
 public class FraccionarioTest {
@@ -12,13 +12,13 @@ public class FraccionarioTest {
         assertEquals (1, Fraccionario.mcd(3, 4));
         assertEquals (1, Fraccionario.mcd(6, 35));
         assertEquals (1, Fraccionario.mcd(35, 24));
-        assertEquals (1, Fraccionario.mcd(7, 5));
+        assertEquals (1, Fraccionario.mcd(5, 36));
     }
 
     @Test
     public void mcdDeberiaSerElMenorSiMultiplos() {
         assertEquals (3, Fraccionario.mcd(3, 12));
-        assertEquals (4, Fraccionario.mcd(16, 4));
+        assertEquals (4, Fraccionario.mcd(4,16));
     }
     
     @Test
@@ -129,14 +129,20 @@ public class FraccionarioTest {
         assertEquals("-1/2", new Fraccionario(-1,2).toString());
         assertEquals("1/2", new Fraccionario(4,8).toString());
     }   
+    @Test    
+    public void deberiaPasar(){
+        assertTrue("Deberia pasar.",true);
+    }    
     @Test
-    public void beberiaPasar(){
-       assertEquals("hola","hola");
-       }
-    
+    public void deberiaFallar(){
+        assertFalse("Deberia ser false..",false);
+    }
+    @Test    
+    public void deberiaErrar(){
+        int division=10/4;
+        assertFalse(division==10);               
+    } 
 //Pruebas de sume()
-
-    
 //
 
 

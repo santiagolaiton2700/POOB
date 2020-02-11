@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Fraccionario
  * Esta clase implementa el tipo de dato Fraccionario; es decir, un n�mero racional que se pueden escribir de la forma p/q, donde p y q son enteros, con q <> 0
@@ -8,26 +8,29 @@
  *
  */
 public class Fraccionario {
-
-    
+    private int [] fraccionario =new int[2];
     /**Calcula el maximo comun divisor de dos enteros
      * Lo implementaremos mediante el algoritmo recursivo
      * @param a primer entero
      * @param b segundo entero
      * @return el Maximo Comun Divisor de a y b
-     */
-  
+     */  
     public static int mcd(int a,int b){
-
-        return 0;
-    }    
-    
+        int cont=0;       
+        while (b>0){
+            cont=b;
+            b=a%b;
+            a=cont;
+        }
+        return a;
+    }        
     /**Crea un nuevo fraccionario, dado el numerador y el denominador
      * @param numerador
      * @param denominador. denominador <> 0
      */
     public Fraccionario (int numerador, int denominador) {
-
+    fraccionario[0]= numerador;
+    fraccionario[1]= denominador;
     }
     
     /**Crea un fraccionario correspondiente a un entero
