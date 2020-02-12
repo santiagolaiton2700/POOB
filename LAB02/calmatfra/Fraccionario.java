@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.lang.Math;
 /**
@@ -31,20 +32,19 @@ public class Fraccionario {
      * @param numerador
      * @param denominador. denominador <> 0
      */
-    public Fraccionario (int numerador, int denominador) {
-        
+    public Fraccionario (int numerador, int denominador) {        
         if(denominador<0 && numerador>0){
             fraccionario[0]=numerador*-1;
             fraccionario[1]=denominador*-1;
-            resultado=numerador/denominador;
+            resultado=(float)numerador/(float)denominador;
         }else if(numerador<0 && denominador<0){
             fraccionario[0]=numerador*-1;
             fraccionario[1]=denominador*-1;
-            resultado=numerador/denominador;
+            resultado=(float)numerador/(float)denominador;
         }else{
             fraccionario[0]= numerador;
             fraccionario[1]= denominador;
-            resultado=numerador/denominador;
+            resultado=(float)numerador/(float)denominador;
         }     
     }        
     /**Crea un fraccionario correspondiente a un entero
@@ -92,23 +92,55 @@ public class Fraccionario {
      * @return este+otro
      */
     public Fraccionario sume (Fraccionario otro) {
-        return null;
-    }    
+        int numerador1=fraccionario[0];
+        int denominador1=fraccionario[1];
+        int numerador2=otro.getFraccionario()[0];
+        int denominador2=otro.getFraccionario()[1];
+        int numerador=(numerador1*denominador2)+(denominador1*numerador2);
+        int denominador=denominador1*denominador2;      
+        return new Fraccionario(numerador,denominador);
+    }
+    /**Resta este fraccionario con otro fraccionario
+     * @param otro es otro fraccionario
+     * @return este-otro
+     */
+    public Fraccionario reste (Fraccionario otro) {
+        int numerador1=fraccionario[0];
+        int denominador1=fraccionario[1];
+        int numerador2=otro.getFraccionario()[0];
+        int denominador2=otro.getFraccionario()[1];
+        int numerador=(numerador1*denominador2)-(denominador1*numerador2);
+        int denominador=denominador1*denominador2;      
+        return new Fraccionario(numerador,denominador);
+    } 
+    
     /**Multiplica este fraccionario con otro fraccionario
      * @param otro El otro fraccionario
      * @return este * otro
      */
     public Fraccionario multiplique (Fraccionario otro) {
-        return null;
+        int numerador1=fraccionario[0];
+        int denominador1=fraccionario[1];
+        int numerador2=otro.getFraccionario()[0];
+        int denominador2=otro.getFraccionario()[1];
+        int numerador=(numerador1*numerador2);
+        int denominador=denominador1*denominador2;      
+        return new Fraccionario(numerador,denominador);
     }
-    
+ 
     
     /**Divide este fraccionario sobre otro fraccionario
      * @param otro El otro fraccionario
      * @return este * otro
      */
     public Fraccionario divida (Fraccionario otro) {
-        return null;
+        int numerador1=fraccionario[0];
+        int denominador1=fraccionario[1];
+        int numerador2=otro.getFraccionario()[0];
+        int denominador2=otro.getFraccionario()[1];
+        int numerador=(numerador1*denominador2);
+        int denominador=(numerador2*denominador1);      
+        return new Fraccionario(numerador,denominador);
     }
     
     
@@ -131,6 +163,11 @@ public class Fraccionario {
      */
     public boolean equals (Fraccionario otro) {
         return false;
+    }
+    
+    
+    public int[] getFraccionario () {
+        return fraccionario;
     }
 
 

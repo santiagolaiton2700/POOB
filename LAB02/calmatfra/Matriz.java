@@ -17,19 +17,23 @@ public class Matriz{
     public static boolean esMatriz (int [][][] elementos){
         return false;
     }
-    /**
-    public Matriz (int [][][] elementos) {
-        for (int i=0; i<elementos.length;++i){
-            for(int j=0; j<elementos[i].length;++i) {
-                matriz= new Fraccionario[elementos[i][j][0]][elementos[i][j][1]];
-                listaFraccionario.add(matriz);
+    public Matriz (int [][][] elementos) 
+        {
+
+        matriz=new Fraccionario [elementos.length][elementos[0].length];
+      
+        for (int i=0; i<elementos.length;i++){
+            for(int j=0; j<elementos[i].length; j++) {
+                matriz[i][j]= new Fraccionario(elementos[i][j][0],elementos[i][j][1]);                
             }
         }
-        //matriz.toString();
+  
     }
-    **/
     
-    
+    public Fraccionario [][] getMatriz(){
+        return matriz;
+    }
+        
     /**
      * Retorna una matriz dados sus elementos. 
      */

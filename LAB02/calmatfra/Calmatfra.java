@@ -14,13 +14,18 @@ public class Calmatfra{
         variables=new HashMap<String,Matriz>();
     }
 
-    /**
+   
     public void asigne(String variable, int [][][] matriz){
         Matriz matrizTemporal= new Matriz(matriz);
         variables.put(variable ,matrizTemporal);
-        System.out.println(matrizTemporal.get(0,0));
+        for(int i=0;i<matrizTemporal.getMatriz().length;i++){
+            for(int j=0;j<matrizTemporal.getMatriz()[i].length;j++) {
+                System.out.print(matrizTemporal.getMatriz()[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
-    **/
+    
     // Los operadores binarios : + (suma), - (resta), . (multiplique elemento a elemento), * (multiplique matricial)
     public void opere(String respuesta, String operando1, char operacion, String operando2){
     }
