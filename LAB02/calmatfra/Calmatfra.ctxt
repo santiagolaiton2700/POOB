@@ -2,12 +2,11 @@
 comment0.target=Calmatfra
 comment1.params=
 comment1.target=Calmatfra()
-comment2.params=variable\ matriz
-comment2.target=void\ asigne(java.lang.String,\ int[][][])
-comment3.params=respuesta\ operando1\ operacion\ operando2
-comment3.target=void\ opere(java.lang.String,\ java.lang.String,\ char,\ java.lang.String)
-comment4.params=variable
-comment4.target=java.lang.String\ consulta(java.lang.String)
-comment5.params=
-comment5.target=boolean\ ok()
-numComments=6
+comment2.params=respuesta\ operando1\ operacion\ operando2
+comment2.target=void\ opere(java.lang.String,\ java.lang.String,\ char,\ java.lang.String)
+comment2.text=\r\n\ \ \ \ public\ void\ asigne(String\ variable,\ int\ [][][]\ matriz){\r\n\ \ \ \ \ \ \ \ Matriz\ matrizTemporal\=\ new\ Matriz(matriz);\r\n\ \ \ \ \ \ \ \ variables.put(variable\ ,matrizTemporal);\r\n\ \ \ \ \ \ \ \ System.out.println(matrizTemporal.get(0,0));\r\n\ \ \ \ }\r\n
+comment3.params=variable
+comment3.target=java.lang.String\ consulta(java.lang.String)
+comment4.params=
+comment4.target=boolean\ ok()
+numComments=5

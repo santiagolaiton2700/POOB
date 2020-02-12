@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 /**
  * Fraccionario
  * Esta clase implementa el tipo de dato Fraccionario; es decir, un n�mero racional que se pueden escribir de la forma p/q, donde p y q son enteros, con q <> 0
@@ -19,24 +20,33 @@ public class Fraccionario {
      */  
     public static int mcd(int a,int b){
         int cont=0;       
-        while (b>0){
+        while (b>0 || b<0){
             cont=b;
             b=a%b;
-            a=cont;
+            a=Math.abs(cont);
         }
-        return a;
+        return (a);
     }        
     /**Crea un nuevo fraccionario, dado el numerador y el denominador
      * @param numerador
      * @param denominador. denominador <> 0
      */
     public Fraccionario (int numerador, int denominador) {
-        fraccionario[0]= numerador;
-        fraccionario[1]= denominador;
-        resultado=numerador/denominador;
-    
-    }
-    
+        
+        if(denominador<0 && numerador>0){
+            fraccionario[0]=numerador*-1;
+            fraccionario[1]=denominador*-1;
+            resultado=numerador/denominador;
+        }else if(numerador<0 && denominador<0){
+            fraccionario[0]=numerador*-1;
+            fraccionario[1]=denominador*-1;
+            resultado=numerador/denominador;
+        }else{
+            fraccionario[0]= numerador;
+            fraccionario[1]= denominador;
+            resultado=numerador/denominador;
+        }     
+    }        
     /**Crea un fraccionario correspondiente a un entero
      * @param entero el entero a crear
      */
@@ -46,7 +56,7 @@ public class Fraccionario {
         resultado=entero;
     }
 
-     /**Crea un fraccionario, a partir de su representacion mixta. 
+    /**Crea un fraccionario, a partir de su representacion mixta. 
      * El numero creado es enteroMixto + numeradorMixto/denominadorMixto
      * @param enteroMixto la parte entera del numero
      * @param numeradorMixto el numerador de la parte fraccionaria
@@ -61,10 +71,10 @@ public class Fraccionario {
      * el maximo comun divisor de p y q es 1.
      * @return El numerador simplificado del fraccionario
      */
-    public int numerador(){
-    
-  
-        return fraccionario[0];
+    public int numerador(){      
+        int respuesta=mcd(fraccionario[0],fraccionario[1]);
+        int resultado=fraccionario[0]/respuesta;
+        return resultado;       
     }
     
     /**
@@ -73,17 +83,17 @@ public class Fraccionario {
      * @return el denominador simplificado del fraccionario
      */
     public int denominador() {
-        return fraccionario[1];
-    }
-    
+        int respuesta=mcd(fraccionario[0],fraccionario[1]);
+        int resultado=fraccionario[1]/respuesta;
+        return resultado;
+    }    
     /**Suma este fraccionario con otro fraccionario
      * @param otro es otro fraccionario
      * @return este+otro
      */
     public Fraccionario sume (Fraccionario otro) {
         return null;
-    }
-    
+    }    
     /**Multiplica este fraccionario con otro fraccionario
      * @param otro El otro fraccionario
      * @return este * otro

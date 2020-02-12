@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Matriz{
-	private ArrayList<Fraccionario> listaFraccionario;
+    private ArrayList<Fraccionario> listaFraccionario;
     private Fraccionario [][] matriz;
     
     /**
@@ -17,16 +17,17 @@ public class Matriz{
     public static boolean esMatriz (int [][][] elementos){
         return false;
     }
-    
+    /**
     public Matriz (int [][][] elementos) {
         for (int i=0; i<elementos.length;++i){
-        	for(int j=0; j<elementos[i].length;++i) {
-        		matriz= new Fraccionario[elementos[i][j][0]][elementos[i][j][1]];
-        		listaFraccionario.add(matriz);
-        	}
+            for(int j=0; j<elementos[i].length;++i) {
+                matriz= new Fraccionario[elementos[i][j][0]][elementos[i][j][1]];
+                listaFraccionario.add(matriz);
+            }
         }
         //matriz.toString();
     }
+    **/
     
     
     /**
