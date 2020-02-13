@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 
 
 public class FraccionarioTest {
-
 // Pruebas Para mcd (a, b)
     @Test
     public void mcdDeberiaSer1siPrimosRelativos() {
@@ -14,33 +13,28 @@ public class FraccionarioTest {
         assertEquals (1, Fraccionario.mcd(35, 24));
         assertEquals (1, Fraccionario.mcd(5, 36));
     }
-
     @Test
     public void mcdDeberiaSerElMenorSiMultiplos() {
         assertEquals (3, Fraccionario.mcd(3, 12));
         assertEquals (4, Fraccionario.mcd(4,16));
-    }
-    
+    }    
     @Test
     public void mcdDeberiaSerCualquieraDeLosDosSiIguales() {
         assertEquals (1204, Fraccionario.mcd(1204, 1204));
         assertEquals (452, Fraccionario.mcd(452, 452));
         assertEquals (1, Fraccionario.mcd(1, 1));
-    }
-    
+    }    
     @Test
     public void mcdDeberiaCalcularseBienEnCasosCorrientes() {
         assertEquals (30, Fraccionario.mcd(180, 210));
         assertEquals (415800, Fraccionario.mcd(4158000, 5405400));
-    }
-    
+    }    
     @Test
     public void mcdDeberiaSerElMismoParaNegativos() {
         assertEquals (Fraccionario.mcd(-210,180), Fraccionario.mcd(180, 210));
         assertEquals (Fraccionario.mcd(210,-180), Fraccionario.mcd(180, 210));
         assertEquals (Fraccionario.mcd(-210,-180), Fraccionario.mcd(180, 210));
-    }
-    
+    }    
     @Test
     public void mcdDeberiaSerConmutativo() {
         assertEquals (Fraccionario.mcd(210,180), Fraccionario.mcd(180, 210));
@@ -48,10 +42,8 @@ public class FraccionarioTest {
         assertEquals (Fraccionario.mcd(12,3), Fraccionario.mcd(3, 12));
         assertEquals (Fraccionario.mcd(35, 24), Fraccionario.mcd(35, 24));
         assertEquals (Fraccionario.mcd(210,-180), Fraccionario.mcd(-180, 210));
-    }
-    
+    }    
 // Pruebas de creacion de fraccionarios
-
     @Test
     public void deberiaPoderCrearEnteros() {
         Fraccionario ent1 = new Fraccionario (1234);
@@ -59,14 +51,12 @@ public class FraccionarioTest {
         assertEquals(1,ent1.denominador());
         assertEquals(0,new Fraccionario (0).numerador());
     }
-
     @Test
     public void deberiaPoderCrearFraccionariosNumeradorCero() {
         assertEquals(0,new Fraccionario (0,10).numerador());
         assertEquals(0,new Fraccionario (0).numerador());
         assertEquals(0,new Fraccionario (0,-10).numerador());
-    }
-    
+    }    
     @Test
     public void noDeberiaSimplificarSiPrimosRelativos () {
         Fraccionario pr= new Fraccionario (100,3);
@@ -76,7 +66,6 @@ public class FraccionarioTest {
         assertEquals(-100, pr2.numerador());
         assertEquals(1, pr2.denominador());
     }
-
     @Test
     public void deberiaSimplificarFraccionarios() {
         Fraccionario fr1= new Fraccionario (5405400,4158000);
@@ -85,8 +74,7 @@ public class FraccionarioTest {
         Fraccionario fr2= new Fraccionario (-100,60);
         assertEquals(-5, fr2.numerador());
         assertEquals(3, fr2.denominador());
-    }
-    
+    }    
     @Test
     public void noDeberiaHaberDenominadoresSimplificadosNegativos () {
         Fraccionario fr1= new Fraccionario (100,-3);
@@ -95,9 +83,7 @@ public class FraccionarioTest {
         Fraccionario fr2= new Fraccionario (-100,-3);
         assertEquals(100, fr2.numerador());
         assertEquals(3, fr2.denominador());
-    }
-    
-
+    }    
     @Test
     public void deberiaDarseCuentaQueUnFraccionarioEsIgualAElMismo () {
         assertEquals(new Fraccionario (0),new Fraccionario (0));
@@ -109,20 +95,17 @@ public class FraccionarioTest {
         assertEquals(new Fraccionario(3,100), new Fraccionario(-3,-100));
         assertEquals(new Fraccionario(-3,100), new Fraccionario(3,-100));
     }
-
     @Test
     public void deberiaDarseCuentaSiDosFraccionariosCreadosDistintosSonIguales () {
         assertEquals (new Fraccionario(5405400,4158000), new Fraccionario(54054,41580));
         assertEquals (new Fraccionario(13,10), new Fraccionario(54054,41580));
     }
-
     @Test
     public void deberiaDarseCuentaQueCualquieFraccionarioConNumeradorCeroEsIgual () {
         assertEquals (new Fraccionario(0,4158000), new Fraccionario(0,1));
         assertEquals (new Fraccionario(0,-10), new Fraccionario(0));
-    }
-    
-//Pruebas de toString() 
+    }   
+    //Pruebas de toString() 
     @Test
     public void deberiaPoderEscribirFraccionarioComoCadena () {
         assertEquals("1/2", new Fraccionario(1,2).toString());
@@ -142,8 +125,27 @@ public class FraccionarioTest {
         int division=10/4;
         assertFalse(division==10);               
     } 
-//Pruebas de sume()
-//
-
-
+    //Pruebas de sume()
+    @Test
+     public void laSumaDeberiaSer(){
+       Fraccionario fraccionario = new Fraccionario(1,2);
+       assertEquals(new Fraccionario(7,6),fraccionario.sume(new Fraccionario(2,3)));         
+     }
+    @Test
+     public void laRestaDeberiaSer(){
+        Fraccionario fraccionario = new Fraccionario(1,2);
+        assertEquals(new Fraccionario(-1,6),fraccionario.reste(new Fraccionario(2,3)));
+    }
+    @Test
+    public void laMultiplicacionDeberiaSer(){        
+        Fraccionario fraccionario = new Fraccionario(1,2);
+        assertEquals(new Fraccionario(2,6),fraccionario.multiplique(new Fraccionario(2,3)));
+    }
+    @Test
+    public void laDivisionDeberiaSer(){
+        Fraccionario fraccionario = new Fraccionario(1,2);
+        assertEquals(new Fraccionario(3,4),fraccionario.divida(new Fraccionario(2,3)));    
+    }
 }
+
+

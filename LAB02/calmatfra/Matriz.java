@@ -19,9 +19,7 @@ public class Matriz{
     }
     public Matriz (int [][][] elementos) 
         {
-
         matriz=new Fraccionario [elementos.length][elementos[0].length];
-      
         for (int i=0; i<elementos.length;i++){
             for(int j=0; j<elementos[i].length; j++) {
                 matriz[i][j]= new Fraccionario(elementos[i][j][0],elementos[i][j][1]);                
@@ -29,19 +27,40 @@ public class Matriz{
         }
   
     }
+    public Matriz(Fraccionario respuesta [][]){
+            matriz=new Fraccionario[respuesta.length][respuesta[0].length];
+            for(int i=0;i<respuesta.length;i++){
+                for(int j=0;j<respuesta[0].length;j++){                    
+                    matriz[i][j]=respuesta[i][j];
+                }
+            }
+       }   
+    
+    public Matriz sumar(Matriz matriz2){
+         Fraccionario[][] m2=matriz2.getMatriz();
+         Fraccionario[][] respuesta=new Fraccionario [matriz.length][matriz[0].length];
+         if(m2.length==matriz.length && m2[0].length==matriz[0].length){
+            for(int i=0;i<matriz.length;i++){
+                for(int j=0;j<matriz[0].length;j++){                    
+                    respuesta[i][j]=matriz[i][j].sume(m2[i][j]);
+                }
+            }
+            }        
+         Matriz resp=new Matriz(respuesta);
+         return resp;
+    }
+
     
     public Fraccionario [][] getMatriz(){
         return matriz;
     }
-        
+    /**
     /**
      * Retorna una matriz dados sus elementos. 
      */
-    public Matriz (Fraccionario  elementos[][]) {
-
-    }
-   
-    
+    //public Matriz (Fraccionario  elementos[][]) {
+      //  return Matriz;
+    //}           
      /**
      * Retorna una matriz dada su diagonal. 
      */    
