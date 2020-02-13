@@ -1,7 +1,7 @@
-*//** Calculadora.java
- * Representa una calculadora de matrices de fraccionarios
+//** Calculadora.java
+ /** Representa una calculadora de matrices de fraccionarios
  * @author ESCUELA 2018-01
- */
+ **/
 
 import java.util.HashMap;
 public class Calmatfra{
@@ -36,6 +36,11 @@ public class Calmatfra{
             variables.put(respuesta,resultado);
             System.out.println(variables.size()+" longitud diccionario");
             System.out.print(variables);
+        }else if(operacion=='-'){
+            m1=variables.get(operando1);
+            m2=variables.get(operando2);
+            resultado=m1.restar(m2);
+            variables.put(respuesta,resultado);            
         }
 
     }   
@@ -43,21 +48,11 @@ public class Calmatfra{
     public String consulta(String variable){   
         return null;
     }
-    public HashMap getDic(){
-        return variables;
-    }
+    
     public boolean ok(){
         return false;
     }
-    /* public String toString() {
-        String a;
-        for (int i=0;i<resultado.length;i++){
-            for (int j=0;j<resultado[i].length;j++){
-                 a=(String.valueOf(resultado[i][j]));
-                 return a;
-        }     
-      }     
-    }*/
+   
 }
 
 

@@ -49,7 +49,19 @@ public class Matriz{
          Matriz resp=new Matriz(respuesta);
          return resp;
     }
-
+    public Matriz restar(Matriz matriz2){
+         Fraccionario[][] m2=matriz2.getMatriz();
+         Fraccionario[][] respuesta=new Fraccionario [matriz.length][matriz[0].length];
+         if(m2.length==matriz.length && m2[0].length==matriz[0].length){
+            for(int i=0;i<matriz.length;i++){
+                for(int j=0;j<matriz[0].length;j++){                    
+                    respuesta[i][j]=matriz[i][j].reste(m2[i][j]);
+                }
+            }
+            }        
+         Matriz resp=new Matriz(respuesta);
+         return resp;
+    }
     
     public Fraccionario [][] getMatriz(){
         return matriz;
@@ -82,10 +94,12 @@ public class Matriz{
     }
     
     
-    public Matriz dimension(){
-        return null;
+    public String dimension(){
+        String longitudMatriz=matriz.length+" ";
+        String longitudLista=matriz[0].length+"  ";
+        String respuesta=longitudMatriz+"*"+longitudLista;
+        return respuesta;
     }
-    
     
     public Fraccionario get(int f, int c){
         return null;
