@@ -153,7 +153,11 @@ public class Fraccionario {
             Fraccionario aux = (Fraccionario) obj;
             return (this.getResultado()==(aux.getResultado()));
         }                
-    }    
+    }
+    /**
+     * Retorna el resultado en forma decimal .
+     * 
+     */
     public float getResultado(){
         return this.resultado;
     }
@@ -165,7 +169,10 @@ public class Fraccionario {
         return false;
     }
     
-    
+    /**
+     * Retorna un fraccionario de tipo int[] .
+     * 
+     */
     public int[] getFraccionario () {
         return fraccionario;
     }

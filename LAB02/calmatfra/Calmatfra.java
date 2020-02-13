@@ -9,11 +9,16 @@ public class Calmatfra{
     private HashMap<String, Matriz> variables;
     
     //Consultar en el API Java la clase HashMap
-    
+     /**Crea un HashMap cuya llave es varible y el valor asignado es Matriz
+     
+     */ 
     public Calmatfra(){
         variables=new HashMap<String,Matriz>();
     }
-
+ /**Le asigna valores al HashMap
+     * @param variable String (llave)
+     * @param int [][][] matriz
+     */ 
    
     public void asigne(String variable, int [][][] matriz){        
         Matriz matrizTemporal= new Matriz(matriz);
@@ -23,7 +28,12 @@ public class Calmatfra{
             }
         }
     }
-    
+     /**Recibe la informacion de la operacion (llaves de las matrices a operar y de la matriz resultado y el simbolo de la operacion que se hara 
+     * @param String respuesta
+     * @param String operando1
+     * @param String operando2
+     * @param char operacion
+     */ 
     // Los operadores binarios : + (suma), - (resta), . (multiplique elemento a elemento), * (multiplique matricial)
     public void opere(String respuesta, String operando1, char operacion, String operando2){
         Matriz m1; 
@@ -44,11 +54,15 @@ public class Calmatfra{
         }
 
     }   
-    
+     /**Consulta llave de una matriz 
+     * @return variable
+     */ 
     public String consulta(String variable){   
         return null;
     }
-    
+      /**Consulta si el HashMa insertado es correcto , si es correcto retorna true de lo contrario false
+     * @return false,true
+     */
     public boolean ok(){
         return false;
     }

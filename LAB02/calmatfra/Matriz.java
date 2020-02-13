@@ -1,7 +1,9 @@
 import java.sql.Array;
 import java.util.ArrayList;
 
-/**
+/**Matriz 
+ * Esta clase implementa el tipo de dato Matriz; una matriz cuyos elementos cumplen la siguiente descripcion: un n�mero racional que se pueden escribir de la forma p/q, donde p y q son enteros, con q <> 0
+
  * @author ECI, 2019
  *
  */
@@ -17,6 +19,11 @@ public class Matriz{
     public static boolean esMatriz (int [][][] elementos){
         return false;
     }
+     /**
+    /**
+     * Cambia el tipo de int elementos[][][] a Matriz  .
+     * 
+     */
     public Matriz (int [][][] elementos) 
         {
         matriz=new Fraccionario [elementos.length][elementos[0].length];
@@ -27,6 +34,10 @@ public class Matriz{
         }
   
     }
+    /**
+     * Cambia el tipo de int respuesta[][] a Matriz  .
+     * 
+     */
     public Matriz(Fraccionario respuesta [][]){
             matriz=new Fraccionario[respuesta.length][respuesta[0].length];
             for(int i=0;i<respuesta.length;i++){
@@ -35,7 +46,10 @@ public class Matriz{
                 }
             }
        }   
-    
+    /**Recibe matriz de tipo Matriz y la suma con otra matriz del mismo tipo 
+     * @param matriz2 Matriz
+     * @return una matriz de tipo Matriz correspondiente a la suma de ambas matrices
+     */
     public Matriz sumar(Matriz matriz2){
          Fraccionario[][] m2=matriz2.getMatriz();
          Fraccionario[][] respuesta=new Fraccionario [matriz.length][matriz[0].length];
@@ -49,6 +63,10 @@ public class Matriz{
          Matriz resp=new Matriz(respuesta);
          return resp;
     }
+     /**Recibe matriz de tipo Matriz y la resta con otra matriz del mismo tipo 
+     * @param matriz2 Matriz
+     * @return una matriz de tipo Matriz correspondiente a la resta de ambas matrices
+     */
     public Matriz restar(Matriz matriz2){
          Fraccionario[][] m2=matriz2.getMatriz();
          Fraccionario[][] respuesta=new Fraccionario [matriz.length][matriz[0].length];
@@ -62,17 +80,15 @@ public class Matriz{
          Matriz resp=new Matriz(respuesta);
          return resp;
     }
-    
+     /**
+    /**
+     * Retorna una matriz de tipo Fraccionario[][]. 
+     */
     public Fraccionario [][] getMatriz(){
         return matriz;
     }
-    /**
-    /**
-     * Retorna una matriz dados sus elementos. 
-     */
-    //public Matriz (Fraccionario  elementos[][]) {
-      //  return Matriz;
-    //}           
+   
+              
      /**
      * Retorna una matriz dada su diagonal. 
      */    
@@ -93,7 +109,10 @@ public class Matriz{
     public Matriz (int n) {
     }
     
-    
+     /**
+    /**
+     * Retorna la dimension de una  matriz dados sus elementos. 
+     */
     public String dimension(){
         String longitudMatriz=matriz.length+" ";
         String longitudLista=matriz[0].length+"  ";

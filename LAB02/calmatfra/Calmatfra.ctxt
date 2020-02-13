@@ -2,12 +2,17 @@
 comment0.target=Calmatfra
 comment1.params=
 comment1.target=Calmatfra()
+comment1.text=Crea\ un\ HashMap\ cuya\ llave\ es\ varible\ y\ el\ valor\ asignado\ es\ Matriz\r\n\ \ \ \ \ \r\n
 comment2.params=variable\ matriz
 comment2.target=void\ asigne(java.lang.String,\ int[][][])
+comment2.text=Le\ asigna\ valores\ al\ HashMap\r\n\ @param\ variable\ String\ (llave)\r\n\ @param\ int\ [][][]\ matriz\r\n
 comment3.params=respuesta\ operando1\ operacion\ operando2
 comment3.target=void\ opere(java.lang.String,\ java.lang.String,\ char,\ java.lang.String)
+comment3.text=Recibe\ la\ informacion\ de\ la\ operacion\ (llaves\ de\ las\ matrices\ a\ operar\ y\ de\ la\ matriz\ resultado\ y\ el\ simbolo\ de\ la\ operacion\ que\ se\ hara\ \r\n\ @param\ String\ respuesta\r\n\ @param\ String\ operando1\r\n\ @param\ String\ operando2\r\n\ @param\ char\ operacion\r\n
 comment4.params=variable
 comment4.target=java.lang.String\ consulta(java.lang.String)
+comment4.text=Consulta\ llave\ de\ una\ matriz\ \r\n\ @return\ variable\r\n
 comment5.params=
 comment5.target=boolean\ ok()
+comment5.text=Consulta\ si\ el\ HashMa\ insertado\ es\ correcto\ ,\ si\ es\ correcto\ retorna\ true\ de\ lo\ contrario\ false\r\n\ @return\ false,true\r\n
 numComments=6
