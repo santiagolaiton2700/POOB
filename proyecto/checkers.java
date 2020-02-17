@@ -37,6 +37,39 @@
      * @param top,right
      */
     public void jump(boolean top,boolean right){
+        if(fichaSelecionada!= null){
+            int filaCuadrado=fichaSelecionada.getFila();
+            int columnaCuadrado=fichaSelecionada.getColumna(); 
+            if (top==true && right==false){
+                if(filaCuadrado-2<1 ||columnaCuadrado-2<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                    moverFichas(filaCuadrado-2,columnaCuadrado-2);                                  
+                }    
+            }else if(top==false && right==false){
+                if(filaCuadrado+2>medida ||columnaCuadrado-2<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                   moverFichas(filaCuadrado+2,columnaCuadrado-2);                                 
+                }    
+                
+            }else if (top==false && right==true){
+                if(filaCuadrado+2>medida ||columnaCuadrado+2>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                    moverFichas(filaCuadrado+2,columnaCuadrado+2);
+                }    
+            }else if (top==true && right==true){
+                if(filaCuadrado-2<1 ||columnaCuadrado+2>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
+                }else{
+                    moverFichas(filaCuadrado-2,columnaCuadrado+2); 
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"No puede saltar"); 
+                }
+        }
     }
     /**
      * Mueve la ficha en el tablero
@@ -77,6 +110,7 @@
                 }
          }
     }
+  
     /**
      * Mueve las fichas 
      * @param recibe la fila y la columna a donde se tiene que mover
@@ -98,6 +132,8 @@
             int posX=configuracion.getposxCuadrado(fila,columna);
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);
+            System.out.println(posS);
+
             if(posS.equals("black") || posS.equals("white")){
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
