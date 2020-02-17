@@ -41,6 +41,7 @@ public class Circle{
     public void makeInvisible(){
         erase();
         isVisible = false;
+        System.out.println("Llegue");
     }    
     /**
      * Move the circle a few pixels to the right.

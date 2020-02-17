@@ -82,14 +82,14 @@ public class Fichas
 
      */
     public void MakeInvisible(){
-        this.ficha.makeInvisible();
+        ficha.makeInvisible();
      }
     /**
      * Hace la ficha visible , si ya esta visible no hace nada
      
      */
     public void MakeVisible(){
-        this.ficha.makeVisible();    
+        ficha.makeVisible();    
     }
     /**
      * cambia la posicion de la fila y de la columna en una ficha

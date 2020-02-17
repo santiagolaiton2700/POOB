@@ -97,16 +97,13 @@
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
-                    Ficha.changeColor("white");
-                    
+                    Ficha.changeColor("white");                    
                 }
                 juego.changePosition(fila-1,columna-1,jugador);
             }else{
-                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");
-                
+                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");                
             }
-        }
-        
+        }        
     }
     /**
      * Adiciona fichas men en el tablero y entrega mensajes al usuario en caso de error
@@ -116,7 +113,7 @@
         for(int i=0;men.length>i;i++){
             for(int j=0;men.length>j;j++){           
              if (men.length>medida){
-                JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
+                 JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
              }else if((i+j)%2==0 || men[i][j]==0){
                 JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");            
              }else{
@@ -135,7 +132,7 @@
                 }else{
                 JOptionPane.showMessageDialog(null,"No se puede loca añadir esta ficha en esta posicion");                
                }
-            }        
+            }           
       }   
      }
     }
@@ -143,7 +140,7 @@
      * Selecciona la ficha y la identifica cambiandola de color a verde
      * @param fila,columna
      */
-     public void select(int fila,int columna){
+    public void select(int fila,int columna){
        for(int i=0;i<fichas.size();i++){
            if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
                 fichas.get(i).changeColor("white");   
@@ -161,16 +158,33 @@
             }
         }       
     }
-    /**
+   /**
      * Remueve una ficha del tablero
      * @param pieces
      */
-    public void remove(int [][]pieces){
-    }
-    /**
+   public void remove(int [][]pieces){
+        
+   }
+   /**
+    * 
+    */
+   public void remove(int fila,int columna){       
+       for(int i=0;i<fichas.size();i++){
+           System.out.println("entre");
+           if (fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
+               
+               fichas.remove(i);
+                
+            }else{
+                     JOptionPane.showMessageDialog(null,"Esta ficha no se puede eliminar");                
+            } 
+        }
+   }
+   /**
      * Intercambia el tablero de juego con el de configuracion y viceversa 
      */
-    public void swap(){
+   public void swap(){
+        
     }
     /**
      * Consulta posicion de la ficha
@@ -183,23 +197,21 @@
      * Hace el tablero visible.Si ya esta visible no hace nada.
      */
     public void makeVisible(){
-        for (int i=0;i>fichas.size();i++){
-            fichas.get(i).MakeVisible();
-        }       
         juego.makeVisibleTablero();
         configuracion.makeVisibleTablero();
-        System.out.println(fichas.size());
+        for (int i=0;i<fichas.size();i++){
+            fichas.get(i).MakeVisible();
+        }               
     }  
     /**
      * Hace el tablero invisible.Si ya esta invisible no hace nada.
      */
     public void makeInvisible(){       
-        for (int i=0;i>fichas.size();i++){
+        for (int i=0;i<fichas.size();i++){
             fichas.get(i).MakeInvisible();
-        }
+        }      
         juego.makeInvisibleTablero();
-        configuracion.makeInvisibleTablero();
-        System.out.println(fichas.size());
+        configuracion.makeInvisibleTablero();       
     }
     /**
      * Termina el juego y no permite ejecutar mas metodos
