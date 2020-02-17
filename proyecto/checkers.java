@@ -11,8 +11,8 @@
     Tablero configuracion;
     int medida;
     private ArrayList<Fichas>fichas;
-    private Fichas fichaSelecionada;
-    
+    private ArrayList<Fichas>fichasCopia;
+    private Fichas fichaSelecionada;    
     /**
     * Crea tableros de tamaño "width" cada uno a una distancia de 800 del otro
     * @param width
@@ -23,9 +23,8 @@
         configuracion=new Tablero(width);
         juego= new Tablero(width,800,0);
         fichas=new ArrayList<Fichas>();
-    }
-    
-    
+        fichasCopia=new ArrayList<Fichas>();
+    }        
     /**
      * Intercambian fichas de posición
      * @param top,right
@@ -44,42 +43,48 @@
      * @param notacion
      */
     public void move(String notacion){
-        if(fichaSelecionada!= null){
+         if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
-            int columnaCuadrado=fichaSelecionada.getColumna();        
+            int columnaCuadrado=fichaSelecionada.getColumna();  
+            String posS=configuracion.getSimulacion(filaCuadrado-1,columnaCuadrado-1);
+            String jugador=fichaSelecionada.getJugador();
             if (notacion.equals("izqarriba")){
                 if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));                                                                                                                                                                                                 
-                fichaSelecionada.changePosition(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado-1));
-                fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado-1);
+                    moverFichas(filaCuadrado-1,columnaCuadrado-1);                                  
                 }            
             }else if(notacion.equals("izqabajo")){
                 if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
-                   fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado-1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado-1)); 
-                   fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado-1);
+                   moverFichas(filaCuadrado+1,columnaCuadrado-1);                                 
                 }                   
             }else if(notacion.equals("derabajo")){
                 if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado+1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado+1,columnaCuadrado+1));
-                fichaSelecionada.changePosition(filaCuadrado+1,columnaCuadrado+1);}
+                    moverFichas(filaCuadrado+1,columnaCuadrado+1);                              
+            }
             }else if(notacion.equals("derarriba")){
                 if(filaCuadrado-1<1 ||columnaCuadrado+1>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
                 }else{
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(filaCuadrado-1,columnaCuadrado+1),configuracion.getposyCuadrado(filaCuadrado-1,columnaCuadrado+1));
-                fichaSelecionada.changePosition(filaCuadrado-1,columnaCuadrado+1);
+                    moverFichas(filaCuadrado-1,columnaCuadrado+1); 
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Solo puede moverse izqarriba,izqabajo,derabajo,derarriba"); 
                 }
          }
-    }    
+    }
+    /**
+     * Mueve las fichas 
+     * @param recibe la fila y la columna a donde se tiene que mover
+     */
+    private void moverFichas(int fila,int columna){
+        fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna));                                                                                                                                                                                                 
+        fichaSelecionada.changePosition(fila,columna);        
+    }
     /**
      * Adiciona una ficha king en el tablero y entrega mensajes al usuario en caso de error
      * @param king,fila,columna,jugador  
@@ -133,7 +138,7 @@
                 JOptionPane.showMessageDialog(null,"No se puede loca añadir esta ficha en esta posicion");                
                }
             }           
-      }   
+         }   
      }
     }
     /**
@@ -158,34 +163,41 @@
             }
         }       
     }
-   /**
+    /**
      * Remueve una ficha del tablero
      * @param pieces
      */
-   public void remove(int [][]pieces){
-        
-   }
-   /**
-    * 
-    */
-   public void remove(int fila,int columna){       
-       for(int i=0;i<fichas.size();i++){
-           System.out.println("entre");
-           if (fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
-               
-               fichas.remove(i);
-                
-            }else{
-                     JOptionPane.showMessageDialog(null,"Esta ficha no se puede eliminar");                
-            } 
+    public void remove(int [][]pieces){
+        for(int i=0;i<pieces.length;i++){
+            for(int j=0;j<pieces[0].length;j++){
+                if(pieces[i][j]==1){
+                    remove(i+1,j+1);
+                }
+            }
         }
-   }
-   /**
-     * Intercambia el tablero de juego con el de configuracion y viceversa 
-     */
-   public void swap(){
-        
     }
+    /**
+    *Remueve la ficha del tablero en la fila y columna que el usuario quiera
+    *
+    */
+    public void remove(int fila,int columna){       
+       for(int i=0;i<fichas.size();i++){
+           if (fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){               
+               fichas.get(i).MakeInvisible();
+               fichas.remove(i);    
+           }else{
+                JOptionPane.showMessageDialog(null,"Esta ficha no se puede eliminar");                
+           } 
+       }
+    }
+    /**
+    * Intercambia el tablero de juego con el de configuracion y viceversa 
+    */
+    public void swap(){
+        for (int i=0;i<fichas.size();i++){
+            
+        }              
+        }
     /**
      * Consulta posicion de la ficha
      * @return null
