@@ -12,7 +12,9 @@
     int medida;
     private ArrayList<Fichas>fichas;
     private ArrayList<Fichas>fichasCopia;
-    private Fichas fichaSelecionada;    
+    private Fichas fichaSelecionada;  
+    int filatempo;
+    int columnatempo;
     /**
     * Crea tableros de tamaño "width" cada uno a una distancia de 800 del otro
     * @param width
@@ -235,8 +237,10 @@
     *
     */
     public void remove(int fila,int columna){       
-       for(int i=0;i<fichas.size();i++){
-           if (fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){               
+        for(int i=0;i<fichas.size();i++){
+           filatempo = fichas.get(i).getFila();
+           columnatempo = fichas.get(i).getColumna();
+           if (filatempo==fila && columnatempo==columna){               
                fichas.get(i).MakeInvisible();
                fichas.remove(i);    
            }
