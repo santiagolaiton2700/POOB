@@ -58,7 +58,9 @@ public class Rectangle{
     public void moveRight(){
         moveHorizontal(20);
     }
-
+    public String getColor(){
+        return color;
+    }
     /**
      * Move the rectangle a few pixels to the left.
      */

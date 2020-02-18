@@ -123,7 +123,7 @@ public class Tablero{
     public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
      }
-    /**
+     /**
     * Entrega la posicion en Y del rectangulo en la matriz
     *@param fila ,columna
     *@return posicionY
@@ -131,6 +131,9 @@ public class Tablero{
     public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
         }
+    public String getColorCuadrado(int fila,int columna){
+        return tablero.get(fila-1).get(columna-1).getColor();
+    }
     /**
     * Entrega la matriz simulacion
     
@@ -155,7 +158,11 @@ public class Tablero{
     */
     public void changePosition(int fila,int columna,String jugador){
         simulacion.get(fila).set(columna,jugador);
-      
+    }
+    public void changePosition(int filaPas,int columnaPas,int fila,int columna,String colorPas,String jugador){                
+        simulacion.get(fila).set(columna,jugador);       
+        simulacion.get(filaPas).set(columnaPas,colorPas);                
+        System.out.println(simulacion);
     }
     /**
     * Hace visible la matriz, si ya es visible no hace nada.

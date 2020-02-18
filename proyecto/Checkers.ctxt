@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=checkers
-comment0.text=\r\n\ Tablero\ de\ tama\u00F1o\ nxn\ dibujado\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ @version\ 4.0.\ \ (06\ Febrero\ 2020)\ \r\n
+comment0.text=\r\n\ Tablero\ de\ tama\u00F1o\ nxn\ dibujado\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ @version\ 5.0.\ \ (06\ Febrero\ 2020)\ \r\n
 comment1.params=width
 comment1.target=checkers(int)
 comment1.text=\r\n\ Crea\ tableros\ de\ tama\u00F1o\ "width"\ cada\ uno\ a\ una\ distancia\ de\ 800\ del\ otro\r\n\ @param\ width\r\n
@@ -34,8 +34,8 @@ comment3.text=\r\n\ Salta\ una\ ficha\ sobre\ otra\ \r\n\ @param\ top,right\r\n
 comment4.params=notacion
 comment4.target=void\ move(java.lang.String)
 comment4.text=\r\n\ Mueve\ la\ ficha\ en\ el\ tablero\r\n\ @param\ notacion\r\n
-comment5.params=fila\ columna
-comment5.target=void\ moverFichas(int,\ int)
+comment5.params=filaPas\ columnaPas\ fila\ columna
+comment5.target=void\ moverFichas(int,\ int,\ int,\ int)
 comment5.text=\r\n\ Mueve\ las\ fichas\ \r\n\ @param\ recibe\ la\ fila\ y\ la\ columna\ a\ donde\ se\ tiene\ que\ mover\r\n
 comment6.params=king\ fila\ columna\ jugador
 comment6.target=void\ add(boolean,\ int,\ int,\ java.lang.String)
