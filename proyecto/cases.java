@@ -20,9 +20,8 @@ public class cases
     public void  move(){
         checkers tablero=new checkers(4);
         tablero.add(true,1,2,"j1");
-        tablero.add(true,2,1,"j2");
         tablero.select(1,2);
-        tablero.move("derabajo");
+        tablero.move("izqarriba");
     }
     @Test
         public void  jump(){

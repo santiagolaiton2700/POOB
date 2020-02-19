@@ -28,11 +28,42 @@
         fichasCopia=new ArrayList<Fichas>();
     }        
     /**
-     * Intercambian fichas de posición
+     * mueve fichas en el tablero con parametros boleeanos top y right 
      * @param top,right
      */
     public void shift(boolean top,boolean right  ) {
-        
+        if(fichaSelecionada!= null){
+            int filaCuadrado=fichaSelecionada.getFila();
+            int columnaCuadrado=fichaSelecionada.getColumna();
+            if(top==true && right==false){
+               if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-1,columnaCuadrado-1);                                  
+                } 
+            }else if(top==false && right==false){
+                if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                   moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
+                }   
+            }else if (top==false && right==true){
+                if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
+                }else{
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado+1);                              
+                }
+            }else if (top==true && right==true){
+                if(filaCuadrado-1<1 ||columnaCuadrado+1>medida){
+                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
+                }else{
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-1,columnaCuadrado+1); 
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"No se puede hacer shift"); 
+            } 
+            
+        }
     }
     /**
      * Salta una ficha sobre otra 
@@ -115,7 +146,7 @@
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado+1);                              
-            }
+                }
             }else if(notacion.equals("derarriba")){
                 if(filaCuadrado-1<1 ||columnaCuadrado+1>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
@@ -140,7 +171,6 @@
             fichaSelecionada.changePosition(fila,columna);
             juego.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPas,jugador);
         }else{
-            System.out.println("hola");
             JOptionPane.showMessageDialog(null,"No se puede mover"); 
         }
     }
