@@ -32,6 +32,14 @@ public class cases
         tablero.select(3,4);
         tablero.jump(true,true);
     }
+    @Test
+        public void fallar(){
+            checkers tablero=new checkers(8);
+            tablero.add(true,5,6,"j1");
+            tablero.add(true,4,5,"j2");
+            tablero.select(5,6);
+            tablero.jump(true,false);
+        }
   
     /**
      * Sets up the test fixture.

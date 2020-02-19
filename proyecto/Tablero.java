@@ -162,7 +162,6 @@ public class Tablero{
     public void changePosition(int filaPas,int columnaPas,int fila,int columna,String colorPas,String jugador){                
         simulacion.get(fila).set(columna,jugador);       
         simulacion.get(filaPas).set(columnaPas,colorPas);                
-        System.out.println(simulacion);
     }
     /**
     * Hace visible la matriz, si ya es visible no hace nada.
