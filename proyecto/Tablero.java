@@ -123,7 +123,7 @@ public class Tablero{
     public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
      }
-     /**
+        /**
     * Entrega la posicion en Y del rectangulo en la matriz
     *@param fila ,columna
     *@return posicionY
@@ -156,8 +156,9 @@ public class Tablero{
     *@param fila,columna,jugador
   
     */
-    public void changePosition(int fila,int columna,String jugador){
+    public void changePosition(int fila,int columna,String jugador){                
         simulacion.get(fila).set(columna,jugador);
+        System.out.println(simulacion+"configuracion");
     }
     public void changePosition(int filaPas,int columnaPas,int fila,int columna,String colorPas,String jugador){                
         simulacion.get(fila).set(columna,jugador);       

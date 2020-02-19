@@ -1,5 +1,6 @@
     import javax.swing.JOptionPane;
     import java.util.ArrayList;
+    import java.util.HashMap;
     /**
     * Tablero de tamaño nxn dibujado sobre un canvas.
     * 
@@ -11,10 +12,11 @@
     Tablero configuracion;
     int medida;
     private ArrayList<Fichas>fichas;
-    private ArrayList<Fichas>fichasCopia;
-    private Fichas fichaSelecionada;  
+    private Fichas fichaSelecionada;
+    private HashMap<String, ArrayList> guardar;
     int filatempo;
     int columnatempo;
+    boolean tableroEstoy;
     /**
     * Crea tableros de tamaño "width" cada uno a una distancia de 800 del otro
     * @param width
@@ -25,7 +27,8 @@
         configuracion=new Tablero(width);
         juego= new Tablero(width,800,0);
         fichas=new ArrayList<Fichas>();
-        fichasCopia=new ArrayList<Fichas>();
+        guardar=new HashMap<String,ArrayList>();
+        tableroEstoy=true;
     }        
     /**
      * mueve fichas en el tablero con parametros boleeanos top y right 
@@ -169,7 +172,7 @@
         if (posS=="white"||posS=="black"){
             fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna));                                                                                                                                                                                                 
             fichaSelecionada.changePosition(fila,columna);
-            juego.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPas,jugador);
+            configuracion.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPas,jugador);
         }else{
             JOptionPane.showMessageDialog(null,"No se puede mover"); 
         }
@@ -187,7 +190,16 @@
             int posX=configuracion.getposxCuadrado(fila,columna);
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);
-            if(posS.equals("black") || posS.equals("white")){
+            if ((posS.equals("black") || posS.equals("white")) && king==true){
+                Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
+                if(jugador.equals("j1")){
+                    Ficha.changeColor("yellow");                    
+                }else{
+                    Ficha.changeColor("blue");
+                }
+                fichas.add(Ficha);
+            }
+            else if(posS.equals("black") || posS.equals("white")){
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
@@ -284,9 +296,28 @@
     */
     public void swap(){
         for (int i=0;i<fichas.size();i++){
-            
+            int filaCuadrado=fichas.get(i).getFila();
+            int columnaCuadrado=fichas.get(i).getColumna();
+            int xJuego=juego.getposxCuadrado(filaCuadrado,columnaCuadrado);
+            int yJuego=juego.getposyCuadrado(filaCuadrado,columnaCuadrado);
+            int xconfiguracion=configuracion.getposxCuadrado(filaCuadrado,columnaCuadrado);
+            int yconfiguracion=configuracion.getposyCuadrado(filaCuadrado,columnaCuadrado);
+            String colorConfi=configuracion.getColorCuadrado(filaCuadrado,columnaCuadrado);
+            String jugador=fichas.get(i).getJugador();
+            if (tableroEstoy==true){               
+                fichas.get(i).moveFicha(xJuego,yJuego);
+                tableroEstoy=false;               
+                configuracion.changePosition(filaCuadrado-1,columnaCuadrado-1,colorConfi);
+                juego.changePosition(filaCuadrado-1,columnaCuadrado-1,jugador);             
+            }else{
+                fichas.get(i).moveFicha(xconfiguracion,yconfiguracion);
+                juego.changePosition(filaCuadrado-1,columnaCuadrado-1,colorConfi);
+                configuracion.changePosition(filaCuadrado-1,columnaCuadrado-1,jugador);   
+                tableroEstoy=true;
+            }
         }              
-        }
+    }
+  
     /**
      * Consulta posicion de la ficha
      * @return null
@@ -324,5 +355,14 @@
      * Indica si la ultima operación se realizo 
      */
     public void ok(){
+    }
+    public void save(String name){
+        ArrayList<Tablero>tableros=new ArrayList<Tablero>();       
+        tableros.add(configuracion);
+        tableros.add(juego);
+        guardar.put(name,tableros);
+    }
+    public void recovery(String name){
+        guardar.get(name);
     }
 }
