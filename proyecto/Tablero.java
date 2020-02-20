@@ -10,8 +10,8 @@ public class Tablero{
     private ArrayList<ArrayList<String>> simulacion;
     private boolean isVisible;
     private int medida;
-    public int xPos=0;
-    public int yPos=0;   
+    private int xPos=0;
+    private int yPos=0;   
     /**
     * Crea matrices de tipo Rectangle con los parametros indicados
     * @param width
@@ -158,7 +158,6 @@ public class Tablero{
     */
     public void changePosition(int fila,int columna,String jugador){                
         simulacion.get(fila).set(columna,jugador);
-        System.out.println(simulacion+"configuracion");
     }
     public void changePosition(int filaPas,int columnaPas,int fila,int columna,String colorPas,String jugador){                
         simulacion.get(fila).set(columna,jugador);       
