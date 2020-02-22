@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Fichas
-comment0.text=\r\n\ Fichas\ de\ tipo\ circulo\ dibujadas\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ @version\ 2.0.\ \ (06\ Febrero\ 2020)\ \r\n
+comment0.text=\r\n\ Fichas\ de\ tipo\ circulo\ dibujadas\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ *\ @version\ 1.0.\ \ (30\ Enero\ 2020)\ \r\n\ @version\ 2.0.\ \ (06\ Febrero\ 2020)\ \r\n\ @version\ 3.0.\ \ (21\ Febrero\ 2020)\ \r\n
 comment1.params=filaa\ columnaa\ posX\ posY\ jugador
 comment1.target=Fichas(int,\ int,\ int,\ int,\ java.lang.String)
-comment1.text=\r\n\ \r\n\ Crea\ una\ ficha\ de\ tipo\ circulo\ a\ partir\ de\ los\ parametros\ dados\r\n\ @param\ posX\ ,posY\ ,filaa,columnaa,\ jugador\ \r\n
+comment1.text=\r\n\ Crea\ una\ ficha\ de\ tipo\ circulo\ a\ partir\ de\ los\ parametros\ dados\r\n\ @param\ posX\ ,posY\ ,filaa,columnaa,\ jugador\ \r\n
 comment10.params=
 comment10.target=void\ MakeVisible()
 comment10.text=\r\n\ Hace\ la\ ficha\ visible\ ,\ si\ ya\ esta\ visible\ no\ hace\ nada\r\n\ \ \ \ \ \r\n

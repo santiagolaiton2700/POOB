@@ -3,8 +3,11 @@ import java.util.ArrayList;
     * Matriz de cuadrados dibujado sobre un canvas.
     * 
     * @author  Lina Buitrago and Santiago Laiton
-    * @version 8.0.  (06 Febrero 2020) 
-    */
+    * @version 1.0.  (30 Enero 2020) 
+    * @version 2.0.  (06 Febrero 2020) 
+    * @version 3.0.  (21 Febrero 2020) 
+    */ 
+    
 public class Tablero{
     private ArrayList<ArrayList<Rectangle>> tablero;
     private ArrayList<ArrayList<String>> simulacion;
@@ -23,6 +26,10 @@ public class Tablero{
         isVisible=true;
         comprobacion();
     }
+    /**
+    * Crea matrices de tipo Rectangle con los parametros indicados
+    * @param width ,xPos ,yPos
+    */
     public Tablero(int width,int xPos,int yPos)
     {
         medida=width;
@@ -35,7 +42,6 @@ public class Tablero{
     }
     /**
     * Comprueba si las matrices de rectangulos son pares o impares
-    h
     */
     private void comprobacion(){
         if (medida%2==0){
@@ -64,20 +70,24 @@ public class Tablero{
                 rectangleTempo.moveVertical(50*i);
                 if (i%2==0){
                     rectangleTempo.changeColor(color);
-                    simulacion.get(i).add(color);
+                    //simulacion.get(i).add(color);
                     if(color=="white"){
+                        simulacion.get(i).add("-");
                         color="black";                        
                     }else{
+                        simulacion.get(i).add(".");
                         color="white";                        
                     }
                 }else{
                     if (color=="white"){
+                        simulacion.get(i).add("-");
                         color="black";
                     }else{ 
+                        simulacion.get(i).add(".");
                         color="white";
                     }
                     rectangleTempo.changeColor(color);
-                    simulacion.get(i).add(color);
+                    ///                    simulacion.get(i).add(color);
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
@@ -104,11 +114,17 @@ public class Tablero{
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 rectangleTempo.changeColor(color);
-                simulacion.get(i).add(color);
-                if(color=="white"){
-                        color="black";
+                if (color=="white"){
+                    simulacion.get(i).add("-");
                 }else{
-                        color="white";
+                    simulacion.get(i).add(".");
+                }               
+                if(color=="white"){
+                    simulacion.get(i).add("-");
+                    color="black";
+                }else{
+                    simulacion.get(i).add(".");
+                    color="white";                    
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
@@ -118,15 +134,15 @@ public class Tablero{
     /**
     * Entrega la posicion en X del rectangulo en la matriz
     *@param fila ,columna
-    *@return posicionX
+    *@return posicion en x de la matriz 
     */
     public int getposxCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionX();
      }
-        /**
+    /**
     * Entrega la posicion en Y del rectangulo en la matriz
     *@param fila ,columna
-    *@return posicionY
+    *@return posicion en y de la matriz
     */
     public int getposyCuadrado(int fila,int columna){
          return tablero.get(fila-1).get(columna-1).getPosicionY();
@@ -147,7 +163,7 @@ public class Tablero{
     *@param x,y
     *@return posicionX y posicionY
     */
-    public String getSimulacion(int x,int y)
+        public String getSimulacion(int x,int y)
      {
         return simulacion.get(x).get(y);
      }
@@ -178,8 +194,7 @@ public class Tablero{
     * Hace invisible la matriz, si ya es visible no hace nada.
     
     */
-    public void makeInvisibleTablero(){
-        System.out.println(simulacion);
+        public void makeInvisibleTablero(){        
         for(int i=0;i<tablero.size();i++){
             for(int j=0;j<tablero.size();j++){
                 tablero.get(i).get(j).makeInvisible();
@@ -191,7 +206,6 @@ public class Tablero{
     
     */
     public void moveTableroHorizontal(){
-            System.out.println(simulacion);
             for(int i=0;tablero.size()>i;i++){
                 for(int j=0;tablero.size()>i;i++){
                     tablero.get(i).get(j).makeInvisible();
@@ -199,7 +213,7 @@ public class Tablero{
                     tablero.get(i).get(j).makeVisible();
             }
             }
-    }       
+        }       
 }      
 
 

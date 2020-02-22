@@ -17,28 +17,36 @@ public class cases
      * Default constructor for test class cases
      */
     @Test
-    public void  move(){
+    public void  deberiaMoverseSoloEnCuadradosNegrosDesocupados(){
         checkers tablero=new checkers(4);
         tablero.add(true,1,2,"j1");
         tablero.select(1,2);
-        tablero.move("izqarriba");
+        tablero.move("derabajo");
     }
-    @Test
-        public void  jump(){
-        checkers tablero=new checkers(8);
-        tablero.add(true,3,4,"j1");
-        tablero.add(true,2,5,"j2");
-        tablero.select(3,4);
-        tablero.jump(true,true);
+     @Test
+    public void  noDeberiaMoverseEnCuadradosNegrosOcupados(){
+        checkers tablero=new checkers(4);
+        tablero.add(true,1,2,"j1");
+        tablero.add(true,2,3,"j2");
+        tablero.select(1,2);
+        tablero.move("derabajo");
     }
+   
     @Test
-        public void fallar(){
-            checkers tablero=new checkers(8);
-            tablero.add(true,5,6,"j1");
-            tablero.add(true,4,5,"j2");
-            tablero.select(5,6);
-            tablero.jump(true,false);
-        }
+        public void  deberiaAdicionarFichasEnElTableroDeConfiguracion(){
+        checkers tablero=new checkers(5);
+        tablero.add(false,1,2,"j1");
+        tablero.add(false,2,3,"j1");
+    }
+     @Test
+        public void  noDeberiaAdicionarFichasEnElTableroDeJuego(){
+        checkers tablero=new checkers(5);
+        tablero.add(false,1,2,"j1");
+        tablero.swap();
+        tablero.add(false,5,2,"j1");
+        
+    }
+    
   
     /**
      * Sets up the test fixture.

@@ -3,7 +3,9 @@ import java.util.ArrayList;
  * Fichas de tipo circulo dibujadas sobre un canvas.
  * 
  * @author  Lina Buitrago and Santiago Laiton
- * @version 2.0.  (06 Febrero 2020) 
+ * * @version 1.0.  (30 Enero 2020) 
+   * @version 2.0.  (06 Febrero 2020) 
+   * @version 3.0.  (21 Febrero 2020) 
  */
 public class Fichas
 {   
@@ -14,7 +16,6 @@ public class Fichas
     private Circle ficha;
     private String jugador;         
      /**
-     * 
      * Crea una ficha de tipo circulo a partir de los parametros dados
      * @param posX ,posY ,filaa,columnaa, jugador 
      */
