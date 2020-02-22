@@ -3,9 +3,9 @@
     import java.util.ArrayList;
     import java.util.HashMap;
     /**
-    * Tablero de tamaño nxn dibujado sobre un canvas.
-    * 
+    * Tablero de tamaño nxn dibujado sobre un canvas.   
     * @author  Lina Buitrago and Santiago Laiton
+    * 
     * @version 1.0.  (30 Enero 2020) 
     * @version 2.0.  (06 Febrero 2020) 
     * @version 3.0.  (21 Febrero 2020) 

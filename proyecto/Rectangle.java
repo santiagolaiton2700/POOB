@@ -7,7 +7,6 @@ import java.awt.*;
  * @version 1.0  (15 July 2000)()
  */
 
-
  
 public class Rectangle{
     private int height;

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=checkers
-comment0.text=\r\n\ Tablero\ de\ tama\u00F1o\ nxn\ dibujado\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ @version\ 1.0.\ \ (30\ Enero\ 2020)\ \r\n\ @version\ 2.0.\ \ (06\ Febrero\ 2020)\ \r\n\ @version\ 3.0.\ \ (21\ Febrero\ 2020)\ \r\n
+comment0.text=\r\n\ Tablero\ de\ tama\u00F1o\ nxn\ dibujado\ sobre\ un\ canvas.\ \ \ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ \r\n\ @version\ 1.0.\ \ (30\ Enero\ 2020)\ \r\n\ @version\ 2.0.\ \ (06\ Febrero\ 2020)\ \r\n\ @version\ 3.0.\ \ (21\ Febrero\ 2020)\ \r\n
 comment1.params=width
 comment1.target=checkers(int)
 comment1.text=\r\n\ Crea\ tableros\ de\ tama\u00F1o\ "width",\ width\ es\ el\ numero\ de\ cuadrados\ por\ lado\ de\ el\ tablero,\ cada\ uno\ a\ una\ distancia\ de\ 800\ del\ otro\r\n\ @param\ width\r\n
