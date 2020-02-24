@@ -213,7 +213,8 @@ public class Tablero{
                     tablero.get(i).get(j).makeVisible();
             }
             }
-        }       
+    }
+    
 }      
 
 
