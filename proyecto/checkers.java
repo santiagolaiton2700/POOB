@@ -478,7 +478,25 @@
      *  @param name
      */
     public void recovery(String name){
-        ArrayList a=guardar.get(name);               
+        makeInvisible();
+        ArrayList<Tablero> a=guardar.get(name);    
+        Tablero confi=a.get(0);
+        Tablero jue=a.get(1);
+        ArrayList<ArrayList<String>> simuConfiguracion=confi.getSimulacion();
+        ArrayList<ArrayList<String>> simuJuego=jue.getSimulacion();   
+        fichas.clear();
+        for(int i=0;i<simuConfiguracion.size();i++){
+            for(int j=0;j<simuConfiguracion.size();j++){
+                int posX=configuracion.getposxCuadrado(j+1,j+1);
+                int posY=configuracion.getposyCuadrado(j+1,j+1);
+                String contenido=configuracion.getSimulacion(i,j);
+                if(simuConfiguracion.get(i).get(j).equals("j1")||(simuConfiguracion.get(i).get(j).equals("j2"))){
+                    Fichas Ficha= new Fichas(i,j-1,posX+10,posY+10,contenido);
+                    fichas.add(Ficha);
+                }
+                }
+            }
+        makeVisible();
     }
     /**
      * Entrega la matriz con el estado actual del tablero de configuracion
