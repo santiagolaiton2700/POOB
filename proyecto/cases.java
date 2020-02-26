@@ -46,7 +46,14 @@ public class cases
         tablero.add(false,5,2,"j1");
         
     }
-    
+     @Test
+        public void  pruebaSave(){
+        checkers tablero=new checkers(5);
+        tablero.add(false,1,2,"j1");
+        tablero.save("hola");
+        tablero.add(false,3,2,"j2");
+        tablero.recovery("hola");        
+    }
   
     /**
      * Sets up the test fixture.

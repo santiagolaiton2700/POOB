@@ -61,6 +61,7 @@ public class Tablero{
         int numeroColumnas=medida;
         int moverCuadradox=medida;
         String color="white";
+        String simbolo="-";
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
@@ -70,24 +71,24 @@ public class Tablero{
                 rectangleTempo.moveVertical(50*i);
                 if (i%2==0){
                     rectangleTempo.changeColor(color);
-                    //simulacion.get(i).add(color);
+                    simulacion.get(i).add(simbolo);
                     if(color=="white"){
-                        simulacion.get(i).add("-");
+                        simbolo=".";
                         color="black";                        
                     }else{
-                        simulacion.get(i).add(".");
+                        simbolo="-";
                         color="white";                        
                     }
                 }else{
                     if (color=="white"){
-                        simulacion.get(i).add("-");
+                        simbolo=".";
                         color="black";
                     }else{ 
-                        simulacion.get(i).add(".");
+                        simbolo="-";
                         color="white";
                     }
                     rectangleTempo.changeColor(color);
-                    ///                    simulacion.get(i).add(color);
+                    simulacion.get(i).add(simbolo);
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
@@ -106,6 +107,7 @@ public class Tablero{
         int numeroColumnas=medida;
         int moverCuadradox=medida;
         String color="white";
+        String simbolo="-";
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
@@ -114,16 +116,12 @@ public class Tablero{
                 rectangleTempo.moveHorizontal(50*j);
                 rectangleTempo.moveVertical(50*i);
                 rectangleTempo.changeColor(color);
-                if (color=="white"){
-                    simulacion.get(i).add("-");
-                }else{
-                    simulacion.get(i).add(".");
-                }               
+                simulacion.get(i).add(simbolo);                               
                 if(color=="white"){
-                    simulacion.get(i).add("-");
+                    simbolo=".";
                     color="black";
                 }else{
-                    simulacion.get(i).add(".");
+                    simbolo="-";
                     color="white";                    
                 }
                 rectangleTempo.makeVisible();
