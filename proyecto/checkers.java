@@ -480,7 +480,6 @@
         ArrayList<ArrayList<ArrayList<String>>>tableros=new ArrayList<ArrayList<ArrayList<String>>>();
         ArrayList<ArrayList<String>> simuConfiguracion=new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> simuJuego=new ArrayList<ArrayList<String>>();
-        System.out.println("hola");
         for (int i=0;i<configuracion.getSimulacion().size();i++){
             simuConfiguracion.add(new ArrayList<String>());
             simuJuego.add(new ArrayList<String>());
@@ -488,9 +487,7 @@
                 simuConfiguracion.get(i).add(configuracion.getSimulacion().get(i).get(j));
                 simuJuego.get(i).add(juego.getSimulacion().get(i).get(j));
             }
-        }
-        System.out.println(simuConfiguracion+"clonada");
-        System.out.println(simuJuego+"clonada");        
+        }   
         tableros.add(simuConfiguracion);
         tableros.add(simuJuego);
         guardar.put(name,tableros);
@@ -501,31 +498,52 @@
      */
     public void recovery(String name){
         makeInvisible();
-        ArrayList<ArrayList<ArrayList<String>>> a=guardar.get(name);    
-        ArrayList<ArrayList<String>> confi=a.get(0);
-        ArrayList<ArrayList<String>> jue=a.get(1);                
+        ArrayList<ArrayList<ArrayList<String>>> lista=guardar.get(name);    
+        ArrayList<ArrayList<String>> confi=lista.get(0);
+        ArrayList<ArrayList<String>> jue=lista.get(1);                
         crearTablero();
         for(int i=0;i<confi.size();i++){
-            for(int j=0;j<confi.size();j++){
-                int posX=configuracion.getposxCuadrado(j+1,j+1);
-                int posY=configuracion.getposyCuadrado(j+1,j+1);
+            for(int j=0;j<confi.size();j++){                
                 String contenido=confi.get(i).get(j);
-                if(confi.get(i).get(j).equals("j1")||(confi.get(i).get(j).equals("j2"))){
+                if(contenido.equals("j1")||(contenido.equals("j2"))){
                     add(false,i+1,j+1,contenido);
+                }else if(contenido.equals("j1k")||(contenido.equals("j2k"))){
+                    if (contenido.equals("j1k")){
+                        add(true,i+1,j+1,"j1");
+                    }
+                    else{
+                        add(true,i+1,j+1,"j2");
+                    }
                 }
-                }
-            }        
-        }
+            }
+        }        
+    }
     /**
      * Entrega la matriz con el estado actual del tablero de configuracion
      * @return String
      */
     public void write(){
+        ArrayList<ArrayList<String>>escribir=new ArrayList<ArrayList<String>>();
         for (int i = 0; i < configuracion.getSimulacion().size(); i++) {
-            for (int j = 0; j < configuracion.getSimulacion().get(i).size(); j++) {
-                System.out.print(configuracion.getSimulacion().get(i).get(j));
+            escribir.add(new ArrayList<String>());
+            for (int j = 0; j < configuracion.getSimulacion().get(i).size(); j++){
+                String contenido=configuracion.getSimulacion().get(i).get(j);
+                if(contenido.equals("-")){
+                    escribir.get(i).add(contenido); 
+                }else if(contenido.equals(".")){
+                    escribir.get(i).add(contenido);
+                }else if(contenido.equals("j1")){
+                    escribir.get(i).add("w");
+                }else if(contenido.equals("j1k")){
+                    escribir.get(i).add("W");
+                }else if (contenido.equals("j2")){
+                    escribir.get(i).add("b");
+                }else if (contenido.equals("j2k")){
+                    escribir.get(i).add("B");
+                }                               
             }
-            System.out.println();
         }
+        System.out.println(escribir.toString()+"chupelo");
+        System.out.println();
     }    
 }

@@ -1,5 +1,6 @@
 
 
+
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -38,7 +39,7 @@ public class cases
         tablero.add(false,1,2,"j1");
         tablero.add(false,2,3,"j1");
     }
-     @Test
+    @Test
         public void  noDeberiaAdicionarFichasEnElTableroDeJuego(){
         checkers tablero=new checkers(5);
         tablero.add(false,1,2,"j1");
@@ -50,9 +51,10 @@ public class cases
         public void  pruebaSave(){
         checkers tablero=new checkers(5);
         tablero.add(false,1,2,"j1");
-        tablero.save("hola");
-        tablero.add(false,3,2,"j2");
-        tablero.recovery("hola");        
+        tablero.add(true,2,3,"j1");
+        tablero.add(true,4,3,"j2"); 
+        tablero.add(false,3,4,"j2");
+        tablero.write();               
     }
   
     /**
