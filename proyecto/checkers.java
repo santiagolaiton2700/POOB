@@ -540,10 +540,10 @@
                     escribir.get(i).add("b");
                 }else if (contenido.equals("j2k")){
                     escribir.get(i).add("B");
-                }                               
+                } 
+                System.out.print(escribir.get(i).get(j));                              
             }
-        }
-        System.out.println(escribir.toString()+"chupelo");
-        System.out.println();
+            System.out.println();                              
+        }       
     }    
 }
