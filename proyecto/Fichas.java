@@ -75,8 +75,9 @@ public class Fichas
      * Mueve la ficha 10 en fila y 10 en columna 
      * @param fila,columna
      */
-    public void moveFicha(int fila, int columna){
+    public void moveFicha(int fila, int columna,int nuevaFila,int nuevaColumna){
         ficha.changePos(fila+10,columna+10);
+        changePosition(nuevaFila,nuevaColumna);        
      }
     /**
      * Hace la ficha invisible , si ya esta invisible no hace nada
