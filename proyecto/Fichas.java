@@ -77,7 +77,11 @@ public class Fichas
      */
     public void moveFicha(int fila, int columna,int nuevaFila,int nuevaColumna){
         ficha.changePos(fila+10,columna+10);
+<<<<<<< HEAD
         changePosition(nuevaFila,nuevaColumna);
+=======
+        changePosition(nuevaFila,nuevaColumna);        
+>>>>>>> e94560dbb2a637b89f51e1993dcf8cd5dd824c93
      }
     /**
      * Hace la ficha invisible , si ya esta invisible no hace nada

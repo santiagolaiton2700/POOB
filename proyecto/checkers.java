@@ -189,32 +189,22 @@
          if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();              
-            if (notacion.equals("izqarriba")){
-                if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else{
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-1,columnaCuadrado-1);                                  
-                }            
-            }else if(notacion.equals("izqabajo")){
-                if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else{
-                   moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
-                }                   
-            }else if(notacion.equals("derabajo")){
+            if(notacion.equals("derabajo")){
                 if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado+1);                              
                 }
             }else if(notacion.equals("derarriba")){
+                System.out.println(fichaSelecionada.getFila()+"fila");
+                System.out.println(fichaSelecionada.getColumna()+"columna");
                 if(filaCuadrado-1<1 ||columnaCuadrado+1>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
                 }else{
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-1,columnaCuadrado+1); 
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"Solo puede moverse izqarriba,izqabajo,derabajo,derarriba"); 
+                JOptionPane.showMessageDialog(null,"Solo puede moverse derabajo,derarriba"); 
                 }
          }
     }  
@@ -235,7 +225,11 @@
                 }else{
                     colorPasConfi="-";
                 }
+<<<<<<< HEAD
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                                 
+=======
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                 
+>>>>>>> e94560dbb2a637b89f51e1993dcf8cd5dd824c93
                 configuracion.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasConfi,jugador);
             }else{
                 JOptionPane.showMessageDialog(null,"No se puede mover");            
@@ -282,8 +276,7 @@
                 Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
-                    Ficha.changeColor("white");                    
-                    
+                    Ficha.changeColor("white");                                        
                 }
                 configuracion.changePosition(fila-1,columna-1,jugador); 
             }else{
@@ -393,7 +386,6 @@
             }            
            }       
         }
-        System.out.println(configuracion.getSimulacion()+"REMOVE");
     }           
     /**
     * Intercambia el tablero de juego con el de configuracion y viceversa 
