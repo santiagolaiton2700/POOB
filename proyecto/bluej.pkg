@@ -5,43 +5,12 @@ dependency1.type=UsesDependency
 dependency2.from=Rectangle
 dependency2.to=Canvas
 dependency2.type=UsesDependency
-<<<<<<< HEAD
-dependency3.from=Rectangle
-dependency3.to=Canvas
-=======
 dependency3.from=cases
 dependency3.to=checkers
->>>>>>> e94560dbb2a637b89f51e1993dcf8cd5dd824c93
 dependency3.type=UsesDependency
 dependency4.from=Fichas
 dependency4.to=Circle
 dependency4.type=UsesDependency
-<<<<<<< HEAD
-dependency5.from=cases
-dependency5.to=checkers
-dependency5.type=UsesDependency
-dependency6.from=checkers
-dependency6.to=Tablero
-dependency6.type=UsesDependency
-dependency7.from=checkers
-dependency7.to=Fichas
-dependency7.type=UsesDependency
-editor.fx.0.height=744
-editor.fx.0.width=699
-editor.fx.0.x=-8
-editor.fx.0.y=-8
-objectbench.height=186
-objectbench.width=391
-package.divider.horizontal=0.6021180030257186
-package.divider.vertical=0.6960629921259842
-package.editor.height=422
-package.editor.width=541
-package.editor.x=0
-package.editor.y=0
-package.frame.height=735
-package.frame.width=697
-package.numDependencies=7
-=======
 dependency5.from=checkers
 dependency5.to=Tablero
 dependency5.type=UsesDependency
@@ -49,7 +18,7 @@ dependency6.from=checkers
 dependency6.to=Fichas
 dependency6.type=UsesDependency
 editor.fx.0.height=1056
-editor.fx.0.width=976
+editor.fx.0.width=1936
 editor.fx.0.x=-8
 editor.fx.0.y=-8
 objectbench.height=184
@@ -63,7 +32,6 @@ package.editor.y=0
 package.frame.height=1047
 package.frame.width=974
 package.numDependencies=6
->>>>>>> e94560dbb2a637b89f51e1993dcf8cd5dd824c93
 package.numTargets=7
 package.showExtends=true
 package.showUses=true

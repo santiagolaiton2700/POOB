@@ -1,5 +1,3 @@
-
-
     import javax.swing.JOptionPane;
     import java.util.ArrayList;
     import java.util.HashMap;
@@ -225,11 +223,10 @@
                 }else{
                     colorPasConfi="-";
                 }
-<<<<<<< HEAD
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                                 
-=======
+
+
                 fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                 
->>>>>>> e94560dbb2a637b89f51e1993dcf8cd5dd824c93
+
                 configuracion.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasConfi,jugador);
             }else{
                 JOptionPane.showMessageDialog(null,"No se puede mover");            
@@ -511,7 +508,7 @@
                 }
             }
         }        
-    }
+    }    
     /**
      * Entrega la matriz con el estado actual del tablero de configuracion
      * @return String
@@ -552,6 +549,24 @@
            }
            leer.add(lista);
        }
-       System.out.println(leer);
+       recovery(leer,longi);
+    }
+    
+    private void recovery(ArrayList<ArrayList<String>> matriz,int medida){
+        makeInvisible();
+        new checkers(medida);
+        for (int i=0;i<matriz.size();i++){
+            for(int j=0;j<matriz.get(0).size();j++){
+                if (matriz.get(i).get(j).equals("W")){
+                    add(true,i+1,j+1,"j1");                    
+                }else if (matriz.get(i).get(j).equals("B")){
+                        add(true,i+1,j+1,"j2");                    
+                }else if (matriz.get(i).get(j).equals("w")){
+                        add(false,i+1,j+1,"j1");                    
+                }else if (matriz.get(i).get(j).equals("b")){
+                        add(false,i+1,j+1,"j1");                    
+                }
+            }
+        }
     }
 }
