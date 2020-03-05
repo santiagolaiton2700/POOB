@@ -564,7 +564,7 @@
                 }else if (matriz.get(i).get(j).equals("w")){
                         add(false,i+1,j+1,"j1");                    
                 }else if (matriz.get(i).get(j).equals("b")){
-                        add(false,i+1,j+1,"j1");                    
+                        add(false,i+1,j+1,"j2");                    
                 }
             }
         }
