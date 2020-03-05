@@ -1,4 +1,5 @@
 
+
     import javax.swing.JOptionPane;
     import java.util.ArrayList;
     import java.util.HashMap;
@@ -29,7 +30,7 @@
         guardar=new HashMap<String,ArrayList>();
         tableroEstoy=true;         
     }        
-    public void crearTablero(){
+    private void crearTablero(){
         configuracion=new Tablero(medida);
         juego= new Tablero(medida,800,0);
         fichas=new ArrayList<Fichas>();        
@@ -81,46 +82,49 @@
             if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
-            String jugador=fichaSelecionada.getJugador();            
+            String jugador=fichaSelecionada.getJugador();
+            String color=fichaSelecionada.getColor();
             if (top==true && right==false){
                 String posS=configuracion.getSimulacion(filaCuadrado-2,columnaCuadrado-2);                   
+                System.out.println(posS);
+                System.out.println();               
                 if(filaCuadrado-2<1 ||columnaCuadrado-2<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");                      
-                }else if (jugador!=posS||jugador+"k"!=posS){                   
-                    remove(filaCuadrado-1,columnaCuadrado-1); 
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);                    
+                }else if (posS.equals(jugador) || posS.equals(jugador+"k")){                   
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);                                        
                 }else{
+                    remove(filaCuadrado-1,columnaCuadrado-1); 
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);                                        
                 }
             }else if(top==false && right==false){
                 String posS=configuracion.getSimulacion(filaCuadrado,columnaCuadrado-2);                
                 if(filaCuadrado+2>medida ||columnaCuadrado-2<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else if (jugador!=posS||jugador+"k"!=posS){
-                   remove(filaCuadrado+1,columnaCuadrado-1);                    
+                }else if (posS.equals(jugador) || posS.equals(jugador+"k")){      
                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2);                                 
                 }else{
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2);                                 
+                    remove(filaCuadrado+1,columnaCuadrado-1);              
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2);                                                     
                 }                    
             }else if (top==false && right==true){                
-                String posS=configuracion.getSimulacion(filaCuadrado,columnaCuadrado);                                
+                String posS=configuracion.getSimulacion(filaCuadrado,columnaCuadrado);                
                 if(filaCuadrado+2>medida ||columnaCuadrado+2>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else if(jugador!=posS) {
-                    remove(filaCuadrado+1,columnaCuadrado+1);                    
+                }else if(posS.equals(jugador) || posS.equals(jugador+"k")){
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
                 }else{
+                    remove(filaCuadrado+1,columnaCuadrado+1);                    
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
                 }    
             }else if (top==true && right==true){
                 String posS=configuracion.getSimulacion(filaCuadrado-2,columnaCuadrado);                
                 if(filaCuadrado-2<1 ||columnaCuadrado+2>medida){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
-                }else if(jugador!=posS){
-                    remove(filaCuadrado-1,columnaCuadrado+1);
+                }else if(posS.equals(jugador) || posS.equals(jugador+"k")){                    
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2); 
                 }else{
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2); 
+                    remove(filaCuadrado-1,columnaCuadrado+1);
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2);                     
                 }                
             }else{
                 JOptionPane.showMessageDialog(null,"No puede saltar"); 
@@ -231,8 +235,7 @@
                 }else{
                     colorPasConfi="-";
                 }
-                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna));                                                                                                                                                                                                 
-                fichaSelecionada.changePosition(fila,columna);
+                fichaSelecionada.moveFicha(configuracion.getposxCuadrado(fila,columna),configuracion.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                                 
                 configuracion.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasConfi,jugador);
             }else{
                 JOptionPane.showMessageDialog(null,"No se puede mover");            
@@ -244,8 +247,7 @@
                 }else{
                     colorPasConfi="-";
                 }
-                fichaSelecionada.moveFicha(juego.getposxCuadrado(fila,columna),juego.getposyCuadrado(fila,columna));                                                                                                                                                                                                 
-                fichaSelecionada.changePosition(fila,columna);
+                fichaSelecionada.moveFicha(juego.getposxCuadrado(fila,columna),juego.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                 
                 juego.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasConfi,jugador);
             }else{
                 JOptionPane.showMessageDialog(null,"No se puede mover");            
@@ -413,7 +415,7 @@
                 }else{
                     colorConfi="-";
                 }
-                fichas.get(i).moveFicha(xJuego,yJuego);
+                fichas.get(i).moveFicha(xJuego,yJuego,filaCuadrado,columnaCuadrado);
                 configuracion.changePosition(filaCuadrado-1,columnaCuadrado-1,colorConfi);                         
                 juego.changePosition(filaCuadrado-1,columnaCuadrado-1,jugador);   
             }else if (tableroEstoy==false){
@@ -422,7 +424,7 @@
                 }else{
                     colorJuego="-";
                 }
-                fichas.get(i).moveFicha(xconfiguracion,yconfiguracion);
+                fichas.get(i).moveFicha(xconfiguracion,yconfiguracion,filaCuadrado,columnaCuadrado);
                 configuracion.changePosition(filaCuadrado-1,columnaCuadrado-1,jugador);   
                 juego.changePosition(filaCuadrado-1,columnaCuadrado-1,colorJuego);
             }
@@ -546,4 +548,18 @@
             System.out.println();                              
         }       
     }    
+    public void read(String cadena){
+        double longitud=Math.sqrt(cadena.length());
+        int longi=(int)longitud;
+        ArrayList<ArrayList<String>> leer=new ArrayList<ArrayList<String>>();
+        for (int i=0;i<cadena.length();i=i+longi){
+            ArrayList<String>lista=new ArrayList<String>();
+            String subCa=cadena.substring(i,i+longi);
+            for (int j=0;j<subCa.length();j++){
+            lista.add(subCa.substring(j,j+1));
+           }
+           leer.add(lista);
+       }
+       System.out.println(leer);
+    }
 }

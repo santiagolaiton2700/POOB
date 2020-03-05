@@ -21,7 +21,8 @@ public class cases
         tablero.select(1,2);
         tablero.move("derabajo");
     }
-     @Test
+    
+    @Test
     public void  noDeberiaMoverseEnCuadradosNegrosOcupados(){
         checkers tablero=new checkers(4);
         tablero.add(true,1,2,"j1");
