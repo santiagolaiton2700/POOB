@@ -491,24 +491,29 @@
         makeInvisible();
         ArrayList<ArrayList<ArrayList<String>>> lista=guardar.get(name);    
         ArrayList<ArrayList<String>> confi=lista.get(0);
-        ArrayList<ArrayList<String>> jue=lista.get(1);                
+        ArrayList<ArrayList<String>> imprimir=confi;
         crearTablero();
         for(int i=0;i<confi.size();i++){
             for(int j=0;j<confi.size();j++){                
-                String contenido=confi.get(i).get(j);
-                if(contenido.equals("j1")||(contenido.equals("j2"))){
-                    add(false,i+1,j+1,contenido);
-                }else if(contenido.equals("j1k")||(contenido.equals("j2k"))){
-                    if (contenido.equals("j1k")){
-                        add(true,i+1,j+1,"j1");
-                    }
-                    else{
-                        add(true,i+1,j+1,"j2");
-                    }
-                }
-            }
-        }        
-    }    
+                String contenido=confi.get(i).get(j);     
+                if(contenido.equals("j1")){
+                    add(false,i+1,j+1,contenido);                   
+                    imprimir.get(i).set(j,"w");
+                }else if(contenido.equals("j1k")){                    
+                    add(true,i+1,j+1,"j1");
+                    imprimir.get(i).set(j,"W");
+                }else if((contenido.equals("j2k"))){
+                    add(true,i+1,j+1,"j2");
+                    imprimir.get(i).set(j,"B");
+                }else if (contenido.equals("j2")){
+                    add(false,i+1,j+1,"j2");
+                    imprimir.get(i).set(j,"b");
+                 }
+                 System.out.print(imprimir.get(i).get(j));  
+            }   
+            System.out.println();        
+          }                
+    }                               
     /**
      * Entrega la matriz con el estado actual del tablero de configuracion
      * @return String

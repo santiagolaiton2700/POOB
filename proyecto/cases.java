@@ -48,11 +48,13 @@ public class cases
      @Test
         public void  pruebaSave(){
         checkers tablero=new checkers(5);
-        tablero.add(false,1,2,"j1");
-        tablero.add(true,2,3,"j1");
-        tablero.add(true,4,3,"j2"); 
-        tablero.add(false,3,4,"j2");
-        tablero.write();               
+        tablero.add(false,1,2,"j2");
+        tablero.add(true,2,3,"j2");
+        tablero.add(true,4,3,"j1"); 
+        tablero.add(false,3,4,"j1");
+        tablero.save("hola");
+        tablero.add(false,1,4,"j2");
+        tablero.recovery("hola");
     }
   
     /**
