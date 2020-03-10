@@ -4,12 +4,19 @@ import java.awt.Color;
 public interface Elemento{
   int REDONDA = 1;
   int CUADRADA = 2;
-  default void crearElemento(AutomataCelular ac,int fila, int columna,int tipo){
+  public static Elemento crearElemento(AutomataCelular ac,int fila, int columna,int tipo){    
+      Elemento celula= null;       
+      switch(tipo){         
+          case 1:           
+          celula=new Celula(ac,fila,columna);         
+      }
       switch(tipo){
-        case 1:
-        new Celula(ac,fila,columna);
-        }
-    }
+          case 2:
+          celula=new Izquierdosas(ac,fila,columna);         
+      }  
+      return celula;    
+  }
+      
   default void decida(){
   };
    

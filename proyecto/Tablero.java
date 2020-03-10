@@ -212,7 +212,34 @@ public class Tablero{
             }
             }
     }
-    
+    public String colorPasado(int fila, int columna , int filaPas, int columnaPas) {
+    	String posSConfi=simulacion.get(fila).get(columna);
+    	String colorPasConfi=getColorCuadrado(filaPas,columnaPas);        
+    	if (posSConfi=="-"||posSConfi=="."){
+    		if(colorPasConfi=="black"){
+    			colorPasConfi=".";
+    		}else{
+    			colorPasConfi="-";
+    		}
+    	}else {
+    		colorPasConfi="NO";
+    	}
+    	return colorPasConfi;
+    }
+    public String colorCambio(int fila, int columna , int filaPas, int columnaPas) {
+    	String posSConfi=simulacion.get(fila-1).get(columna-1);
+    	String colorPasConfi=getColorCuadrado(filaPas,columnaPas);        
+    	if (posSConfi=="-"||posSConfi=="."){
+    		if(colorPasConfi=="black"){
+    			colorPasConfi=".";
+    		}else{
+    			colorPasConfi="-";
+    		}
+    	}else {
+    		colorPasConfi="NO";
+    	}
+    	return colorPasConfi;
+    }
 }      
 
 

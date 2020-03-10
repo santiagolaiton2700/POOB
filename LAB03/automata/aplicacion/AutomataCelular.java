@@ -4,7 +4,7 @@ public class AutomataCelular{
     static private int LONGITUD=20;
     private Elemento[][] automata;      
     public AutomataCelular() {
-        automata=new Elemento[LONGITUD][LONGITUD];
+        automata=new Elemento[LONGITUD][LONGITUD];        
         for (int f=0;f<LONGITUD;f++){
             for (int c=0;c<LONGITUD;c++){
                 automata[f][c]=null;
@@ -26,7 +26,9 @@ public class AutomataCelular{
     }
 
     public void algunosElementos(){
-        //Celula indiana= new Elemento();
+        Elemento indiana= Elemento.crearElemento(this,0,0,1);
+        Elemento OO7= Elemento.crearElemento(this,1,1,1);
+        Elemento prueba=Elemento.crearElemento(this,2,2,2);
     }
     public void ticTac(){
     }

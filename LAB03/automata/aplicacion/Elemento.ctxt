@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Elemento
 comment1.params=ac\ fila\ columna\ tipo
-comment1.target=void\ crearElemento(AutomataCelular,\ int,\ int,\ int)
+comment1.target=Elemento\ crearElemento(AutomataCelular,\ int,\ int,\ int)
 comment2.params=
 comment2.target=void\ decida()
 comment3.params=
