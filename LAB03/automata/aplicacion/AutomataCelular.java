@@ -2,7 +2,7 @@ package aplicacion;
 import java.util.*;
 public class AutomataCelular{
     static private int LONGITUD=20;
-    private Elemento[][] automata;		
+    private Elemento[][] automata;      
     public AutomataCelular() {
         automata=new Elemento[LONGITUD][LONGITUD];
         for (int f=0;f<LONGITUD;f++){
@@ -26,6 +26,7 @@ public class AutomataCelular{
     }
 
     public void algunosElementos(){
+        //Celula indiana= new Elemento();
     }
     public void ticTac(){
     }
