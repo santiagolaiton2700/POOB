@@ -27,11 +27,13 @@ public class AutomataCelular{
     }   
 
     public void algunosElementos(){ 
-        Elemento indiana= Elemento.crearElemento(this,0,0,2);
+        Elemento indiana= Elemento.crearElemento(this,0,0,1);
         //Elemento jose=Elemento.crearElemento(this,1,1,1);
         Elemento damian=Elemento.crearElemento(this,0,1,2);        
         //Elemento jordi=Elemento.crearElemento(this,1,2,1);
-        
+        //Elemento barrera = new Barrera(this,1,1); 
+        Elemento oop = Elemento.crearElemento(this,1,1,3);
+        Elemento izq = Elemento.crearElemento(this,2,2,3);
     }
     public void ticTac(){
         for (int i=0;i<automata.length;i++){

@@ -13,7 +13,11 @@ public interface Elemento{
       switch(tipo){
           case 2:
           celula=new Izquierdosas(ac,fila,columna);         
-      }  
+      }
+      switch(tipo){         
+          case 3:           
+          celula=new Barrera(ac,fila,columna);         
+      }
       return celula;    
   }      
   default void decida(){      
