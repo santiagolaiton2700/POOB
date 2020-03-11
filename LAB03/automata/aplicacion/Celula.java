@@ -1,5 +1,5 @@
 package aplicacion;
-
+import java.util.ArrayList;
 import java.awt.Color;
 
 /**Informacion sobre una célula<br>
@@ -16,7 +16,6 @@ public class Celula implements Elemento{
     protected char estadoActual,estadoSiguiente;
     protected Color color;
     private int edad;
-
     /**Crea una célula, viva o latente, en la posición (<b>fila,columna</b>) del autómta <b>ac</b>.Toda nueva célula va a estar viva en el estado siguiente.
     @param ac automata celular en el que se va a ubicar la nueva célula
     @param fila fila en el automata celular
@@ -26,13 +25,13 @@ public class Celula implements Elemento{
         automata=ac;
         this.fila=fila;
         this.columna=columna;
-        estadoActual=' ';
-        estadoSiguiente=VIVA;
+        estadoActual=VIVA;
+        estadoSiguiente=MUERTA;
         edad=0;
-        automata.setElemento(fila,columna,(Elemento)this);	
-        color=Color.black;
+        automata.setElemento(fila,columna,(Elemento)this);  
+        color=Color.black;       
     }
-
+    
     /**Retorna la fila del automata en que se encuentra 
     @return 
      */
@@ -60,7 +59,7 @@ public class Celula implements Elemento{
     @return v
      */
     public final boolean isVivo(){
-        return (estadoActual == VIVA) ;
+        return (estadoActual==VIVA) ;
     }
 
     /**Retorna la edad de la célula
@@ -81,8 +80,11 @@ public class Celula implements Elemento{
     /**Actualiza su estado actual considerando lo definido como siguiente estado
      */
     public final void cambie(){
-        edad++;
-        estadoActual=estadoSiguiente;
-    }
-
+       edad++;
+       if(estadoActual==MUERTA){       
+        estadoActual=VIVA;
+       }else if(estadoActual==VIVA){
+           estadoActual=MUERTA;           
+       }
+    }   
 }

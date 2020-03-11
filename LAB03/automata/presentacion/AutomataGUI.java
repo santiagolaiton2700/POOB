@@ -65,19 +65,16 @@ public class AutomataGUI extends JFrame{
         AutomataCelular ac=new AutomataCelular();
         AutomataGUI ca=new AutomataGUI(ac);
         ca.setVisible(true);
-
     }  
 }
 
 class FotoAutomata extends JPanel{
     public static int TAMANO=40;
     private AutomataCelular automata;
-
     public FotoAutomata(AutomataCelular ac) {
         setBackground(Color.white);
         automata=ac;
         setPreferredSize(new Dimension(800,800));       
-
     }
 
     public void setAutomata(AutomataCelular automata){

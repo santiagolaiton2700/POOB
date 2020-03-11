@@ -1,6 +1,6 @@
 package aplicacion;
 import java.awt.Color;
-
+import java.util.ArrayList;
 public interface Elemento{
   int REDONDA = 1;
   int CUADRADA = 2;
@@ -15,9 +15,8 @@ public interface Elemento{
           celula=new Izquierdosas(ac,fila,columna);         
       }  
       return celula;    
-  }
-      
-  default void decida(){
+  }      
+  default void decida(){      
   };
    
   default void cambie(){
@@ -33,4 +32,5 @@ public interface Elemento{
       return false;
   }
   
+  public int getFila();
 }
