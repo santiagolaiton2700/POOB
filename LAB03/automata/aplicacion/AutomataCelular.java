@@ -27,13 +27,13 @@ public class AutomataCelular{
     }   
 
     public void algunosElementos(){ 
-        Elemento indiana= Elemento.crearElemento(this,0,0,1);
-        //Elemento jose=Elemento.crearElemento(this,1,1,1);
-        Elemento damian=Elemento.crearElemento(this,0,1,2);        
+        Elemento indiana= Elemento.crearElemento(this,0,0,4);
+        Elemento jose=Elemento.crearElemento(this,1,1,1);
+        //Elemento damian=Elemento.crearElemento(this,0,1,1);        
         //Elemento jordi=Elemento.crearElemento(this,1,2,1);
         //Elemento barrera = new Barrera(this,1,1); 
-        Elemento oop = Elemento.crearElemento(this,1,1,3);
-        Elemento izq = Elemento.crearElemento(this,2,2,3);
+        //Elemento oop = Elemento.crearElemento(this,1,0,1);
+        //Elemento izq = Elemento.crearElemento(this,1,0,4);
     }
     public void ticTac(){
         for (int i=0;i<automata.length;i++){
@@ -43,7 +43,9 @@ public class AutomataCelular{
                     verifique(i,j);           
                 }else if(automata[i][j].getColor().equals(Color.red)){
                     derecha(i,j);
-                }
+                }else if(automata[i][j].getColor().equals(Color.green)){
+                    verifiquederechosas(i,j);
+                }    
                 } catch (Exception e) {                    
                 }
             }            
@@ -90,8 +92,31 @@ public class AutomataCelular{
            //vivasMuerta=contar(fila,columna);
            if (vivasMuerta[0]==3){
                System.out.println("crea 4");  
-               Elemento lina= Elemento.crearElemento(this,fila,columna,1);
+               Elemento lina= Elemento.crearElemento(this,0,1,1);
                automata[fila][columna]=lina;          
+           }
+        }
+    }
+    private void verifiquederechosas(int fila,int columna){
+        int[] vivasMuerta = {0,0};
+        vivasMuerta=contar(fila,columna); 
+        if (automata[fila][columna]!=null){              
+            if(!automata[fila][columna].isVivo()){                 
+                if(vivasMuerta[0] + vivasMuerta[1] == 1 || vivasMuerta[0] + vivasMuerta[1] > 3){
+                    automata[fila][columna].cambie();                                                                      
+                }else if(vivasMuerta[1]==3 || vivasMuerta[1]==2){
+                    return;
+                } 
+            }else if(automata[fila][columna].isVivo()){
+                if(vivasMuerta[1]==3){
+                    automata[fila][columna].cambie();                   
+                }
+            }          
+        }
+        else{
+           //vivasMuerta=contar(fila,columna);
+           if (vivasMuerta[1]==3){
+               Elemento lina= Elemento.crearElemento(this,fila,columna,4);
            }
         }
     }

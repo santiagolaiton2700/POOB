@@ -18,6 +18,10 @@ public interface Elemento{
           case 3:           
           celula=new Barrera(ac,fila,columna);         
       }
+      switch(tipo){         
+          case 4:           
+          celula=new Derechosas(ac,fila,columna);         
+      }
       return celula;    
   }      
   default void decida(){      
