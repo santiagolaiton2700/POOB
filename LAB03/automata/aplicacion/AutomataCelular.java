@@ -27,26 +27,29 @@ public class AutomataCelular{
     }   
 
     public void algunosElementos(){ 
-        Elemento indiana= Elemento.crearElemento(this,0,0,4);
-        Elemento jose=Elemento.crearElemento(this,1,1,1);
-        //Elemento damian=Elemento.crearElemento(this,0,1,1);        
-        //Elemento jordi=Elemento.crearElemento(this,1,2,1);
-        //Elemento barrera = new Barrera(this,1,1); 
+        Elemento indiana= Elemento.crearElemento(this,8,4,1);
+        Elemento jose=Elemento.crearElemento(this,9,5,1);
+        Elemento damian=Elemento.crearElemento(this,10,3,1);        
+        Elemento jordi=Elemento.crearElemento(this,10,4,1);
+        Elemento barrera = Elemento.crearElemento(this,10,5,1); 
         //Elemento oop = Elemento.crearElemento(this,1,0,1);
         //Elemento izq = Elemento.crearElemento(this,1,0,4);
     }
     public void ticTac(){
         for (int i=0;i<automata.length;i++){
             for (int j=0;j<automata[i].length;j++){
-                try {
-                if(automata[i][j].getColor().equals(Color.black)){
+                if  (automata[i][j]!=null) {
+                    if(automata[i][j].getColor().equals(Color.black)){
                     verifique(i,j);           
                 }else if(automata[i][j].getColor().equals(Color.red)){
                     derecha(i,j);
                 }else if(automata[i][j].getColor().equals(Color.green)){
                     verifiquederechosas(i,j);
                 }    
-                } catch (Exception e) {                    
+                } else{
+                  verifique(i,j);
+                  verifiquederechosas(i,j);
+             
                 }
             }            
         }
