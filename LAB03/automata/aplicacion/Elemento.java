@@ -22,6 +22,10 @@ public interface Elemento{
           case 4:           
           celula=new Derechosas(ac,fila,columna);         
       }
+      switch(tipo){         
+          case 5:           
+          celula=new Conway(ac,fila,columna);         
+      }
       return celula;    
   }      
   default void decida(){      

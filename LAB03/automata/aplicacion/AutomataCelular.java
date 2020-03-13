@@ -27,14 +27,22 @@ public class AutomataCelular{
     }   
 
     public void algunosElementos(){ 
-        Elemento indiana= Elemento.crearElemento(this,8,4,1);
-        Elemento jose=Elemento.crearElemento(this,9,5,1);
-        Elemento damian=Elemento.crearElemento(this,10,3,1);        
-        Elemento jordi=Elemento.crearElemento(this,10,4,1);
-        Elemento barrera = Elemento.crearElemento(this,10,5,1); 
-        //Elemento oop = Elemento.crearElemento(this,1,0,1);
-        //Elemento izq = Elemento.crearElemento(this,1,0,4);
-    }
+        Elemento indiana= Elemento.crearElemento(this,1,1,1);
+        Elemento oo7=Elemento.crearElemento(this,2,2,1);
+        //Elemento izquierdosa1=Elemento.crearElemento(this,6,6,2);        
+        //Elemento izquierdosa2=Elemento.crearElemento(this,6,7,2);
+        //Izquierdosas  marx = Elemento.crearElemento(this,3,6,2);
+        //Izquierdosas  hegel = Elemento.crearElemento(this,3,7,5);
+        //Barrera suroeste = new Barrera(this,15,1);
+        //Barrera noroeste = new Barrera(this,1,15);
+        Derechosas lina = new Derechosas(this,10,1);
+        Derechosas santiago = new Derechosas(this,11,2);
+        Conway q = new Conway(this,10,1);
+        Conway p = new Conway(this,11,2);
+
+        
+        
+    }    
     public void ticTac(){
         for (int i=0;i<automata.length;i++){
             for (int j=0;j<automata[i].length;j++){
@@ -45,7 +53,8 @@ public class AutomataCelular{
                     derecha(i,j);
                 }else if(automata[i][j].getColor().equals(Color.green)){
                     verifiquederechosas(i,j);
-                }    
+                }else if(automata[i][j].getColor().equals(Color.blue)){
+                    verifique(i,j);    
                 } else{
                   verifique(i,j);
                   verifiquederechosas(i,j);
@@ -54,19 +63,22 @@ public class AutomataCelular{
             }            
         }
     }
+    }
     public void derecha(int fila,int columna){
-        System.out.println(fila +" "+columna);
-        System.out.println(automata[fila].length);
        if (automata[fila][columna]!=null){ 
           if (columna<automata[fila].length-1){  
-             if (automata[fila][columna+1]!=null && automata[fila][columna+1].isVivo()){
-              automata[fila][columna].cambie();
-             }          
+             if (automata[fila][columna+1]!=null){
+                 if (automata[fila][columna+1].isVivo()){
+                    automata[fila][columna].cambie();
+                }else{
+                    automata[fila][columna]=automata[fila][columna];
+                    
+                }
+             }else{
+               }return;          
           }
        }
-       for (int i =0;i<automata[fila].length;i++){
-            
-          }
+                   
     }
     public Celula crearCelular(int fila, int columna){
         return new Celula(this, fila, columna); 
@@ -74,18 +86,14 @@ public class AutomataCelular{
     private void verifique(int fila,int columna){
         int[] vivasMuerta = {0,0};
         vivasMuerta=contar(fila,columna); 
-        System.out.println(vivasMuerta[0]+" "+" vivas " + vivasMuerta[1]+" "+" Muertas ");
         if (automata[fila][columna]!=null){              
             if(automata[fila][columna].isVivo()){                 
                 if(vivasMuerta[0] + vivasMuerta[1] == 1 || vivasMuerta[0] + vivasMuerta[1] > 3){
-                    System.out.println("chao 1");
                     automata[fila][columna].cambie();                                                                      
                 }else if(vivasMuerta[0]==3 || vivasMuerta[0]==2){
-                    System.out.println("vive 2");
                     return;
                 } 
             }else if(!automata[fila][columna].isVivo()){
-                System.out.println("revive 3");              
                 if(vivasMuerta[0]==3){
                     automata[fila][columna].cambie();                   
                 }
@@ -94,7 +102,6 @@ public class AutomataCelular{
         else{
            //vivasMuerta=contar(fila,columna);
            if (vivasMuerta[0]==3){
-               System.out.println("crea 4");  
                Elemento lina= Elemento.crearElemento(this,0,1,1);
                automata[fila][columna]=lina;          
            }

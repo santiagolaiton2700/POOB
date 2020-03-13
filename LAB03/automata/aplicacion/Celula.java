@@ -83,8 +83,10 @@ public class Celula implements Elemento{
        edad++;
        if(estadoActual==MUERTA){       
         estadoActual=VIVA;
+        estadoSiguiente=estadoActual;
        }else if(estadoActual==VIVA){
-           estadoActual=MUERTA;           
+           estadoActual=MUERTA; 
+           estadoSiguiente=estadoActual;
        }
     }   
 }
