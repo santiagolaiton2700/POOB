@@ -2,7 +2,7 @@
 comment0.target=Celula
 comment0.text=Informacion\ sobre\ una\ c\u00C3\u00A9lula<br>\r\n<b>(COLOR,automata,fila,columna,estadoActual,estadoSigiente)</b><br>\r\nLas\ celulas\ conocen\ su\ color,\ el\ automata\ en\ la\ que\ viven,\ la\ posici\u00C3\u00B3n\ en\ la\ que\ est\u00C3\u00A1n\ en\ ese\ aut\u00C3\u00B3mata,su\ estado\ actual\ y\ el\ estado\ que\ van\ a\ tomar\ en\ el\ siguiente\ instante.<br>\r\nTodas\ las\ c\u00C3\u00A9lulas\ son\ de\ color\ azul<br>\r\nLos\ posibles\ estados\ de\ una\ c\u00C3\u00A9lula\ son\ tres\:\ viva,\ muerta\ o\ latente<br>\r\n
 comment1.params=ac\ fila\ columna
-comment1.target=Celula(aplicacion.AutomataCelular,\ int,\ int)
+comment1.target=Celula(AutomataCelular,\ int,\ int)
 comment1.text=Crea\ una\ c\u00C3\u00A9lula,\ viva\ o\ latente,\ en\ la\ posici\u00C3\u00B3n\ (<b>fila,columna</b>)\ del\ aut\u00C3\u00B3mta\ <b>ac</b>.Toda\ nueva\ c\u00C3\u00A9lula\ va\ a\ estar\ viva\ en\ el\ estado\ siguiente.\r\n\ \ \ \ @param\ ac\ automata\ celular\ en\ el\ que\ se\ va\ a\ ubicar\ la\ nueva\ c\u00C3\u00A9lula\r\n\ \ \ \ @param\ fila\ fila\ en\ el\ automata\ celular\r\n\ \ \ \ @param\ columna\ columna\ en\ el\ automata\ celula\r\n
 comment2.params=
 comment2.target=int\ getFila()

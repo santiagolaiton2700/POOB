@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=Derechosas
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Derechosas\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Son\ celulas\ con\ propiedades\ opuestas\ a\ las\ izquierdosas.\r\n\ \r\n\ @author\ (Lina\ Buitrago\ -\ Santiago\ Laiton)\ \r\n\ @version\ (12\ de\ marzo\ de\ 2020)\r\n
 comment1.params=ac\ fila\ columna
-comment1.target=Derechosas(aplicacion.AutomataCelular,\ int,\ int)
+comment1.target=Derechosas(AutomataCelular,\ int,\ int)
 comment2.params=
 comment2.target=int\ getForma()
+comment2.text=\ Retorna\ la\ forma\ de\ la\ celula\r\n\ \r\n
 numComments=3

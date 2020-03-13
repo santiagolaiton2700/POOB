@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Izquierdosas
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Izquierdosas\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Las\ celulas\ izquierdosas\ son\ celulas\ rojas\ que\ cumplen\ una\ unica\ propiedad.\r\n\ \r\n\ @author\ (Lina\ Buitrago-\ Santiago\ Laiton\ )\ \r\n\ @version\ (12\ de\ marzo\ 2020)\r\n
 comment1.params=ac\ fila\ columna
-comment1.target=Izquierdosas(aplicacion.AutomataCelular,\ int,\ int)
+comment1.target=Izquierdosas(AutomataCelular,\ int,\ int)
 numComments=2

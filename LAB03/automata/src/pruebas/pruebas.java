@@ -139,8 +139,8 @@ public class pruebas
         Conway q = new Conway(at,13,1);
         Conway p = new Conway(at,13,2);
         at.ticTac();
-        assertFalse("deberia estar muerta",at.getElemento(13,1).isVivo());
-        assertFalse("deberia estar muerta",at.getElemento(13,2).isVivo());
+        assertTrue("deberia estar muerta",at.getElemento(13,1).isVivo());
+        assertTrue("deberia estar muerta",at.getElemento(13,2).isVivo());
         
     }
         @Test
