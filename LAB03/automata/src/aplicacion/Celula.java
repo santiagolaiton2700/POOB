@@ -1,4 +1,4 @@
-package aplicacion;
+package src.aplicacion;
 import java.util.ArrayList;
 import java.awt.Color;
 

@@ -1,4 +1,4 @@
-package aplicacion;
+package src.aplicacion;
 import java.awt.Color;
 
 /**
@@ -9,11 +9,9 @@ import java.awt.Color;
  */
 public class Barrera extends Celula
 {
-
     /**
      * Constructor for objects of class Barrera
      */
-     int tipo;
     public Barrera(AutomataCelular ac,int fila, int columna)
     {
         // initialise instance variables
@@ -23,7 +21,6 @@ public class Barrera extends Celula
         color=Color.black;
     }  
     public int getForma(){
-      return 2;
-      
+      return 2;      
     }
 }

@@ -1,4 +1,4 @@
-package aplicacion;
+package src.aplicacion;
 import java.awt.Color;
 /**
  * Write a description of class Derechosas here.

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Derechosas
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Derechosas\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=ac\ fila\ columna
+comment1.target=Derechosas(aplicacion.AutomataCelular,\ int,\ int)
+comment2.params=
+comment2.target=int\ getForma()
+numComments=3

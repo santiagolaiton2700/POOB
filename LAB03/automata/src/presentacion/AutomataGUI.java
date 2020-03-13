@@ -1,6 +1,5 @@
-package presentacion;
-import aplicacion.*;
-
+package src.presentacion;
+import src.aplicacion.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

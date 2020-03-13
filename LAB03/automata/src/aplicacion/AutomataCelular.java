@@ -1,4 +1,4 @@
-package aplicacion;
+package src.aplicacion;
 import java.util.*;
 import java.awt.Color;
 public class AutomataCelular{
@@ -31,22 +31,22 @@ public class AutomataCelular{
         //Elemento oo7=Elemento.crearElemento(this,2,2,1);
         //Elemento izquierdosa1=Elemento.crearElemento(this,6,6,2);        
         //Elemento izquierdosa2=Elemento.crearElemento(this,6,7,2);
-        //Izquierdosas  marx = Elemento.crearElemento(this,3,6,2);
-        //Izquierdosas  hegel = Elemento.crearElemento(this,3,7,5);
-        //Barrera suroeste = new Barrera(this,15,1);
-        //Barrera noroeste = new Barrera(this,1,15);
+        //Elemento marx = Elemento.crearElemento(this,3,6,2);
+        //ELemento hegel = Elemento.crearElemento(this,3,7,5);
+        //Elemento suroeste = Elemento.crearElemento(this,15,1,3);
+        //Elemento noroeste = Elemento.crearElemento(this,1,15,3);
         //Elemento lina = Elemento.crearElemento(this,10,1,4);
         //Elemento santiago = Elemento.crearElemento(this,10,2,4);
-        //Derechosas otra = new Derechosas(this,11,1);
-        //Derechosas otra1 = new Derechosas(this,11,2);
+        //Elemento otra = Elemento.crearElemento(this,11,1,4);
+        //Elemento otra1 = Elemento.crearElemento(this,11,2,4);
 
-        //Conway q = new Conway(this,13,1);
-        //Conway p = new Conway(this,13,2);
+        //Elemento q = Elemento.crearElemento(this,13,1,5);
+        //Elemento p = Elemento.crearElemento(this,13,2,5);
         
-        Barrera suroeste = new Barrera(this,14,1);
-        Barrera noroeste = new Barrera(this,14,2);
-        Barrera bloque1 = new Barrera(this,15,1);
-        Barrera bloque = new Barrera(this,15,2);
+        Elemento suroeste = Elemento.crearElemento(this,14,1,3);
+        Elemento noroeste = Elemento.crearElemento(this,14,2,3);
+        Elemento bloque1 = Elemento.crearElemento(this,15,1,3);
+        Elemento bloque = Elemento.crearElemento(this,15,2,3);
 
         
         
@@ -88,8 +88,8 @@ public class AutomataCelular{
        }
                    
     }
-    public Celula crearCelular(int fila, int columna){
-        return new Celula(this, fila, columna); 
+    public Elemento crearCelular(int fila, int columna){
+        return Elemento.crearElemento(this, fila, columna,1); 
     }
     private void verifique(int fila,int columna){
         int[] vivasMuerta = {0,0};

@@ -1,10 +1,10 @@
-package aplicacion;
+package src.pruebas;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.awt.Color;
-
+import src.aplicacion.*;
 
 
 /**
@@ -31,7 +31,7 @@ public class pruebas
     @Test 
     public void celulas(){
         AutomataCelular at = new AutomataCelular();
-        Elemento indiana=Elemento.crearElemento(at,2,2,1);
+        Elemento indiana=Elemento.crearElemento(at,1,1,1);
         Elemento oo7=Elemento.crearElemento(at,2,2,1);
         at.ticTac();
         assertFalse("deberia estar muerta",at.getElemento(1,1).isVivo());
@@ -68,7 +68,7 @@ public class pruebas
         assertTrue("deberia estar viva",at.getElemento(6,7).isVivo());
         
     }
-    
+        @Test
     public void celulasIzquierdosas2(){
         AutomataCelular at = new AutomataCelular();
         Izquierdosas  marx = new Izquierdosas(at,3,6);
@@ -93,6 +93,7 @@ public class pruebas
         
         
     }
+        @Test
     public void noDeberianVivirBarreras(){
         AutomataCelular at = new AutomataCelular();
         Barrera noroeste = new Barrera(at,15,1);
@@ -108,6 +109,7 @@ public class pruebas
         assertFalse("deberia estar muerta",at.getElemento(1,15).isVivo());
                   
     }
+        @Test
     public void caso1Derechosas(){
         //Cuando tiene una vecina revive
         AutomataCelular at = new AutomataCelular();
@@ -117,6 +119,7 @@ public class pruebas
         assertFalse("deberia estar muerta",at.getElemento(10,1).isVivo());
         assertFalse("deberia estar muerta",at.getElemento(10,2).isVivo());
     }
+        @Test
     public void caso2Derechosas(){
         //Cuando tiene tres vecinas revive
         AutomataCelular at = new AutomataCelular();
@@ -130,7 +133,7 @@ public class pruebas
         assertFalse("deberia estar muerta",at.getElemento(11,1).isVivo());
         assertFalse("deberia estar muerta",at.getElemento(11,2).isVivo());
     }
-    
+        @Test
     public void conway2(){
         AutomataCelular at = new AutomataCelular();
         Conway q = new Conway(at,13,1);
@@ -140,6 +143,7 @@ public class pruebas
         assertFalse("deberia estar muerta",at.getElemento(13,2).isVivo());
         
     }
+        @Test
     public void conway3(){
         AutomataCelular at = new AutomataCelular();
         Conway q = new Conway(at,5,1);
@@ -148,6 +152,7 @@ public class pruebas
         assertFalse("deberia estar muerta",at.getElemento(5,1).isVivo());
         assertFalse("deberia estar muerta",at.getElemento(5,2).isVivo());
     }
+        @Test
     public void bloque(){
         AutomataCelular at = new AutomataCelular();
         Barrera suroeste = new Barrera(at,15,1);

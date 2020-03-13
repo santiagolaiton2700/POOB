@@ -1,4 +1,4 @@
-package aplicacion;
+package src.aplicacion;
 import java.awt.Color;
 import java.util.ArrayList;
 public interface Elemento{
