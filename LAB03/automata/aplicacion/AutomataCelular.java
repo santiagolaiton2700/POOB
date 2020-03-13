@@ -27,18 +27,26 @@ public class AutomataCelular{
     }   
 
     public void algunosElementos(){ 
-        Elemento indiana= Elemento.crearElemento(this,1,1,1);
-        Elemento oo7=Elemento.crearElemento(this,2,2,1);
+        //Elemento indiana= Elemento.crearElemento(this,1,1,1);
+        //Elemento oo7=Elemento.crearElemento(this,2,2,1);
         //Elemento izquierdosa1=Elemento.crearElemento(this,6,6,2);        
         //Elemento izquierdosa2=Elemento.crearElemento(this,6,7,2);
         //Izquierdosas  marx = Elemento.crearElemento(this,3,6,2);
         //Izquierdosas  hegel = Elemento.crearElemento(this,3,7,5);
         //Barrera suroeste = new Barrera(this,15,1);
         //Barrera noroeste = new Barrera(this,1,15);
-        Derechosas lina = new Derechosas(this,10,1);
-        Derechosas santiago = new Derechosas(this,11,2);
-        Conway q = new Conway(this,10,1);
-        Conway p = new Conway(this,11,2);
+        //Elemento lina = Elemento.crearElemento(this,10,1,4);
+        //Elemento santiago = Elemento.crearElemento(this,10,2,4);
+        //Derechosas otra = new Derechosas(this,11,1);
+        //Derechosas otra1 = new Derechosas(this,11,2);
+
+        //Conway q = new Conway(this,13,1);
+        //Conway p = new Conway(this,13,2);
+        
+        Barrera suroeste = new Barrera(this,14,1);
+        Barrera noroeste = new Barrera(this,14,2);
+        Barrera bloque1 = new Barrera(this,15,1);
+        Barrera bloque = new Barrera(this,15,2);
 
         
         
