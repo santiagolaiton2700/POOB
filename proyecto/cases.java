@@ -56,6 +56,12 @@ public class cases
         tablero.add(false,1,4,"j2");
         tablero.recovery("hola");
     }
+   @Test
+    public void deberiaCrearTablero(){
+        checkers tablero=new checkers(4);
+        tablero.add(true,1,2,"j1");
+        tablero.moveArena("1-4");        
+    }
   
     /**
      * Sets up the test fixture.

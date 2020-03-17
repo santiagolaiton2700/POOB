@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class Tablero{
     private ArrayList<ArrayList<Rectangle>> tablero;
     private ArrayList<ArrayList<String>> simulacion;
+    private int numero[][];
     private boolean isVisible;
     private int medida;
     private int xPos=0;
-    private int yPos=0;   
+    private int yPos=0; 
+ 
     /**
     * Crea matrices de tipo Rectangle con los parametros indicados
     * @param width
@@ -22,7 +24,8 @@ public class Tablero{
     public Tablero(int width){
         medida=width;
         this.simulacion=new ArrayList<ArrayList<String>>();
-        this.tablero=new ArrayList<ArrayList<Rectangle>>();
+        this.tablero=new ArrayList<ArrayList<Rectangle>>();        
+        numero = new int[width][width];
         isVisible=true;
         comprobacion();
     }
@@ -37,6 +40,7 @@ public class Tablero{
         this.yPos=yPos;
         this.simulacion=new ArrayList<ArrayList<String>>();
         this.tablero=new ArrayList<ArrayList<Rectangle>>();
+        numero= new int[width][width];
         isVisible=true;
         comprobacion();
     }
@@ -49,8 +53,7 @@ public class Tablero{
         }else{
             pintarTableroImpar();
         }        
-    }
-    
+    }  
     /**
     * Pinta matrices de rectangulos de tamaño par 
     
@@ -62,6 +65,8 @@ public class Tablero{
         int moverCuadradox=medida;
         String color="white";
         String simbolo="-";
+        int posicion=0;
+        int blanco=0;
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
@@ -72,19 +77,25 @@ public class Tablero{
                 if (i%2==0){
                     rectangleTempo.changeColor(color);
                     simulacion.get(i).add(simbolo);
-                    if(color=="white"){
+                    if(color=="white"){ 
+                        numero[i][j]=blanco;
                         simbolo=".";
                         color="black";                        
                     }else{
-                        simbolo="-";
+                        posicion++;
+                        numero[i][j]=posicion;
+                        simbolo="-";                       
                         color="white";                        
                     }
                 }else{
-                    if (color=="white"){
+                    if (color=="white"){                        
                         simbolo=".";
                         color="black";
+                        posicion++;
+                        numero[i][j]=posicion;
                     }else{ 
                         simbolo="-";
+                        numero[i][j]=blanco;
                         color="white";
                     }
                     rectangleTempo.changeColor(color);
@@ -93,8 +104,7 @@ public class Tablero{
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
             }
-       }
-       
+        }       
     }
     /**
     * Pinta matrices de rectangulos de tamaño impar 
@@ -107,7 +117,9 @@ public class Tablero{
         int numeroColumnas=medida;
         int moverCuadradox=medida;
         String color="white";
-        String simbolo="-";
+        String simbolo="-";        
+        int posicion=0;
+        int blanco=0;
         for (int i=0;numeroFilas>i;i++){
             tablero.add(new ArrayList<Rectangle>());
             simulacion.add(new ArrayList<String>());
@@ -118,16 +130,19 @@ public class Tablero{
                 rectangleTempo.changeColor(color);
                 simulacion.get(i).add(simbolo);                               
                 if(color=="white"){
+                    numero[i][j]=blanco;
                     simbolo=".";
                     color="black";
                 }else{
+                    posicion++;
+                    numero[i][j]=posicion;
                     simbolo="-";
                     color="white";                    
                 }
                 rectangleTempo.makeVisible();
                 tablero.get(i).add(rectangleTempo);
             }
-        }
+        }       
     }
     /**
     * Entrega la posicion en X del rectangulo en la matriz
@@ -239,6 +254,18 @@ public class Tablero{
     		colorPasConfi="NO";
     	}
     	return colorPasConfi;
+    }
+    public int [] getPosicion(int num){
+        int [] posicion= new int[2];
+        for (int i=0;i<numero.length;i++){
+            for(int j=0;j<numero[0].length;j++){
+                if (numero[i][j]==num){
+                    posicion[0]=i;
+                    posicion[1]=j;
+                }
+            }
+        }
+        return posicion;
     }
 }      
 
