@@ -3,10 +3,10 @@ import java.awt.Color;
 
 
 /**
- * Write a description of class Conway here.
+ * Las celulas conway son celulas del juego de la vida que cumplen con ciertas condiciones; son azules su estado inicial es VIVA.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Lina Buitrago- Santiago Laiton ) 
+ * @version (12 de marzo 2020)
  */
  public class Conway extends Celula
 {        

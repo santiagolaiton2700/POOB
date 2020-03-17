@@ -1,6 +1,13 @@
 package src.aplicacion;
 import java.util.*;
 import java.awt.Color;
+/**
+ * Sistema de celulas , guarda las celulas en una matriz  
+ * @author (Lina Buitrago - Santiago Laiton) 
+ * @version (12 de marzo de 2020)
+ */
+
+
 public class AutomataCelular{
     static private int LONGITUD=20;
     private Elemento[][] automata;      
@@ -13,19 +20,27 @@ public class AutomataCelular{
         }
         algunosElementos();
     }
-
+    /**Retorna la longitud del tablero
+     * 
+     */
     public int  getLongitud(){
         return LONGITUD;
     }
-
+    /**retorna fila y columna en el automata 
+     * 
+     */
     public Elemento getElemento(int f,int c){
         return automata[f][c];
     }
-
+    /**cambia fila y columna en el automata 
+     * 
+     */
     public void setElemento(int f, int c, Elemento nueva){
         automata[f][c]=nueva;
     }   
-
+    /** Crea elementos 
+     * 
+     */
     public void algunosElementos(){ 
         //Elemento indiana= Elemento.crearElemento(this,1,1,1);
         //Elemento oo7=Elemento.crearElemento(this,2,2,1);
@@ -51,6 +66,9 @@ public class AutomataCelular{
         
         
     }    
+    /** cambia el estado de las celulas en el tiempo 
+     * 
+     */
     public void ticTac(){
         for (int i=0;i<automata.length;i++){
             for (int j=0;j<automata[i].length;j++){
@@ -72,6 +90,9 @@ public class AutomataCelular{
         }
     }
     }
+    /** verifica las condiciones de cambio en el tiempo para cierto tipo de celula
+     * 
+     */
     public void derecha(int fila,int columna){
        if (automata[fila][columna]!=null){ 
           if (columna<automata[fila].length-1){  
@@ -91,6 +112,9 @@ public class AutomataCelular{
     public Elemento crearCelular(int fila, int columna){
         return Elemento.crearElemento(this, fila, columna,1); 
     }
+    /** verifica las condiciones de cambio en el tiempo para cierto tipo de celula
+     * 
+     */
     private void verifique(int fila,int columna){
         int[] vivasMuerta = {0,0};
         vivasMuerta=contar(fila,columna); 
@@ -115,6 +139,9 @@ public class AutomataCelular{
            }
         }
     }
+    /** verifica las condiciones de cambio en el tiempo para cierto tipo de celula
+     *@param fila , columna
+     */
     private void verifiquederechosas(int fila,int columna){
         int[] vivasMuerta = {0,0};
         vivasMuerta=contar(fila,columna); 
@@ -138,6 +165,10 @@ public class AutomataCelular{
            }
         }
     }
+    /** Cuenta las celulas vecinas 
+     * @param x1,x2,y1,y2,x,y
+     * rangos en x , rangos en y , fila y columna
+     */
     private int[] cuente(int x1, int x2, int y1, int y2, int x, int y){
         int[] vivasMuertas = {0,0};        
         for (int i = x1; i<=x2; i++) {
@@ -155,42 +186,37 @@ public class AutomataCelular{
         
         return vivasMuertas;
     }
+    /**cuenta numero de vivas y muertas
+     * @param x, y 
+     * fila y columna
+     */
     private int[] contar(int x,int y){
         int[] lista={0,0};        
         if (x==0 && y==0){
             //esquina de arriba
             lista = cuente(x,x+1,y,y+1, x, y);
-            System.out.println("Hola 1");
         }else if(x==automata.length-1 && y==0){
             //esquina de abajoizquiera
-            System.out.println("Hola 2");
             lista = cuente(x-1,x,y,y+1, x, y);
         }else if(x==0 && y==automata.length-1){
             //isquina derecha arriba
-            System.out.println("Hola 3");
             lista = cuente(x,x+1,y-1,y,x, y);
         }else if(x==automata.length-1 && y==automata.length-1){
             //esquina derecha abajo
-            System.out.println("Hola 4");
             lista = cuente(x-1,x,y-1,y, x, y);
         }else if(x==0 && 0<y && y<automata.length-1){
             //entre esquinaizqarriba y esquinaderarriba
-            System.out.println("Hola 5");
             lista = cuente(x,x+1,y-1,y+1, x, y);
         }else if(y==0 && 0<x && x<automata.length-1){
             //entre esquinaizqarriba y esquinaizqabajo 
-            System.out.println("Hola 6");
             lista = cuente(x-1,x+1,y,y+1, x, y);
         }else if(y==automata.length-1 && 0<x && x<automata.length-1){
             //entre esquina der arriba y esquina der abajo
-            System.out.println("Hola 7");
             lista = cuente(x-1,x+1,y-1,y, x, y);
         }else if(x==automata.length-1 && 0<y && y<automata.length-1){
             //esquina izq abajo y esquina der abajo
-            System.out.println("Hola 8");
             lista = cuente(x-1,x,y-1,y+1, x, y);
         }else{            
-            System.out.println("Hola 9");
             lista = cuente(x-1,x+1,y-1,y+1, x, y);
         }                        
         return lista;

@@ -33,16 +33,24 @@ public interface Elemento{
    
   default void cambie(){
   };
-  
+  /** retorna la forma de la celula 
+   * 
+   */
   default int getForma(){
       return REDONDA;
   }
-  
+  /**retorna el color de la celula
+   * 
+   */
   Color getColor();
-  
+  /**retorna el estado de la celula
+   * 
+   */
   default boolean isVivo(){
       return false;
   }
-  
+  /**retorna la fila de la celula
+   * 
+   */
   public int getFila();
 }

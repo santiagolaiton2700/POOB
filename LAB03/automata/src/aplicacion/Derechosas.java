@@ -1,10 +1,10 @@
 package src.aplicacion;
 import java.awt.Color;
 /**
- * Write a description of class Derechosas here.
+ * Son celulas con propiedades opuestas a las izquierdosas.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Lina Buitrago - Santiago Laiton) 
+ * @version (12 de marzo de 2020)
  */
 public class Derechosas extends Celula
 {
@@ -17,6 +17,9 @@ public class Derechosas extends Celula
         estadoSiguiente='v';
         color=Color.green;
     } 
+    /** Retorna la forma de la celula
+     * 
+     */
      public int getForma(){
       return 2;
       
