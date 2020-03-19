@@ -14,16 +14,18 @@ public class Fichas
     private int columna;
     private int fila;
     private Circle ficha;
-    private String jugador;         
+    private String jugador; 
+    private boolean isKing;
      /**
      * Crea una ficha de tipo circulo a partir de los parametros dados
      * @param posX ,posY ,filaa,columnaa, jugador 
      */
-    public Fichas(int filaa,int columnaa,int posX,int posY, String jugador)
+    public Fichas(int filaa,int columnaa,int posX,int posY, String jugador,boolean king)
     {
         posicionX=posX;
         posicionY=posY;
         fila=filaa;
+        isKing=king;
         columna=columnaa;
         ficha=new Circle(posicionX,posicionY);
         ficha.makeVisible();
@@ -104,5 +106,8 @@ public class Fichas
     public void changePosition(int nuevaFila,int nuevaColumna){
         fila=nuevaFila;
         columna=nuevaColumna;
+    }
+    public boolean isKing(){
+        return isKing==true;
     }
 }

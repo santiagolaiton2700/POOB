@@ -47,7 +47,7 @@ public class AutomataCelular{
         //Elemento izquierdosa1=Elemento.crearElemento(this,6,6,2);        
         //Elemento izquierdosa2=Elemento.crearElemento(this,6,7,2);
         //Elemento marx = Elemento.crearElemento(this,3,6,2);
-        //ELemento hegel = Elemento.crearElemento(this,3,7,5);
+        //Elemento hegel = Elemento.crearElemento(this,3,7,2);
         //Elemento suroeste = Elemento.crearElemento(this,15,1,3);
         //Elemento noroeste = Elemento.crearElemento(this,1,15,3);
         //Elemento lina = Elemento.crearElemento(this,10,1,4);
@@ -55,13 +55,14 @@ public class AutomataCelular{
         //Elemento otra = Elemento.crearElemento(this,11,1,4);
         //Elemento otra1 = Elemento.crearElemento(this,11,2,4);
 
-        //Elemento q = Elemento.crearElemento(this,13,1,5);
-        //Elemento p = Elemento.crearElemento(this,13,2,5);
+        Elemento q = Elemento.crearElemento(this,13,1,5);
+        Elemento p = Elemento.crearElemento(this,13,2,5);
+        Elemento z = Elemento.crearElemento(this,13,3,5);
         
-        Elemento suroeste = Elemento.crearElemento(this,14,1,3);
-        Elemento noroeste = Elemento.crearElemento(this,14,2,3);
-        Elemento bloque1 = Elemento.crearElemento(this,15,1,3);
-        Elemento bloque = Elemento.crearElemento(this,15,2,3);
+        //Elemento suroeste = Elemento.crearElemento(this,14,1,3);
+        //Elemento noroeste = Elemento.crearElemento(this,14,2,3);
+        //Elemento bloque1 = Elemento.crearElemento(this,15,1,3);
+        //Elemento bloque = Elemento.crearElemento(this,15,2,3);
 
         
         

@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Fichas
+comment0.text=\r\n\ Write\ a\ description\ of\ interface\ ControladorFichas\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=fila\ columna\ posX\ posY\ jugador\ king\ tipo
+comment1.target=Normal\ crearFichas(int,\ int,\ int,\ int,\ java.lang.String,\ boolean,\ int)
+comment10.params=
+comment10.target=void\ MakeVisible()
+comment11.params=
+comment11.target=void\ MakeInvisible()
+comment2.params=color
+comment2.target=void\ changeColor(java.lang.String)
+comment3.params=
+comment3.target=boolean\ isKing()
+comment4.params=
+comment4.target=java.lang.String\ getColor()
+comment5.params=
+comment5.target=java.lang.String\ getJugador()
+comment6.params=
+comment6.target=int\ getFila()
+comment7.params=
+comment7.target=int\ getColumna()
+comment8.params=fila\ columna\ nuevaFila\ nuevaColumna
+comment8.target=void\ moveFicha(int,\ int,\ int,\ int)
+comment9.params=
+comment9.target=boolean\ morir()
+numComments=12

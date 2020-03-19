@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Fichas
 comment0.text=\r\n\ Fichas\ de\ tipo\ circulo\ dibujadas\ sobre\ un\ canvas.\r\n\ \r\n\ @author\ \ Lina\ Buitrago\ and\ Santiago\ Laiton\r\n\ *\ @version\ 1.0.\ \ (30\ Enero\ 2020)\ \r\n\ @version\ 2.0.\ \ (06\ Febrero\ 2020)\ \r\n\ @version\ 3.0.\ \ (21\ Febrero\ 2020)\ \r\n
-comment1.params=filaa\ columnaa\ posX\ posY\ jugador
-comment1.target=Fichas(int,\ int,\ int,\ int,\ java.lang.String)
+comment1.params=filaa\ columnaa\ posX\ posY\ jugador\ king
+comment1.target=Fichas(int,\ int,\ int,\ int,\ java.lang.String,\ boolean)
 comment1.text=\r\n\ Crea\ una\ ficha\ de\ tipo\ circulo\ a\ partir\ de\ los\ parametros\ dados\r\n\ @param\ posX\ ,posY\ ,filaa,columnaa,\ jugador\ \r\n
 comment10.params=
 comment10.target=void\ MakeVisible()
@@ -10,6 +10,8 @@ comment10.text=\r\n\ Hace\ la\ ficha\ visible\ ,\ si\ ya\ esta\ visible\ no\ hac
 comment11.params=nuevaFila\ nuevaColumna
 comment11.target=void\ changePosition(int,\ int)
 comment11.text=\r\n\ cambia\ la\ posicion\ de\ la\ fila\ y\ de\ la\ columna\ en\ una\ ficha\r\n\ @param\ nuevafila\ y\ nueva\ columna\r\n
+comment12.params=
+comment12.target=boolean\ isKing()
 comment2.params=color
 comment2.target=void\ changeColor(java.lang.String)
 comment2.text=\r\n\ Cambia\ el\ color\ de\ la\ ficha\r\n\ \ \ \ \ \r\n
@@ -34,4 +36,4 @@ comment8.text=\r\n\ Mueve\ la\ ficha\ 10\ en\ fila\ y\ 10\ en\ columna\ \r\n\ @p
 comment9.params=
 comment9.target=void\ MakeInvisible()
 comment9.text=\r\n\ Hace\ la\ ficha\ invisible\ ,\ si\ ya\ esta\ invisible\ no\ hace\ nada\r\n\r\n
-numComments=12
+numComments=13
