@@ -1,15 +1,15 @@
-    import javax.swing.JOptionPane;
-    import java.util.ArrayList;
-    import java.util.HashMap;
-    /**
-    * Tablero de tamaño nxn dibujado sobre un canvas.   
-    * @author  Lina Buitrago and Santiago Laiton
-    * 
-    * @version 1.0.  (30 Enero 2020) 
-    * @version 2.0.  (06 Febrero 2020) 
-    * @version 3.0.  (21 Febrero 2020) 
-    */
-    public class checkers {
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.HashMap;
+/**
+ * Tablero de tamaño nxn dibujado sobre un canvas.   
+ * @author  Lina Buitrago and Santiago Laiton
+ * 
+ * @version 1.0.  (30 Enero 2020) 
+ * @version 2.0.  (06 Febrero 2020) 
+ * @version 3.0.  (21 Febrero 2020) 
+ */
+public class checkers {
     private Tablero juego;
     private Tablero configuracion;
     private int medida;
@@ -18,9 +18,9 @@
     private HashMap<String, ArrayList> guardar;
     private boolean tableroEstoy;
     /**
-    * Crea tableros de tamaño "width", width es el numero de cuadrados por lado de el tablero, cada uno a una distancia de 800 del otro
-    * @param width
-    */
+     * Crea tableros de tamaño "width", width es el numero de cuadrados por lado de el tablero, cada uno a una distancia de 800 del otro
+     * @param width
+     */
     public checkers(int width)
     {
         medida=width;      
@@ -42,7 +42,7 @@
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
             if(top==true && right==false){
-               if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
+                if(filaCuadrado-1<1 ||columnaCuadrado-1<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-1,columnaCuadrado-1);                                  
@@ -51,7 +51,7 @@
                 if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
-                   moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
                 }   
             }else if (top==false && right==true){
                 if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
@@ -68,7 +68,6 @@
             }else{
                 JOptionPane.showMessageDialog(null,"No se puede hacer shift"); 
             } 
-            
         }
     }
     /**
@@ -79,52 +78,42 @@
         if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
-            String jugador=fichaSelecionada.getJugador();            
-            if (top==true && right==false){
-                String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado-2);                
-                if(filaCuadrado-2<1 ||columnaCuadrado-2<1){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");                      
-                }else if (posS.equals(jugador) || posS.equals(jugador+"k")){                   
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);                    
-                }else{
-                    remove(filaCuadrado-1,columnaCuadrado-1); 
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);                                        
+            String jugador=fichaSelecionada.getJugador();
+            if(!((top==true && right==false &&(filaCuadrado-2<1 ||columnaCuadrado-2<1))|| (top==false && right==false&&(filaCuadrado+2>medida ||columnaCuadrado-2<1)) || (top==false && right==true && (filaCuadrado+2>medida ||columnaCuadrado+2>medida)) || (top==true && right==true &&(filaCuadrado-2<1 ||columnaCuadrado+2>medida)))){
+                if (top==true && right==false){
+                    String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado-2);                                    
+                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                   
+                        remove(filaCuadrado-1,columnaCuadrado-1);
+                    }
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);
+                    setFicha();                   
+                }else if(top==false && right==false){
+                    String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado-2);        
+                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                    
+                        remove(filaCuadrado+1,columnaCuadrado-1);
+                    }
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2); 
+                    setFicha();
+                }else if (top==false && right==true){               
+                    String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado);                
+                    if(!((posS.equals(jugador)) || (posS.equals(jugador+"k")))) {      
+                        remove(filaCuadrado+1,columnaCuadrado+1);
+                    }
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
+                    setFicha();
+                }else if (top==true && right==true){
+                    String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado);                
+                    if(!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                   
+                        remove(filaCuadrado-1,columnaCuadrado+1);
+                    }
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2);                        
+                    setFicha();
                 }
-            }else if(top==false && right==false){
-                String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado-2);                
-                if(filaCuadrado+2>medida ||columnaCuadrado-2<1){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else if (posS.equals(jugador) || posS.equals(jugador+"k")){                    
-                   moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2);                                 
-                }else{
-                    remove(filaCuadrado+1,columnaCuadrado-1);                    
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2);                                 
-                }                    
-            }else if (top==false && right==true){               
-                String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado);                
-                if(filaCuadrado+2>medida ||columnaCuadrado+2>medida){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
-                }else if(posS.equals(jugador) || posS.equals(jugador+"k")) {      
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
-                }else{
-                    remove(filaCuadrado+1,columnaCuadrado+1);              
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
-                }    
-            }else if (top==true && right==true){
-                String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado);                
-                if(filaCuadrado-2<1 ||columnaCuadrado+2>medida){
-                    JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero"); 
-                }else if(posS.equals(jugador) || posS.equals(jugador+"k")){                   
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2); 
-                }else{
-                    remove(filaCuadrado-1,columnaCuadrado+1);
-                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2); 
-                }                
             }else{
-                JOptionPane.showMessageDialog(null,"No puede saltar"); 
-            }        
-        }    
-    }       
+                JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");
+            }
+        } 
+    }
     /**
      * Mueve la ficha en el tablero
      * @param notacion
@@ -170,9 +159,8 @@
             }            
         }
     }
-    
     public void move(String notacion){
-         if(fichaSelecionada!= null){
+        if(fichaSelecionada!= null){
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();                      
             if (notacion.equals("izqarriba")){
@@ -185,7 +173,7 @@
                 if(filaCuadrado+1>medida ||columnaCuadrado-1<1){
                     JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");            
                 }else{
-                   moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
+                    moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+1,columnaCuadrado-1);                                 
                 }                   
             }else if(notacion.equals("derabajo")){
                 if(filaCuadrado+1>medida ||columnaCuadrado+1>medida){
@@ -201,8 +189,8 @@
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Solo puede moverse derabajo,derarriba"); 
-                }
-           }          
+            }
+        }          
     } 
     /**
      * Mueve las fichas 
@@ -215,8 +203,8 @@
             JOptionPane.showMessageDialog(null,"No se puede mover");
         }else {
             if (!(colorPasjuego.equals("NO"))) {
-                    fichaSelecionada.moveFicha(juego.getposxCuadrado(fila,columna),juego.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                 
-                    juego.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasjuego,jugador);
+                fichaSelecionada.moveFicha(juego.getposxCuadrado(fila,columna),juego.getposyCuadrado(fila,columna),fila,columna);                                                                                                                                                                                                 
+                juego.changePosition(filaPas-1,columnaPas-1,fila-1,columna-1,colorPasjuego,jugador);
             }
         }
     }            
@@ -224,17 +212,17 @@
      * Adiciona una ficha king en el tablero y entrega mensajes al usuario en caso de error
      * @param king,fila,columna,jugador  
      */
-    public void add(boolean king, int fila,int columna,String jugador){
+    public void add(boolean king, int fila,int columna,String jugador,int tipo){
         if(fila==0 || fila>medida && columna==0 ||fila>medida){
             JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
         }else if((fila+columna)%2==0){
-                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");
+            JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");
         }else{            
             int posX=configuracion.getposxCuadrado(fila,columna);
             int posY=configuracion.getposyCuadrado(fila,columna);
             String posS=configuracion.getSimulacion(fila-1,columna-1);           
             if ((posS.equals(".") || posS.equals("-")) && king==true){
-                Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador,true);
+                Fichas Ficha= Fichas.crearFichas(fila,columna,posX+10,posY+10,jugador,true,tipo);
                 configuracion.changePosition(fila-1,columna-1,jugador+"k");
                 if(jugador.equals("j1")){
                     Ficha.changeColor("yellow");                    
@@ -244,7 +232,7 @@
                 fichas.add(Ficha);
             }
             else if(posS.equals("-") || posS.equals(".")){
-                Fichas Ficha= new Fichas(fila,columna,posX+10,posY+10,jugador,false);
+                Fichas Ficha= Fichas.crearFichas(fila,columna,posX+10,posY+10,jugador,false,tipo);
                 fichas.add(Ficha);
                 if(jugador.equals("j1")){
                     Ficha.changeColor("white");                                        
@@ -262,54 +250,54 @@
     public void add(int[][] men,String jugador){
         for(int i=0;men.length>i;i++){
             for(int j=0;men.length>j;j++){           
-             if (men.length>medida){
-                 JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
-             }else if((i+j)%2==0 || men[i][j]==0){
-                JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");            
-             }else{
-                int posX=configuracion.getposxCuadrado(i+1,j+1);
-                int posY=configuracion.getposyCuadrado(i+1,j+1);               
-                String posS=configuracion.getSimulacion(i,j);
-               if(posS.equals("j1")||posS.equals("j2")){
-                   JOptionPane.showMessageDialog(null,"No esta libre");            
-               }else if(posS.equals(".") || posS.equals("-")){
-                Fichas Ficha= new Fichas(i+1,j+1,posX+10,posY+10,jugador,false);
-                fichas.add(Ficha);
-               if(jugador.equals("j1")){
-                    Ficha.changeColor("white");
-                }
-               configuracion.changePosition(i,j,jugador);
-               }else{
-                JOptionPane.showMessageDialog(null,"No se puede loca añadir esta ficha en esta posicion");                
-               }
-            }           
-         }   
-     }
+                if (men.length>medida){
+                    JOptionPane.showMessageDialog(null,"Esta posicion esta fuera de los rangos de tablero");            
+                }else if((i+j)%2==0 || men[i][j]==0){
+                    JOptionPane.showMessageDialog(null,"No se puede añadir esta ficha en esta posicion");            
+                }else{
+                    int posX=configuracion.getposxCuadrado(i+1,j+1);
+                    int posY=configuracion.getposyCuadrado(i+1,j+1);               
+                    String posS=configuracion.getSimulacion(i,j);
+                    if(posS.equals("j1")||posS.equals("j2")){
+                        JOptionPane.showMessageDialog(null,"No esta libre");            
+                    }else if(posS.equals(".") || posS.equals("-")){
+                        Fichas Ficha= Fichas.crearFichas(i+1,j+1,posX+10,posY+10,jugador,false,1);
+                        fichas.add(Ficha);
+                        if(jugador.equals("j1")){
+                            Ficha.changeColor("white");
+                        }
+                        configuracion.changePosition(i,j,jugador);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No se puede loca añadir esta ficha en esta posicion");                
+                    }
+                }           
+            }   
+        }
     }
     /**
      * Selecciona la ficha y la identifica cambiandola de color a verde
      * @param fila,columna
      */
     public void select(int fila,int columna){             
-       for(int i=0;i<fichas.size();i++){ 
-           if (fichas.get(i).isKing() && fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j2"){
+        for(int i=0;i<fichas.size();i++){ 
+            if (fichas.get(i).isKing() && fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j2"){
                 fichas.get(i).changeColor("blue");
                 fichaSelecionada=null;
-           }else if(fichas.get(i).isKing() && fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
+            }else if(fichas.get(i).isKing() && fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
                 fichas.get(i).changeColor("yellow");
                 fichaSelecionada=null;
-           }else if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
+            }else if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j1"){
                 fichas.get(i).changeColor("white");   
                 fichaSelecionada=null;
-           }else if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j2"){
+            }else if (fichas.get(i).getColor()=="green" && fichas.get(i).getJugador()=="j2"){
                 fichas.get(i).changeColor("red");
                 fichaSelecionada=null;
-           }else if(fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
-               fichas.get(i).changeColor("green");
-               fichaSelecionada=fichas.get(i);
-           }else if(fichas.get(i).getFila() + fichas.get(i).getColumna() % 2==0){
+            }else if(fichas.get(i).getFila()==fila && fichas.get(i).getColumna()==columna){
+                fichas.get(i).changeColor("green");
+                fichaSelecionada=fichas.get(i);
+            }else if(fichas.get(i).getFila() + fichas.get(i).getColumna() % 2==0){
                 JOptionPane.showMessageDialog(null,"Esta ficha no se puede seleccionar");                
-           }
+            }
         }       
     }
     /**
@@ -326,45 +314,35 @@
         }
     }
     /**
-    *Remueve la ficha del tablero en la fila y columna que el usuario quiera
-    *
-    */
+     *Remueve la ficha del tablero en la fila y columna que el usuario quiera
+     *
+     */
     public void remove(int fila,int columna){       
         for(int i=0;i<fichas.size();i++){
-           int filatempo = fichas.get(i).getFila();
-           int columnatempo = fichas.get(i).getColumna();        
-           String colorPasConfi=configuracion.getColorCuadrado(filatempo,columnatempo);
-           String colorPasJuego=juego.getColorCuadrado(filatempo,columnatempo);
-           if(tableroEstoy==true){
+            int filatempo = fichas.get(i).getFila();
+            int columnatempo = fichas.get(i).getColumna();        
+            String colorPasado=configuracion.getColorCuadrado(filatempo,columnatempo);
             if (filatempo==fila && columnatempo==columna){               
-               fichas.get(i).MakeInvisible();
-               fichas.remove(i);    
-               if (colorPasConfi=="black"){
-                colorPasConfi=".";
-                configuracion.changePosition(fila-1,columna-1,colorPasConfi);
+                if(fichas.get(i).morir()) {
+                    fichas.remove(i);    
+                }
+                if (colorPasado=="black"){
+                    colorPasado=".";
                 }else{
-                    colorPasConfi="-";
-                    configuracion.changePosition(fila-1,columna-1,colorPasConfi);
-               }
-            }                   
+                    colorPasado="-";
+                }
+            }
+            if(tableroEstoy){
+                configuracion.changePosition(fila-1,columna-1,colorPasado);                  
             }else{
-            if (filatempo==fila && columnatempo==columna){               
-               fichas.get(i).MakeInvisible();
-               fichas.remove(i);               
-               if (colorPasConfi=="black"){
-                colorPasConfi=".";
-                juego.changePosition(fila-1,columna-1,colorPasJuego);
-              }else{
-                colorPasConfi="-";
-                juego.changePosition(fila-1,columna-1,colorPasJuego);
-              }
-            }            
-           }       
+                juego.changePosition(fila-1,columna-1,colorPasado);
+            }
         }
-    }           
+    }
+             
     /**
-    * Intercambia el tablero de juego con el de configuracion y viceversa 
-    */
+     * Intercambia el tablero de juego con el de configuracion y viceversa 
+     */
     public void swap(){
         for (int i=0;i<fichas.size();i++){
             int filaCuadrado=fichas.get(i).getFila();
@@ -412,7 +390,7 @@
             tableroEstoy=true;           
         }               
     }
-  
+
     /**
      * Consulta posicion de la ficha
      * @return null
@@ -428,7 +406,7 @@
         configuracion.makeVisibleTablero();
         for (int i=0;i<fichas.size();i++){
             fichas.get(i).MakeVisible();
-        }               
+        }                  
     }  
     /**
      * Hace el tablero invisible.Si ya esta invisible no hace nada.
@@ -493,13 +471,13 @@
                 }else if (contenido.equals("j2")){
                     //add(false,i+1,j+1,"j2");
                     imprimir.get(i).set(j,"b");
-                 }
-                 //System.out.print(imprimir.get(i).get(j));
-                 retor+=imprimir.get(i).get(j);
+                }
+                //System.out.print(imprimir.get(i).get(j));
+                retor+=imprimir.get(i).get(j);
             }   
             //System.out.println(); 
             retor+="\n";
-          }   
+        }   
         return retor;
     }                               
     /**
@@ -538,27 +516,40 @@
             ArrayList<String>lista=new ArrayList<String>();
             String subCa=cadena.substring(i,i+longi);
             for (int j=0;j<subCa.length();j++){
-            lista.add(subCa.substring(j,j+1));
-           }
-           leer.add(lista);
-       }
-       recovery(leer,longi);
+                lista.add(subCa.substring(j,j+1));
+            }
+            leer.add(lista);
+        }
+        recovery(leer,longi);
     }
-    
+
     private void recovery(ArrayList<ArrayList<String>> matriz,int medida){
         makeInvisible();
         new checkers(medida);
         for (int i=0;i<matriz.size();i++){
             for(int j=0;j<matriz.get(0).size();j++){
                 if (matriz.get(i).get(j).equals("W")){
-                    add(true,i+1,j+1,"j1");                    
+                    add(true,i+1,j+1,"j1",1);                    
                 }else if (matriz.get(i).get(j).equals("B")){
-                        add(true,i+1,j+1,"j2");                    
+                    add(true,i+1,j+1,"j2",1);                    
                 }else if (matriz.get(i).get(j).equals("w")){
-                        add(false,i+1,j+1,"j1");                    
+                    add(false,i+1,j+1,"j1",1);                    
                 }else if (matriz.get(i).get(j).equals("b")){
-                        add(false,i+1,j+1,"j2");                    
+                    add(false,i+1,j+1,"j2",1);                    
                 }
+            }
+        }
+    }
+    private void setFicha(){
+        if(fichaSelecionada!= null){
+            String jugador=fichaSelecionada.getJugador();
+            if (jugador.equals("j1") && fichaSelecionada.getFila()==1 && fichaSelecionada.isKing()==false){           
+                fichaSelecionada.changeColor("yellow");
+                fichaSelecionada.setKing();
+            }
+            else if (jugador.equals("j2") && fichaSelecionada.getFila()==medida && fichaSelecionada.isKing()==false){
+                fichaSelecionada.changeColor("blue");
+                fichaSelecionada.setKing();
             }
         }
     }

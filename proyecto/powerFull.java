@@ -11,14 +11,14 @@ public class powerFull extends Normal
     /**
        * Constructor for objects of class libertarian
      */
-    public powerFull(int filaa,int columnaa,int posX,int posY, String jugador,boolean king){
-        super(filaa,columnaa,posX, posY,jugador,king);
+    public powerFull(int filaa,int columnaa,int posX,int posY, String jugador,boolean king,int tipo){
+        super(filaa,columnaa,posX, posY,jugador,king,tipo);
         ficha=new Triangle(posX,posY);
     }
     public void changeColor(String color){
         super.changeColor(color);
-        ficha.changeColor("black");
-	}
+        ficha.changeColor("Orange");
+    }
     public void jump(boolean top,boolean right){                
-    }	
+    }   
 }

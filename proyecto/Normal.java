@@ -17,12 +17,13 @@ public class Normal implements Fichas
 	private String jugador; 
 	private boolean isKing;
 	private boolean estoyViva;
+	private int tipoo;
 	/**
 	 * Crea una ficha de tipo circulo a partir de los parametros dados
 	 * @param posX ,posY ,fila, columna, jugador, king
 	 * 
 	 */
-	public Normal(int filaa,int columnaa,int posX,int posY, String jugador,boolean king)
+	public Normal(int filaa,int columnaa,int posX,int posY, String jugador,boolean king,int tipo)
 	{
 		posicionX=posX;
 		posicionY=posY;
@@ -33,6 +34,7 @@ public class Normal implements Fichas
 		ficha.makeVisible();
 		this.jugador=jugador;
 		estoyViva=true;
+		tipoo=tipo;
 	}
 	/**
 	 * Cambia el color de la ficha
@@ -59,7 +61,7 @@ public class Normal implements Fichas
 
 	 */
 	public void setcolorgreen(){
-		this.changeColor("green");
+		this.changeColor("magenta");
 	}
 	/**
 	 * Retorna el color actual de la ficha
@@ -81,11 +83,8 @@ public class Normal implements Fichas
 	 */
 	public void moveFicha(int fila, int columna,int nuevaFila,int nuevaColumna){
 		ficha.changePos(fila+10,columna+10);
-
 		changePosition(nuevaFila,nuevaColumna);
-
 		changePosition(nuevaFila,nuevaColumna);        
-
 	}
 	/**
 	 * Hace la ficha invisible , si ya esta invisible no hace nada
@@ -112,10 +111,15 @@ public class Normal implements Fichas
 	public boolean isKing(){
 		return isKing==true;
 	}
+	public void setKing(){
+		isKing=true;
+	}
 	public boolean morir() {
 		MakeInvisible();
 		estoyViva=false;
-		return estoyViva;
-		
+		return estoyViva;		
+	}
+	public int getType(){
+	   return tipoo;
 	}
 }

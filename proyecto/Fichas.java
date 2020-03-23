@@ -1,113 +1,37 @@
-import java.util.ArrayList;
+
 /**
- * Fichas de tipo circulo dibujadas sobre un canvas.
+ * Write a description of interface ControladorFichas here.
  * 
- * @author  Lina Buitrago and Santiago Laiton
- * * @version 1.0.  (30 Enero 2020) 
-   * @version 2.0.  (06 Febrero 2020) 
-   * @version 3.0.  (21 Febrero 2020) 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Fichas
-{   
-    private int posicionX;
-    private int posicionY;
-    private int columna;
-    private int fila;
-    private Circle ficha;
-    private String jugador; 
-    private boolean isKing;
-     /**
-     * Crea una ficha de tipo circulo a partir de los parametros dados
-     * @param posX ,posY ,filaa,columnaa, jugador 
-     */
-    public Fichas(int filaa,int columnaa,int posX,int posY, String jugador,boolean king)
-    {
-        posicionX=posX;
-        posicionY=posY;
-        fila=filaa;
-        isKing=king;
-        columna=columnaa;
-        ficha=new Circle(posicionX,posicionY);
-        ficha.makeVisible();
-        this.jugador=jugador;
-    }
-    /**
-     * Cambia el color de la ficha
-     
-     */
-    public void changeColor(String color){
-        ficha.changeColor(color);
-    }
-    /**
-     * Retorna la fila donde esta la ficha
-     * @return fila
-     */
-    public int getFila(){
-        return fila;
-    }
-    /**
-     * Retorna la columna donde esta la ficha
-     * @return columna
-     */
-    public int getColumna(){
-        return columna;
-    }
-    /**
-     * Cambia el color de la ficha a verde
-     
-     */
-    public void setcolorgreen(){
-        this.changeColor("green");
-    }
-    /**
-     * Retorna el color actual de la ficha
-     * @return color de la ficha
-     */
-    public String getColor(){
-        return ficha.getColor();
-    }
-    /**
-     * Retorna el jugador al que corresponde la ficha
-     * @return jugador
-     */
-    public String getJugador(){
-        return jugador;
-    }
-    /**
-     * Mueve la ficha 10 en fila y 10 en columna 
-     * @param fila,columna
-     */
-    public void moveFicha(int fila, int columna,int nuevaFila,int nuevaColumna){
-        ficha.changePos(fila+10,columna+10);
 
-        changePosition(nuevaFila,nuevaColumna);
-
-        changePosition(nuevaFila,nuevaColumna);        
-
-     }
-    /**
-     * Hace la ficha invisible , si ya esta invisible no hace nada
-
-     */
-    public void MakeInvisible(){
-        ficha.makeInvisible();
-     }
-    /**
-     * Hace la ficha visible , si ya esta visible no hace nada
-     
-     */
-    public void MakeVisible(){
-        ficha.makeVisible();    
+public interface Fichas
+{
+    public static Normal crearFichas(int fila,int columna,int posX,int posY,String jugador,boolean king,int tipo){
+        Normal ficha=null;
+        switch(tipo){
+            case 1:
+            ficha=new Normal(fila,columna,posX,posY,jugador,king,tipo);
+            break;
+            case 2:
+            ficha= new libertarian(fila,columna,posX,posY,jugador,king,tipo);
+            break;
+            case 3:
+            ficha= new powerFull(fila,columna,posX,posY,jugador,king,tipo);
+        }
+        return ficha;       
     }
-    /**
-     * cambia la posicion de la fila y de la columna en una ficha
-     * @param nuevafila y nueva columna
-     */
-    public void changePosition(int nuevaFila,int nuevaColumna){
-        fila=nuevaFila;
-        columna=nuevaColumna;
-    }
-    public boolean isKing(){
-        return isKing==true;
-    }
+    public void changeColor(String color);
+    public boolean isKing();
+    public void setKing();
+    public String getColor();
+    public String getJugador();
+    public int getFila();
+    public int getColumna();
+    public void moveFicha(int fila, int columna,int nuevaFila,int nuevaColumna);
+    public boolean morir();
+    public void MakeVisible();
+    public void MakeInvisible();
+    public int getType();
 }

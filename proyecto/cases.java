@@ -17,7 +17,7 @@ public class cases
     @Test
     public void  deberiaMoverseSoloEnCuadradosNegrosDesocupados(){
         checkers tablero=new checkers(4);
-        tablero.add(true,1,2,"j1");
+        tablero.add(true,1,2,"j1",1);
         tablero.select(1,2);
         tablero.move("derabajo");
     }
@@ -25,8 +25,8 @@ public class cases
     @Test
     public void  noDeberiaMoverseEnCuadradosNegrosOcupados(){
         checkers tablero=new checkers(4);
-        tablero.add(true,1,2,"j1");
-        tablero.add(true,2,3,"j2");
+        tablero.add(true,1,2,"j1",1);
+        tablero.add(true,2,3,"j2",1);
         tablero.select(1,2);
         tablero.move("derabajo");
     }
@@ -34,38 +34,38 @@ public class cases
     @Test
         public void  deberiaAdicionarFichasEnElTableroDeConfiguracion(){
         checkers tablero=new checkers(5);
-        tablero.add(false,1,2,"j1");
-        tablero.add(false,2,3,"j1");
+        tablero.add(false,1,2,"j1",1);
+        tablero.add(false,2,3,"j1",1);
     }
     @Test
         public void  noDeberiaAdicionarFichasEnElTableroDeJuego(){
         checkers tablero=new checkers(5);
-        tablero.add(false,1,2,"j1");
+        tablero.add(false,1,2,"j1",1);
         tablero.swap();
-        tablero.add(false,5,2,"j1");
+        tablero.add(false,5,2,"j1",1);
         
     }
      @Test
         public void  pruebaSave(){
         checkers tablero=new checkers(5);
-        tablero.add(false,1,2,"j2");
-        tablero.add(true,2,3,"j2");
-        tablero.add(true,4,3,"j1"); 
-        tablero.add(false,3,4,"j1");
+        tablero.add(false,1,2,"j2",1);
+        tablero.add(true,2,3,"j2",1);
+        tablero.add(true,4,3,"j1",1); 
+        tablero.add(false,3,4,"j1",1);
         tablero.save("hola");
-        tablero.add(false,1,4,"j2");
+        tablero.add(false,1,4,"j2",1);
         tablero.recovery("hola");
     }
    @Test
     public void deberiaCrearTablero(){
         checkers tablero=new checkers(8);
-        tablero.add(false,1,2,"j2");
-        tablero.add(true,4,1,"j2");
-        tablero.add(false,4,5,"j1");
-        tablero.add(true,5,6,"j1");
-        tablero.add(false,6,1,"j1");
-        tablero.add(false,7,4,"j1");
-        tablero.add(false,7,6,"j1");
+        tablero.add(false,1,2,"j2",1);
+        tablero.add(true,4,1,"j2",1);
+        tablero.add(false,4,5,"j1",1);
+        tablero.add(true,5,6,"j1",1);
+        tablero.add(false,6,1,"j1",1);
+        tablero.add(false,7,4,"j1",1);
+        tablero.add(false,7,6,"j1",1);
         tablero.swap();
         tablero.moveArena("21-17");    
         tablero.moveArena("13x22x31x24");    
@@ -76,29 +76,36 @@ public class cases
     @Test
     public void contest1(){
         checkers tablero= new checkers(8);
-        tablero.add(false,1,2,"j2");
-        tablero.add(true,4,1,"j2");
-        tablero.add(false,4,5,"j1");
-        tablero.add(true,5,6,"j1");
-        tablero.add(false,6,1,"j1");
-        tablero.add(false,7,4,"j1");
-        tablero.add(false,7,6,"j1");
+        tablero.add(false,1,2,"j2",1);
+        tablero.add(true,4,1,"j2",1);
+        tablero.add(false,4,5,"j1",1);
+        tablero.add(true,5,6,"j1",1);
+        tablero.add(false,6,1,"j1",1);
+        tablero.add(false,7,4,"j1",1);
+        tablero.add(false,7,6,"j1",1);
         tablero.save("hola");
         tablero.recovery("hola");
         tablero.swap();
     }
     @Test
+    public void crearFicha(){
+        checkers tablero= new checkers(8);
+        tablero.add(true,1,2,"j2",2);
+        tablero.add(false,2,3,"j2",2);
+        tablero.add(true,2,1,"j2",3);
+    }
+    @Test
     public void contest2(){
         checkers tablero= new checkers(8);
-        tablero.add(false,1,4,"j2");
-        tablero.add(true,1,8,"j1");
-        tablero.add(false,2,1,"j2");
-        tablero.add(false,2,3,"j2");
-        tablero.add(false,3,2,"j1");
-        tablero.add(true,4,1,"j2");
-        tablero.add(false,4,3,"j1");
-        tablero.add(false,4,5,"j2");
-        tablero.add(true,8,7,"j2");
+        tablero.add(false,1,4,"j2",1);
+        tablero.add(true,1,8,"j1",1);
+        tablero.add(false,2,1,"j2",1);
+        tablero.add(false,2,3,"j2",1);
+        tablero.add(false,3,2,"j1",1);
+        tablero.add(true,4,1,"j2",1);
+        tablero.add(false,4,3,"j1",1);
+        tablero.add(false,4,5,"j2",1);
+        tablero.add(true,8,7,"j2",1);
         tablero.write();
         tablero.swap();
         tablero.moveArena("2-7");
