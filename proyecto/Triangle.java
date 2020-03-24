@@ -176,4 +176,10 @@ public class Triangle{
             canvas.erase(this);
         }
     }
+    public void changePos(int x,int y){
+        erase();
+        xPosition=x;
+        yPosition=y;
+        draw();       
+    }
 }

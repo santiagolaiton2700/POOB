@@ -18,7 +18,7 @@ public interface Fichas
             ficha= new libertarian(fila,columna,posX,posY,jugador,king,tipo);
             break;
             case 3:
-            ficha= new powerFull(fila,columna,posX,posY,jugador,king,tipo);
+            ficha= new proletarian(fila,columna,posX,posY,jugador,king,tipo);
         }
         return ficha;       
     }

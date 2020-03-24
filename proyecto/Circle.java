@@ -175,8 +175,6 @@ public class Circle{
         erase();
         xPosition=x;
         yPosition=y;
-        draw();
-        
-  
+        draw();       
     }
 }

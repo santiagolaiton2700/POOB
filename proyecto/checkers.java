@@ -81,30 +81,38 @@ public class checkers {
             String jugador=fichaSelecionada.getJugador();
             if(!((top==true && right==false &&(filaCuadrado-2<1 ||columnaCuadrado-2<1))|| (top==false && right==false&&(filaCuadrado+2>medida ||columnaCuadrado-2<1)) || (top==false && right==true && (filaCuadrado+2>medida ||columnaCuadrado+2>medida)) || (top==true && right==true &&(filaCuadrado-2<1 ||columnaCuadrado+2>medida)))){
                 if (top==true && right==false){
-                    String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado-2);                                    
-                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                   
-                        remove(filaCuadrado-1,columnaCuadrado-1);
+                    String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado-2);
+                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){     
+                        if (!(fichaSelecionada.getType()==2)){
+                            remove(filaCuadrado-1,columnaCuadrado-1);
+                        }
                     }
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado-2);
                     setFicha();                   
                 }else if(top==false && right==false){
                     String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado-2);        
-                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                    
-                        remove(filaCuadrado+1,columnaCuadrado-1);
+                    if (!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){  
+                        if (!(fichaSelecionada.getType()==2)){
+                            remove(filaCuadrado+1,columnaCuadrado-1);
+                        }
                     }
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado-2); 
                     setFicha();
                 }else if (top==false && right==true){               
                     String posS=juego.getSimulacion(filaCuadrado,columnaCuadrado);                
-                    if(!((posS.equals(jugador)) || (posS.equals(jugador+"k")))) {      
-                        remove(filaCuadrado+1,columnaCuadrado+1);
+                    if(!((posS.equals(jugador)) || (posS.equals(jugador+"k")))) {   
+                        if (!(fichaSelecionada.getType()==2)){
+                            remove(filaCuadrado+1,columnaCuadrado+1);
+                        }                        
                     }
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado+2,columnaCuadrado+2);
                     setFicha();
                 }else if (top==true && right==true){
                     String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado);                
                     if(!((posS.equals(jugador)) || (posS.equals(jugador+"k")))){                   
-                        remove(filaCuadrado-1,columnaCuadrado+1);
+                        if (!(fichaSelecionada.getType()==2)){
+                            remove(filaCuadrado-1,columnaCuadrado+1);
+                        }
                     }
                     moverFichas(filaCuadrado,columnaCuadrado,filaCuadrado-2,columnaCuadrado+2);                        
                     setFicha();
@@ -321,7 +329,7 @@ public class checkers {
         for(int i=0;i<fichas.size();i++){
             int filatempo = fichas.get(i).getFila();
             int columnatempo = fichas.get(i).getColumna();        
-            String colorPasado=configuracion.getColorCuadrado(filatempo,columnatempo);
+            String colorPasado=configuracion.getColorCuadrado(filatempo,columnatempo);            
             if (filatempo==fila && columnatempo==columna){               
                 if(fichas.get(i).morir()) {
                     fichas.remove(i);    
@@ -542,15 +550,21 @@ public class checkers {
     }
     private void setFicha(){
         if(fichaSelecionada!= null){
-            String jugador=fichaSelecionada.getJugador();
-            if (jugador.equals("j1") && fichaSelecionada.getFila()==1 && fichaSelecionada.isKing()==false){           
-                fichaSelecionada.changeColor("yellow");
-                fichaSelecionada.setKing();
-            }
-            else if (jugador.equals("j2") && fichaSelecionada.getFila()==medida && fichaSelecionada.isKing()==false){
+            if(fichaSelecionada.getType()!=3){
+              String jugador=fichaSelecionada.getJugador();
+              if (jugador.equals("j1") && fichaSelecionada.getFila()==1 && fichaSelecionada.isKing()==false){           
+                    fichaSelecionada.changeColor("yellow");
+                    fichaSelecionada.setKing();
+              } 
+              else if (jugador.equals("j2") && fichaSelecionada.getFila()==medida && fichaSelecionada.isKing()==false){
                 fichaSelecionada.changeColor("blue");
                 fichaSelecionada.setKing();
+              }
+            }else {
+                int filaCuadrado=fichaSelecionada.getFila();
+                int columnaCuadrado=fichaSelecionada.getColumna();  
+                fichaSelecionada.MakeInvisible();
             }
-        }
+       }
     }
 }
