@@ -1,4 +1,5 @@
 #BlueJ class context
-comment0.params=message
-comment0.target=EquipoExcepcion(java.lang.String)
-numComments=1
+comment0.target=EquipoExcepcion
+comment1.params=message
+comment1.target=EquipoExcepcion(java.lang.String)
+numComments=2

@@ -69,5 +69,41 @@ public class EquipoTest{
             assertEquals(EquipoExcepcion.PERSONA_DESCONOCIDA,e.getMessage());
         }    
     }  
-    
+   @Test
+   public void DeberiaAgregarValorPromedioAHoraEquipo(){
+       String [] nombres={"Pedro","Santiago","Marcos","Juan","Judas","Garcia"};
+       Equipo eq= new Equipo(nombres);
+       try{
+           int res = eq.valorHoraEstimado();
+           assertEquals(res,180000);;
+        }
+       catch (EquipoExcepcion e) {
+           System.out.println(e.toString());
+        }
+    }
+   
+   @Test
+   public void DeberiaFallarPorPersonaDesconocida(){
+       String [] nombres={"Pedro","Santiago","Marcos","Juan","Judas","Camilo"};
+       Equipo eq= new Equipo(nombres);
+       try{
+           int res = eq.valorHoraEstimado();
+           assertEquals(res,180000);;
+        }
+       catch (EquipoExcepcion e) {
+           assertTrue(EquipoExcepcion.PERSONA_DESCONOCIDA.equals(e.getMessage()));
+        }
+    }
+   @Test
+   public void NoDeberiaCalcularValorEstimado(){
+       String [] nombres={"Garcia","Ospina","Guarin","Judas"};
+       Equipo eq= new Equipo(nombres);
+       try{
+           int res = eq.valorHoraEstimado();
+           assertEquals(res,180000);;
+        }
+       catch (EquipoExcepcion e) {
+           assertTrue(EquipoExcepcion.VALOR_IMPOSIBLE.equals(e.getMessage()));
+        }
+    } 
 }
