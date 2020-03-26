@@ -15,8 +15,8 @@ import org.junit.Test;
 import org.junit.*;
 
     
-    public class IemoisTest{
-    public IemoisTest(){
+    public class SinapTest{
+    public SinapTest(){
     }
 
 
@@ -28,137 +28,73 @@ import org.junit.*;
     public void tearDown(){
     }
     @Test
-    public void deberiaAdicionar() throws IemoisExcepcion{
+    public void deberiaAdicionar() throws SinapExcepcion{
         
-        Iemois s= new Iemois();
-        int size= s.numerocursos();
-        s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-        assertTrue(size+1== s.numerocursos());
+        Sinap s= new Sinap();
+        int size= s.numeroAreas();
+        s.adicione("Tuparro","Tuparro Natural Park","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
+        assertTrue(size+1== s.numeroAreas());
     }
     @Test
-    public void deberiaListar() throws IemoisExcepcion{
-        Iemois s= new Iemois();
+    public void deberiaListar() throws SinapExcepcion{
+        Sinap s= new Sinap();
         String consulta1=s.toString();
-        s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
+        s.adicione("Tuparro","Tuparro Natural Park","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
         String consulta2=s.toString();
         assertFalse(consulta1==consulta2);
     }
+   @Test
+    public void pruebaDeUnidad() throws SinapExcepcion{
+        Sinap s= new Sinap();
+        int size= s.numeroAreas();
+        s.adicione("Tuparro","Tuparro Natural Park","Vichada","-4","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
+        s.adicione("Jaime Duque","Jaime Duque Park","Cundinamarca","700.000mt2","es un parque temático dedicado a la recreación familiar.");
+        s.adicione("Mundo Aventura","Mundo Aventura Park","Bogota","13 hectareas","es un parque de atracciones que se encuentra ubicado en la ciudad de Bogota, en la localidad de Kennedy");
+        
+        assertTrue(size+3== s.numeroAreas());
+        
+    }	
     @Test
-    public void deberiaFallarSinDistribuidor(){
-        Iemois s= new Iemois();
+    public void deberiaFallarSinNombreInternacional(){
+        Sinap s= new Sinap();
         try {
-             s.adicione("Machine Learning","Inteligencia Artificial","Coursera","","9");
+             s.adicione("Tuparro","","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
              fail("No lanzo excepcion");
         }
-        catch(IemoisExcepcion e) { 
-             assertEquals(e.getMessage(), IemoisExcepcion.VACIO);
+        catch(SinapExcepcion e) { 
+             assertEquals(e.getMessage(), SinapExcepcion.VACIO);
         }
     }
     @Test
     public void deberiaFallarConAreaRepetida(){
-        Iemois s= new Iemois();
+        Sinap s= new Sinap();
         try {
-            s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-            s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
+            s.adicione("Tuparro","Tuparro Natural Park","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
+            s.adicione("Tuparro","Tuparro Natural Park","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
             fail("No lanzo excepcion");
         }
-        catch(IemoisExcepcion e) {
-            assertEquals(e.getMessage(), IemoisExcepcion.REPETIDO);
+        catch(SinapExcepcion e) {
+            assertEquals(e.getMessage(), SinapExcepcion.REPETIDO);
         }
     }
     @Test()
-    public void deberiaFallarConSemanasIncorrectas(){
-        Iemois s= new Iemois();
+    public void deberiaFallarConAreaMenorACero(){
+        Sinap s= new Sinap();
         try {
-            s.adicione("Q","Q","Q","Q","Q");
+            s.adicione("Tuparro","Tuparro Natural Park","Vichada","-4","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
             fail("No lanzo excepcion");
         }
-        catch(IemoisExcepcion e) {
-            assertEquals(e.getMessage(), IemoisExcepcion.INT);
+        catch(SinapExcepcion e) {
+            assertEquals(e.getMessage(), SinapExcepcion.MAYOR);
         }
     }
-    @Test
-    public void deberiaFallarSinNombre(){
-        Iemois s= new Iemois();
-        try {
-             s.adicione("","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-             fail("No lanzo excepcion");
-        }
-        catch(IemoisExcepcion e) { 
-             //System.out.println(e.getClass());
-             assertEquals(e.getMessage(), IemoisExcepcion.VACIO);
-        }
-    }
-    @Test
-    public void deberiaFallarSinArea(){
-        Iemois s= new Iemois();
-        try {
-             s.adicione("Machine Learning","","Coursera","Este curso proporciona una amplia introduccion","8");
-             fail("No lanzo excepcion");
-        }
-        catch(IemoisExcepcion e) { 
-             //System.out.println(e.getClass());
-             assertEquals(e.getMessage(), IemoisExcepcion.VACIO);
-        }
-    }
-    @Test
-    public void deberiaFallarSinOjetivo(){
-        Iemois s= new Iemois();
-        try {
-             s.adicione("Machine Learning","Inteligencia Artificial","","Este curso proporciona una amplia introduccion","8");
-             fail("No lanzo excepcion");
-        }
-        catch(IemoisExcepcion e) { 
-             //System.out.println(e.getClass());
-             assertEquals(e.getMessage(), IemoisExcepcion.VACIO);
-        }
-    }
-    @Test
-    public void deberiaFallarSiAreaMinuscula(){
-        Iemois s= new Iemois();
-        try {
-             s.adicione("Machine Learning","inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-             fail("No lanzo excepcion");
-        }
-        catch(IemoisExcepcion e) { 
-             //System.out.println(e.getClass());
-             assertEquals(e.getMessage(),IemoisExcepcion.MAYSTRI);
-        }
-    }
-    @Test
-    public void deberiaFallarSiObjetivoMinuscula(){
-        Iemois s= new Iemois();
-        try {
-             s.adicione("Machine Learning","Inteligencia Artificial","coursera","Este curso proporciona una amplia introduccion","8");
-             fail("No lanzo excepcion");
-        }
-        catch(IemoisExcepcion e) { 
-             //System.out.println(e.getClass());
-             assertEquals(e.getMessage(),IemoisExcepcion.MAYSTRI);
-        }
-    }
-    @Test
-    public void pruebaDeUnidad() throws IemoisExcepcion{
-        Iemois s= new Iemois();
-        int size= s.numerocursos();
-        s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-        s.adicione("Q","Q","Q","Q","1");
-        s.adicione("A","Q","Q","Q","1");
-        s.adicione("B","Q","Q","Q","1");
-        s.adicione("C","Q","Q","Q","1");
-        s.adicione("D","Q","Q","Q","1");
-        s.adicione("E","Q","Q","Q","1");
-        s.adicione("F","Q","Q","Q","1");
-
-        assertTrue(size+8== s.numerocursos());
-        
-    }
+ 
     @Test 
-    public void deberiaFallarBusque() throws IemoisExcepcion{
-	Iemois s= new Iemois();
-	ArrayList<Mooc> resultados=new ArrayList<Mooc>();
-	s.adicione("Machine Learning","Inteligencia Artificial","Coursera","Este curso proporciona una amplia introduccion","8");
-        resultados=s.busque("M");	
+    public void deberiaFallarBusque() throws SinapExcepcion{
+	Sinap s= new Sinap();
+	ArrayList<Area> resultados=new ArrayList<Area>();
+	s.adicione("Tuparro","Tuparro Natural Park","Vichada","548.000","Es una extensa sabana verde surcada por grandes ríos con potentes raudales y playas doradas, pequeños caños de aguas cristalinas, bosques de galería, morichales y saladillales, además de enormes rocas cristalinas en forma de cerros redondeados.");
+        resultados=s.busque("T");	
 	assertEquals(resultados.size(),1);
     }
 }
