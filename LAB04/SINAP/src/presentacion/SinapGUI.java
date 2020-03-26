@@ -265,20 +265,28 @@ public class SinapGUI extends JFrame{
     }
     
     private void  accionAdicionar(){
-        areas.adicione(textoOriginal.getText(),textoEspa_ol.getText(),textoPais.getText(), textoDirector.getText(),
-        textoDescripcion.getText());
+        try{
+            areas.adicione(textoOriginal.getText(),textoEspa_ol.getText(),textoPais.getText(), textoDirector.getText(),textoDescripcion.getText());
+        }catch(SinapException e){
+            JOptionPane.showMessageDialog(null,e,"Error",JOptionPane.ERROR_MESSAGE);
+            Registro.registre(e);
+        }
     }
-
     private void accionBuscar(){
         String patronBusqueda=busquedaTexto.getText();
         StringBuffer buffer = new StringBuffer();
         if(patronBusqueda.length() > 0) {
+            try{
             ArrayList <Area> results = areas.busque(patronBusqueda);
             for(int i = 0; i < results.size(); i++) {
                 buffer.append(results.get(i).toString());
                 buffer.append('\n');
                 buffer.append('\n');
              }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"NO PUEDE INGRESAR LETRAS","Error",JOptionPane.ERROR_MESSAGE);
+                Registro.registre(e);             
+            }
         }
         resultadosTexto.setText(buffer.toString());
     } 

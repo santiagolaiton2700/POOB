@@ -1,8 +1,9 @@
 package aplicacion; 
 
+import java.util.*;
 import java.util.LinkedList;
 import java.util.ArrayList;
-
+import java.lang.Object;
 /**
  * Sinap contiene la informacion del Sistema Nacional de Areas Protegidas
  * @author POOB 01 
@@ -87,8 +88,27 @@ public class Sinap{
      * @param ubicacion
      * @param descripcion
      */
-    public void adicione(String nombre, String name,String ubicacion, String area, String descripcion){
-	   adicioneDetalles(new Area(nombre,name, ubicacion, area, descripcion));
+    public void adicione(String nombre, String name,String ubicacion, String area, String descripcion)throws SinapException{
+	   Area m = new Area(nombre,name, ubicacion, area, descripcion);
+       if(name.isEmpty()){
+           throw new SinapException(SinapException.VACIO); 
+       }else if(repetidaArea(m)==true){
+           throw new SinapException(SinapException.REPETIDO); 
+       }else if(!(isNumeric(m))){
+           throw new SinapException(SinapException.MAYOR); 
+       }
+       else{
+              adicioneDetalles(m);
+       }
+       
+    }
+    public boolean isNumeric(Area m) {
+        boolean a=false;
+        int nueva= Integer.valueOf(m.getArea());
+        if (nueva>0){
+            a=true;
+        }
+        return a;
     }
 
     /**
@@ -111,15 +131,16 @@ public class Sinap{
      * @return Los detalles encontrados
      */
     public ArrayList<Area> busque(String prefijo){
-    ArrayList<Area> resultados=null;
-	prefijo=prefijo.toUpperCase();
-	for(int i=0;i<areas.size();i++){
-	    if(areas.get(i).getNombre().toUpperCase().startsWith(prefijo)){
-	       resultados.add(areas.get(i));
-	    }	
-	}
-        return resultados;
-    }
+        System.out.println(prefijo);
+        ArrayList<Area> resultados=new ArrayList<Area>();
+	    prefijo=prefijo.toUpperCase();
+	    for(int i=0;i<areas.size();i++){
+	        if(areas.get(i).getNombre().toUpperCase().startsWith(prefijo)){
+	            resultados.add(areas.get(i));
+	        }	
+	    }
+            return resultados;
+        }   
 
     /**
      * Consulta el numero de areas
@@ -128,7 +149,15 @@ public class Sinap{
     public int numeroAreas(){
         return areas.size();
     }
-
+    private boolean repetidaArea(Area m) {
+        for (int i =0;i<areas.size();i++){
+            if ((areas.get(i).getName().equals(m.getName())||(areas.get(i).getNombre().equals(m.getNombre())))){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     /**
      * Consulta todas las areas

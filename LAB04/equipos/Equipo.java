@@ -82,10 +82,5 @@ public class Equipo{
         else{
             throw new EquipoExcepcion(EquipoExcepcion.VALOR_IMPOSIBLE);
         }
-    }
-     
-    
-   
-    
-    
+    }                    
 }
