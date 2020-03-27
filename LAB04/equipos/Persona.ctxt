@@ -1,8 +1,18 @@
 #BlueJ class context
-comment0.params=nombre
-comment0.target=Persona(java.lang.String)
-comment0.text=\n\ Crea\ una\ persona\n\ \n
-comment1.params=
-comment1.target=int\ valorHora()
-comment1.text=\n\ Retorna\ el\ valor\ hora\ de\ un\ equipo\n\ @return\n\ @throws\ EquipoExcepcion\ si\ no\ se\ conoce\ la\ persona\ o\ su\ valor\ hora\n
-numComments=2
+comment0.target=Persona
+comment1.params=nombre
+comment1.target=Persona(java.lang.String)
+comment1.text=\r\n\ Crea\ una\ persona\r\n\ \r\n
+comment2.params=x\ y
+comment2.target=void\ setValor(java.lang.String,\ int)
+comment2.text=\r\n\ Modifica\ el\ valor\ de\ una\ persona\r\n\r\n\ @param\ \ persona\ y\ su\ valor\ nuevo\r\n
+comment3.params=
+comment3.target=java.lang.String\ getName()
+comment3.text=\r\n\ retorna\ el\ nombre\r\n\ @return\ \ \ \ name\r\n
+comment4.params=
+comment4.target=int\ getHora()
+comment4.text=\r\n\ retorna\ la\ hora\r\n\ @return\ \ \ \ valor\r\n
+comment5.params=
+comment5.target=int\ valorHora()
+comment5.text=\r\n\ Retorna\ el\ valor\ hora\ de\ un\ equipo\r\n\ @return\ valor\r\n\ @throws\ EquipoExcepcion\ si\ no\ se\ conoce\ la\ persona\ o\ su\ valor\ hora\r\n
+numComments=6
