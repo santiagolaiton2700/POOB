@@ -1,9 +1,10 @@
     
     /**
-     * Write a description of class CheckersContest here.
+     * Esta clase soluciona la arena de programacion
      * 
-     * @author (your name) 
-     * @version (a version number or a date)
+     * 
+     * @author (Lina Buitrago y Santiago Laiton) 
+     * @version (Marzo 23 de 2020)
      */
     public class checkersContest
     {
@@ -21,10 +22,10 @@
         }
     
         /**
-         * An example of a method - replace this comment with your own
+         *Este metodo soluciona la arena
          * 
-         * @param  y   a sample parameter for a method
-         * @return     the sum of x and y 
+         * @param  jugador que es un String y moves que es una lista de movimientos
+         * @return   void 
          */
         public void solved(char jugador,String[] moves){
           if (helpme){             

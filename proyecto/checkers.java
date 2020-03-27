@@ -548,6 +548,11 @@ public class checkers {
             }
         }
     }
+    /**
+         *Este metodo cambia las fichas de posicion
+         * 
+         * 
+         */
     private void setFicha(){
         if(fichaSelecionada!= null){
             if(fichaSelecionada.getType()!=3){
