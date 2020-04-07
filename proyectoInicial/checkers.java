@@ -79,6 +79,7 @@ public class checkers {
             int filaCuadrado=fichaSelecionada.getFila();
             int columnaCuadrado=fichaSelecionada.getColumna();
             String jugador=fichaSelecionada.getJugador();
+           if(fichaSelecionada.getType()!=4){
             if(!((top==true && right==false &&(filaCuadrado-2<1 ||columnaCuadrado-2<1))|| (top==false && right==false&&(filaCuadrado+2>medida ||columnaCuadrado-2<1)) || (top==false && right==true && (filaCuadrado+2>medida ||columnaCuadrado+2>medida)) || (top==true && right==true &&(filaCuadrado-2<1 ||columnaCuadrado+2>medida)))){
                 if (top==true && right==false){
                     String posS=juego.getSimulacion(filaCuadrado-2,columnaCuadrado-2);
@@ -120,6 +121,9 @@ public class checkers {
             }else{
                 JOptionPane.showMessageDialog(null,"No puede mover la ficha fuera del tablero");
             }
+           }else{
+               JOptionPane.showMessageDialog(null,"la Ficha fat no puede saltar");
+           }
         } 
     }
     /**
@@ -530,7 +534,6 @@ public class checkers {
         }
         recovery(leer,longi);
     }
-
     private void recovery(ArrayList<ArrayList<String>> matriz,int medida){
         makeInvisible();
         new checkers(medida);

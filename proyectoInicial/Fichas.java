@@ -19,6 +19,8 @@ public interface Fichas
             break;
             case 3:
             ficha= new proletarian(fila,columna,posX,posY,jugador,king,tipo);
+            case 4:
+            ficha= new fat(fila,columna,posX,posY,jugador,king,tipo);
         }
         return ficha;       
     }

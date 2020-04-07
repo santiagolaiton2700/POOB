@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=checkersContest
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CheckersContest\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Esta\ clase\ soluciona\ la\ arena\ de\ programacion\r\n\ \r\n\ \r\n\ @author\ (Lina\ Buitrago\ y\ Santiago\ Laiton)\ \r\n\ @version\ (Marzo\ 23\ de\ 2020)\r\n
 comment1.params=medida
 comment1.target=checkersContest(int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CheckersContest\r\n
 comment2.params=jugador\ moves
 comment2.target=void\ solved(char,\ java.lang.String[])
-comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+comment2.text=\r\nEste\ metodo\ soluciona\ la\ arena\r\n\ \r\n\ @param\ \ jugador\ que\ es\ un\ String\ y\ moves\ que\ es\ una\ lista\ de\ movimientos\r\n\ @return\ \ \ void\ \r\n
 numComments=3

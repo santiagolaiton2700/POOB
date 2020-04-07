@@ -48,6 +48,7 @@ comment23.params=matriz\ medida
 comment23.target=void\ recovery(java.util.ArrayList,\ int)
 comment24.params=
 comment24.target=void\ setFicha()
+comment24.text=\r\nEste\ metodo\ cambia\ las\ fichas\ de\ posicion\r\n\ \r\n\ \r\n
 comment3.params=top\ right
 comment3.target=void\ shift(boolean,\ boolean)
 comment3.text=\r\n\ mueve\ fichas\ en\ el\ tablero\ con\ parametros\ boleeanos\ top\ y\ right\ \r\n\ @param\ top,right\r\n
