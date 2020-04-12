@@ -15,7 +15,7 @@ public class AutomataGUI extends JFrame{
     private JPanel panelControl;
     private JPanel panelNueva;
     private JPanel panelBNueva;
-    private JButton botonViva;
+    private JButton botonVreiva;
     private JButton botonLatente;
 
     private FotoAutomata foto;
