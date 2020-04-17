@@ -518,7 +518,7 @@ public class checkers {
                 System.out.print(escribir.get(i).get(j));                              
             }
             System.out.println();                              
-        }       
+        }   
     }    
     public void read(String cadena){
         double longitud=Math.sqrt(cadena.length());
