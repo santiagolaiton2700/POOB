@@ -1,93 +1,116 @@
 package presentacion;
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Esta clase ayuda a MarbelGUI con la creacion de las canicas y aros
+ * @author Lina Buitrago - Santiago Laiton
+ * @version 1.0 17 de Abril 2020
+ */
 public class Canicas extends JPanel{
 	
 		private Color color;
-		private boolean bola;
-		private boolean hueco;
-		private char numerob;
-		private char numeroh;
+		private boolean canica;
+		private boolean aro;
+		private char ncanicas;
+		private char naros;
 		
-		public Canicas(Color c, boolean b, boolean h, char n, char m){
+		public Canicas(Color c, boolean ca, boolean a, char nc, char na){
 			setBackground(Color.LIGHT_GRAY);
-			bola = b;
-			hueco = h;
+			canica = ca;
+			aro = a;
 			color = c;
-			numerob = n;
-			numeroh = m;
+			ncanicas = nc;
+			naros = na;
 		}
-		
+		/**
+	     * Cambia el color 
+	     */
 		public void setColor(Color c){
 			color = c;
 			repaint();
 		}
-		
+		/**
+	     * Retorna el color
+	     * @return Color
+	     */
 		public Color getColor(){
 			return color;
 		}
-		
-		public boolean tieneHueco(){
-			return hueco;
+		/**
+	     * Retorna si hay aroo o no 
+	     * @return aro
+	     */
+		public boolean tieneAro(){
+			return aro;
 		}
-		
-		public boolean tieneBola(){
-			return bola;
+		/**
+	     * Retorna si tiene canica o no 
+	     * @return canica
+	     */
+		public boolean tieneCanica(){
+			return canica;
 		}
-		
-		public void pintarHueco(){
-			hueco = true;
+		/**
+	     * pinta aro
+	     */
+		public void pintarAro(){
+			aro = true;
 			repaint();
 		}
-		
-		public void pintarBola(){
-			bola = true;
+		/**
+	     * pinta canica
+	     */
+		public void pintarCanica(){
+			canica = true;
 			repaint();			
 		}
-		
-		public void borrarHueco(){
-			hueco = false;
+		/**
+	     * borra aro
+	     */
+		public void borrarAro(){
+			aro = false;
 			repaint();
 		}
-		
-		public void borrarBola(){
-			bola = false;
+		/**
+	     * borra canica
+	     */
+		public void borrarCanica(){
+			canica = false;
 			repaint();
 		}
 		
 		public void paint(Graphics g){
-			Color colorBola;
-			Color colorHueco;			
-			int centroxh = this.getWidth()/6;
-			int centroyh = this.getHeight()/12;
-			int centroxb = this.getWidth()/4;
-			int centroyb = this.getHeight()/6;
-			int diametroBola = this.getHeight()*70/100;
-			int diametroHueco = this.getHeight()*90/100;				
+			Color colorCanica;
+			Color colorAro;			
+			int centroxa = this.getWidth()/6;
+			int centroya = this.getHeight()/12;
+			int centroxca = this.getWidth()/4;
+			int centroyca = this.getHeight()/6;
+			int diametroCanica = this.getHeight()*70/100;
+			int diametroAro = this.getHeight()*90/100;				
 			super.paint(g);
 			Graphics2D hole = (Graphics2D) g;
-			if(hueco){
-				colorHueco = Color.BLACK;
-				if(bola){
-					colorBola = color;
+			if(aro){
+				colorAro = Color.BLACK;
+				if(canica){
+					colorCanica = color;
 				}
 				else{
-					colorBola = Color.BLACK;
+					colorCanica = Color.BLACK;
 				}
 			}
 			else{
-				colorHueco = Color.LIGHT_GRAY;
-				if(bola){
-					colorBola = color;
+				colorAro = Color.LIGHT_GRAY;
+				if(canica){
+					colorCanica = color;
 				}
 				else{
-					colorBola = Color.LIGHT_GRAY;
+					colorCanica = Color.LIGHT_GRAY;
 				}
 			}
-			hole.setPaint(colorHueco);
-			hole.fillOval(centroxh,centroyh,diametroHueco,diametroHueco);
-			hole.setPaint(colorBola);
-			hole.fillOval(centroxb,centroyb,diametroBola,diametroBola);			
+			hole.setPaint(colorAro);
+			hole.fillOval(centroxa,centroya,diametroAro,diametroAro);
+			hole.setPaint(colorCanica);
+			hole.fillOval(centroxca,centroyca,diametroCanica,diametroCanica);			
 		}
 } 

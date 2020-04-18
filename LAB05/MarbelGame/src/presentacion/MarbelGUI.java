@@ -10,7 +10,11 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import java.io.*;
 import java.util.*;
-
+/**
+ * Esta clase permite crear la capa de presentacion de juego MarbelGame
+ * @author Lina Buitrago - Santiago Laiton
+ * @version 1.0 17 de Abril 2020
+ */
 public class MarbelGUI extends JFrame{
 	private Container contentPane;
 	private JPanel opciones;
@@ -33,7 +37,9 @@ public class MarbelGUI extends JFrame{
 	private Color color;
 	private MarbelGame marbel;
 	private int [][] matriz;
-	
+	/**
+     * Crea un marco para el juego MarbelGame
+     */
 	public MarbelGUI() {
 		marbel=new MarbelGame(4,4,1);
 		color = Color.BLUE;
@@ -41,7 +47,9 @@ public class MarbelGUI extends JFrame{
 		prepareAcciones();
 		
 	}
-	
+	/**
+     * Prepara los elementos necesarios para la implementacio del juego
+     */
 	public void prepareElementos() {
 		contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -59,6 +67,9 @@ public class MarbelGUI extends JFrame{
 		prepareElementosMenu();
 		prepareElementosTablero();
 	}
+	/**
+     * Prepara los elementos para los botones del menu del juego 
+     */
 	public void prepareElementosMenu() {
 		options = new JMenuBar();
 		menu = new JMenu("Archivo");
@@ -77,48 +88,60 @@ public class MarbelGUI extends JFrame{
 		options.add(menu);
 		opciones.add(options);
 	}
+	/**
+     * Prepara los metodos que atienden los botones
+     */
 	public void prepareAcciones() {
+		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) { 
 				salga();
 			}
 		});
+		/**Salga*/
 		opcionSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				salga();
 			}
 		});
+		/**Salvar*/
 		opcionSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
 			}
 		});
+		/**Abrir Archivo*/
 		opcionAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirArchivo();
 			}
 		});
+		/**Abajo*/
 		abajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				moverAbajo();
 			}
 		});
+		/**Arriba*/
 		arriba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//moverArriba();
 			}
 		});
+		/**Derecha*/
 		derecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//moverDerecha();
 			}
 		});
+		/**Izquierda*/
 		izquierda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//moverIzquierda();
 			}
 		});
+		/**Cambiar color*/
 		cambioColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambioColor();
@@ -126,10 +149,16 @@ public class MarbelGUI extends JFrame{
 		});
 		
 	}
+	/**
+     * Prepara los elementos del tablero
+     */
 	public void prepareElementosTablero() {
 		ponerBotones();
 		ponerTablero();
 	}
+	/**
+     * Crea los botones necesarios para el juego
+     */
 	public void ponerBotones() {
 		arriba=new JButton("Arriba");
 		abajo  = new JButton("Abajo");
@@ -140,6 +169,9 @@ public class MarbelGUI extends JFrame{
 		controles.add(derecha,BorderLayout.EAST);
 		controles.add(izquierda,BorderLayout.SOUTH);
 	}
+	/**
+     * Crea lo necesario para implementar el tablero
+     */
 	public void ponerTablero() {
 		cuadrados=new GridLayout(tamano,tamano,5,5);
 		tablero=new JPanel(cuadrados);
@@ -147,6 +179,9 @@ public class MarbelGUI extends JFrame{
 		tablero.setBackground(Color.blue);
 		dibujarTablero();
 	}
+	/**
+     * Dibuja el tablero
+     */
 	public void dibujarTablero() {
 		matriz=new int [tamano][tamano];
 		matriz=marbel.getMatriz();
@@ -168,27 +203,38 @@ public class MarbelGUI extends JFrame{
 		}
 		
 	}
+	/**
+     * Cambia el color del  tablero y sus componentes
+     */
 	private void cambioColor() {
-		Color colorp = JColorChooser.showDialog(null,"Change Marble Color",color);
+		Color colorp = JColorChooser.showDialog(null,"Change Marbel Color",color);
 		if (colorp!=null && colorp!=Color.BLACK) {
 			color=colorp;
-			pintarBolas();
+			pintarCanicas();
 		}
 	}
-	private void pintarBolas() {
+	/**
+     * pinta las canicas sobre el tablero
+     */
+	private void pintarCanicas() {
 		Canicas c;
 		for (int i=0;i<tamano*tamano;i++) {
 			c=(Canicas)tablero.getComponent(i);
 			c.setColor(color);
 		}
 	}
-
+	/**
+     * Atiende el boton salga
+     */
 	private void salga(){
 		int confirma= JOptionPane.showConfirmDialog(null, "Esta seguro que desea salir?");			
 		if(confirma== 0) {
 			System.exit(1);
 		}
 	}
+	/**
+     * Atiende el boton abrir archivo
+     */
 	private void abrirArchivo() {
 		JFileChooser file= new JFileChooser();
 		file.setDialogTitle("archivos a elegir");
@@ -197,6 +243,9 @@ public class MarbelGUI extends JFrame{
 			JOptionPane.showMessageDialog(null, "Lo sentimos esta funcion no esta disponible ahora");
 		}
 	}
+	/**
+     * atiende el boton guardar
+     */
 	private void guardar(){
 		JOptionPane.showMessageDialog(this,"Lo sentimos esta funcion no esta disponible ahora","Guardar",JOptionPane.OK_OPTION);
 	}
@@ -212,6 +261,9 @@ public class MarbelGUI extends JFrame{
 		int y = (pantalla.height - getSize().height) / 2;
 		setLocation(x,y);
 	}
+	/**
+     * atiende el boton abajo
+     */
 	public void moverAbajo() {
 		marbel.moverAbajo();
 		dibujarTablero();
