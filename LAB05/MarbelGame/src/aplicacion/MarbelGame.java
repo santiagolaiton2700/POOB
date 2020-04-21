@@ -1,12 +1,22 @@
 package aplicacion;
 import java.util.*;
+
+
+/**
+ * Esta clase crea objetos de tipo MarbelGame
+ * @author Lina Buitrago - Santiago Laiton
+ * @version 1.0 17 de Abril 2020
+ */
 public class MarbelGame {
 	private static int altura1;
 	private static int ancho1;
 	private int nCanicas,nHuecos,nBarreras;
 	private static int[][] matriz;
 	private ArrayList < Integer >  lista;
-	
+	/**
+	 * Crea un nuevo MarbelGame
+	 * @param altura,canicas,barreras
+	 */
 	public MarbelGame(int altura,int canicas,int barreras) {
 		altura1=altura;
 		nCanicas=nHuecos=canicas;
@@ -27,18 +37,37 @@ public class MarbelGame {
 			 }
 		 }
 	}
+	/**
+     * Retorna filas
+     * @return altura1
+     */
 	public static int getFilas() {
 		return altura1;
 	}
+	/**
+     * Retorna columnas
+     * @return altura1
+     */
 	public static int getColumnas() {
 		return altura1;
 	}
+	/**
+     * Retorna posiciones
+     * @return matriz[x][y]
+     */
 	public static int getPos(int x,int y) {
 		return matriz[x][y];
 	}
+	/**
+     * Retorna matriz
+     * @return matriz
+     */
 	public int[][] getMatriz(){
 		return matriz;
 	}
+	/**
+     * Mueve canicas hacia abajo
+     */
 	public void moverAbajo() {
 		int [][] copia=matriz;
 		matriz[3][3]=1;
