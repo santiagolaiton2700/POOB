@@ -28,7 +28,6 @@ public class PantallaJuego extends JFrame {
 		dibuje.setBackground(Color.white);
 		add(dibuje);
 		setResizable(false);
-		this.setBounds(0, 0, 651, 953);
-		
+		this.setBounds(0, 0,953,750);
 	}
 }

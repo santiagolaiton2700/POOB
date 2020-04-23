@@ -14,7 +14,7 @@ import javax.swing.*;
 public class PongGUI extends JFrame{
 	private JPanel panelPantalla;
 	private JButton botonJugar,botonCargar,botonImportar,botonConfiguracion,botonSalir,cpuVsCpu,twoPlayer,playerVsCPU,volver;
-	private ImageIcon inicio =new ImageIcon("src/Recursos/inicio.png");;
+	private ImageIcon inicio =new ImageIcon("src/Recursos/fondo_nebula.png");;
 	private String maquina;
 	private MenuConfiguracion configuracion;
 	private PantallaJuego  PJuego;

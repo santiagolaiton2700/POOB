@@ -37,8 +37,8 @@ public class Pong {
 	}
 	public void elegirCondicionesJuego(String nombre1,String nombre2) {
 		
-		addRaquetas(325,655,132,23,nombre1);
-		addRaquetas(325,0,132,23,nombre2);
+		addRaquetas(476,650,132,23,nombre1);
+		addRaquetas(476,0,132,23,nombre2);
 	}
 	public void addRaquetas(int x, int y, int width, int height, String nombreImg) {
 		raquetas.add(new Raquetas(x,y,width,height,nombreImg));
@@ -47,6 +47,7 @@ public class Pong {
 		return bola;
 	}
 	public void moverBola() {
+		chocaRaquetas();
 		bola.muevePelotaca();
 	}
 	public ArrayList<Raquetas>getRaquetas() {
@@ -54,6 +55,7 @@ public class Pong {
 	}
 	public void moverRaquetaDerecha(int i) {
 		Raquetas r=raquetas.get(i);
+		System.out.println(width-150-r.getWidth());
 		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
 			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
 			auxMoverAlInicio(r);
@@ -62,15 +64,22 @@ public class Pong {
 	}
 	public void moverRaquetaIzquierda(int i) {
 		Raquetas p = raquetas.get(i);
-		if (p == null || p.getXPosition() - p.getDistancia() <= 20) {
-			raquetas.get(i).moverIzquierda(Math.abs(p.getXPosition() - 20));
+		if (p == null || p.getXPosition() - p.getDistancia() <= 200) {
+			raquetas.get(i).moverIzquierda(Math.abs(p.getXPosition() - 200));
 			auxMoverAlInicio(p);
 			return;
 		}
 		raquetas.get(i).moverIzquierda();
 		auxMoverAlInicio(p);
 	}
-	
+	private void chocaRaquetas() {
+		for(Raquetas r:raquetas) {
+			if(bola.getShape().getBounds().intersects(r.getShape())) {
+				bola.choqueRaqueta(r.getXPosition(),r.getXPosition(),r.getWidth(),r.getHeight());
+			}
+			
+		}
+	}
 	
 	public void auxMoverAlInicio(Raquetas r) {
 		

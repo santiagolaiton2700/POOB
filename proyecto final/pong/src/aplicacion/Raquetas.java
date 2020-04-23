@@ -30,6 +30,9 @@ public class Raquetas implements Serializable{
 	public int getXPosition() {
 		return x;
 	}
+	public int getYPosition() {
+		return y;
+	}
 	public int getDistancia() {
 		return distancia;
 	}
@@ -49,5 +52,8 @@ public class Raquetas implements Serializable{
 		this.x -= x;
 		figura.setLocation(this.x, this.y);
 	}
-
+	public int getHeight() {
+		return height;
+	}
+	
 }
