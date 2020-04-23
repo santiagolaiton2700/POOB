@@ -16,6 +16,11 @@ public class PongGUI extends JFrame{
 	private JButton botonJugar,botonCargar,botonImportar,botonConfiguracion,botonSalir,cpuVsCpu,twoPlayer,playerVsCPU,volver;
 	private ImageIcon inicio =new ImageIcon("src/Recursos/inicio.png");;
 	private String maquina;
+	private MenuConfiguracion configuracion;
+	private PantallaJuego  PJuego;
+	private String color1 = "hola";
+	private String color2 = "chao";
+	private String bola = "bolaGris.gif";
 	public PongGUI(){
 		super("PONG GAME");
 		setResizable(false);
@@ -146,7 +151,7 @@ public class PongGUI extends JFrame{
 	public void prepareAccionesJuego() {
 		cpuVsCpu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 //iniciarJuego(1);
+				 iniciarJuego(1);
 				
 			}
 		});
@@ -183,7 +188,14 @@ private void volver() {
 		
 		this.revalidate();
 	}
+	private void configuracion() {
+		configuracion= new MenuConfiguracion(this);
+		configuracion.setVisible(true);
+	}
 	
-	
-	
+	private void iniciarJuego(int i) {
+		dispose();
+		PJuego=new PantallaJuego(i,color1,color2,true,bola);
+		PJuego.setVisible(true);
+	}
 }
