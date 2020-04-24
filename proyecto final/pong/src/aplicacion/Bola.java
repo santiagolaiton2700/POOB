@@ -46,10 +46,10 @@ public class Bola {
 			y=20;
 			dy=-dy;
 		}
-		if(y>650) {
-			y=650;
-			dy=-dy;
-		}
+		//if(y>650) {
+		//	y=650;
+		//	dy=-dy;
+		//}
 		figura.setFrame(x,y,TAMX, TAMY);
 	}
 	public void setXPosition(int x) {
@@ -67,45 +67,16 @@ public class Bola {
 		return (int) y;
 	}
 	public void choqueRaqueta(int xPos,int yPos,int width,int height) {
-		Rectangle parteIzquierda=new Rectangle(xPos,yPos,width/6,height/4);
 		Rectangle centroIzquierda=new Rectangle(xPos + width/6,yPos,width/6,height/4);
 		Rectangle centroDerecha=new Rectangle(xPos + width / 2, yPos, width / 3, height / 4);
-		Rectangle parteDerecha=new Rectangle(xPos+width-width/6,yPos,width/6,height/4);
-		double aux =dy;
-		if(figura.intersects(parteIzquierda)) {
-			if(!diagonal) {
-				dy=Math.abs(dx);
-				dx=-Math.abs(aux);
-				diagonal=true;
-			}else diagonalEnDy(0);
-		}else if(figura.intersects(centroIzquierda)) {
+		if(figura.intersects(centroIzquierda)) {
 			dy=Math.abs(dx0);
 			dx=-Math.abs(dx0);
-			diagonal=false;
 		}else if (figura.intersects(centroDerecha)) {
 			dy=Math.abs(dy0);
 			dx=Math.abs(dx0);
-			diagonal=false;
-		}else if(figura.intersects(parteDerecha)) {
-			if(!diagonal) {
-				dy=Math.abs(dx);
-				dx=Math.abs(aux);
-				diagonal=true;
-			}else diagonalEnDy(1);
 		}
-		y=yPos-TAMY;
 	}
-	private void diagonalEnDy(int i) {
-		dy = -dy;
-		if (i == 0) {
-			if (dx > 0) {
-				dx = -dx;
-			}
-		} else if (i == 1){
-			if (dx < 0) {
-				dx = -dx;
-			}
-		} 
-	}
+
 	
 }

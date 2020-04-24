@@ -149,7 +149,7 @@ public class PongGUI extends JFrame{
 		
 	}
 	public void prepareAccionesJuego() {
-		cpuVsCpu.addActionListener(new ActionListener() {
+		twoPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 iniciarJuego(1);
 				

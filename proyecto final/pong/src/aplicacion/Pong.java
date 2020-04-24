@@ -25,7 +25,7 @@ public class Pong {
 		this.color1=nombre1;
 		this.color2=nombre2;
 		elegirCondicionesJuego(nombre1,nombre2);
-		addBola(0, 0, 0.5, 1.7, width, height);
+		addBola(300, 650, 0.5, 1.2, width, height);
 		
 	}
 	public void addBola(double x,double y,double dx,double dy,int width,int height) {
@@ -55,7 +55,6 @@ public class Pong {
 	}
 	public void moverRaquetaDerecha(int i) {
 		Raquetas r=raquetas.get(i);
-		System.out.println(width-150-r.getWidth());
 		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
 			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
 			auxMoverAlInicio(r);
@@ -75,9 +74,8 @@ public class Pong {
 	private void chocaRaquetas() {
 		for(Raquetas r:raquetas) {
 			if(bola.getShape().getBounds().intersects(r.getShape())) {
-				bola.choqueRaqueta(r.getXPosition(),r.getXPosition(),r.getWidth(),r.getHeight());
+				bola.choqueRaqueta(r.getXPosition(),r.getYPosition(),r.getWidth(),r.getHeight());
 			}
-			
 		}
 	}
 	

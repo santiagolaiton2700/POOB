@@ -39,7 +39,6 @@ public class Dibuje extends JPanel{
 		prepareJuego();
 		prepareAcciones();
 		prepareMarco();
-		preparefondo();
 		hilos();	
 	}
 	private void prepareJuego() {
@@ -52,13 +51,6 @@ public class Dibuje extends JPanel{
 			System.out.println("La imagen no se encuentra");
 		}
 	}
-	private void preparefondo() {
-		try {
-			cancha = ImageIO.read(new File("src/Recursos/cancha.png"));
-		}catch (IOException e) {
-			System.out.println("La imagen no se encuentra");
-		}
-	}
 	private Image generarImagen(String objeto) {
 		return new ImageIcon(recursos+objeto).getImage();
 	}
@@ -66,7 +58,6 @@ public class Dibuje extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		g2.drawImage(fondoPuntos, 0, 0, null);
-		//g2.drawImage(cancha, 100, 100, null);
 		for(Raquetas p:game.getRaquetas()) {
 			g2.setColor(Color.green);
 			g2.fill(p.getShape());
