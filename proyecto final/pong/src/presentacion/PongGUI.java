@@ -48,19 +48,19 @@ public class PongGUI extends JFrame{
 		botonCargar=new JButton("");
 		ImageIcon icono2=new ImageIcon("src/Recursos/cargar.png");
 		botonCargar.setIcon(icono2);
-		botonCargar.setBounds(110, 580, 230, 50);
+		botonCargar.setBounds(110, 570, 200, 50);
 		getContentPane().add(botonCargar);
 		
 		botonImportar=new JButton("");
 		ImageIcon icono3=new ImageIcon("src/Recursos/importar.png");
 		botonImportar.setIcon(icono3);
-	 	botonImportar.setBounds(350, 430, 230, 50);
+	 	botonImportar.setBounds(620, 570, 230, 50);
 		getContentPane().add(botonImportar);
 		
 		botonConfiguracion=new JButton("");
 		ImageIcon icono4=new ImageIcon("src/Recursos/configuracion.png");
 		botonConfiguracion.setIcon(icono4);
-		botonConfiguracion.setBounds(350, 500, 230, 50);
+		botonConfiguracion.setBounds(620, 500, 230, 50);
 		getContentPane().add(botonConfiguracion);
 		
 		botonSalir=new JButton("");
@@ -120,25 +120,25 @@ public class PongGUI extends JFrame{
 	private void prepareElementosjugar() {
 		refresque();
 		cpuVsCpu=new JButton("");
-		cpuVsCpu.setBounds(110, 410, 200, 50);
+		cpuVsCpu.setBounds(110, 530, 200, 50);
 		getContentPane().add(cpuVsCpu);
 		ImageIcon icono=new ImageIcon("src/Recursos/CpuVsCpu.png");
 		cpuVsCpu.setIcon(icono);  
 		
 		twoPlayer=new JButton("");
-		twoPlayer.setBounds(650, 410, 200, 50);
+		twoPlayer.setBounds(650, 530, 200, 50);
 		getContentPane().add(twoPlayer);
 		ImageIcon icono1=new ImageIcon("src/Recursos/dosJugadores.png");
 		twoPlayer.setIcon(icono1); 
 		
 		playerVsCPU=new JButton("");
-		playerVsCPU.setBounds(380, 410, 200, 50);
+		playerVsCPU.setBounds(380, 530, 200, 50);
 		getContentPane().add(playerVsCPU);
 		ImageIcon icono2=new ImageIcon("src/Recursos/jugadorVScpu.png");
 		playerVsCPU.setIcon(icono2); 
 		
 		volver=new JButton("");
-		volver.setBounds(380, 510, 200, 50);
+		volver.setBounds(380, 580, 200, 50);
 		getContentPane().add(volver);
 		ImageIcon icono3=new ImageIcon("src/Recursos/volver.png");
 		volver.setIcon(icono3); 
