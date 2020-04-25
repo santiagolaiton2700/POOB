@@ -14,7 +14,7 @@ import javax.swing.*;
 public class PongGUI extends JFrame{
 	private JPanel panelPantalla;
 	private JButton botonJugar,botonCargar,botonImportar,botonConfiguracion,botonSalir,cpuVsCpu,twoPlayer,playerVsCPU,volver;
-	private ImageIcon inicio =new ImageIcon("src/Recursos/fondo_nebula.png");;
+	private ImageIcon inicio =new ImageIcon("src/Recursos/inicio.png");;
 	private String maquina;
 	private MenuConfiguracion configuracion;
 	private PantallaJuego  PJuego;
@@ -32,7 +32,6 @@ public class PongGUI extends JFrame{
 		prepareAcciones();
 	}
 	public static void main(String[] args) {
-		
 		PongGUI pantallaPrincipal  = new PongGUI();
 		pantallaPrincipal.setVisible(true);
 		
@@ -43,19 +42,19 @@ public class PongGUI extends JFrame{
 		botonJugar=new JButton("");
 		ImageIcon icono=new ImageIcon("src/Recursos/jugar.png");
 		botonJugar.setIcon(icono);
-		botonJugar.setBounds(350, 310, 230, 50);
+		botonJugar.setBounds(110, 500, 200, 50);
 		getContentPane().add(botonJugar);
 		
 		botonCargar=new JButton("");
 		ImageIcon icono2=new ImageIcon("src/Recursos/cargar.png");
 		botonCargar.setIcon(icono2);
-		botonCargar.setBounds(350, 370, 230, 50);
+		botonCargar.setBounds(110, 580, 230, 50);
 		getContentPane().add(botonCargar);
 		
 		botonImportar=new JButton("");
 		ImageIcon icono3=new ImageIcon("src/Recursos/importar.png");
 		botonImportar.setIcon(icono3);
-		botonImportar.setBounds(350, 430, 230, 50);
+	 	botonImportar.setBounds(350, 430, 230, 50);
 		getContentPane().add(botonImportar);
 		
 		botonConfiguracion=new JButton("");

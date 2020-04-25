@@ -20,15 +20,18 @@ public class Bola {
 	private boolean isFast=false;
 	private boolean isSlow=false;
 	private boolean diagonal = false;
+	private boolean salio = false;
 	public Bola(double x, double y, double dx, double dy, int width, int height) {
 		this.x=x;
 		this.y=y;
 		this.dx=dx;
 		this.dy=dy;
 		this.dx0=dx;
+		this.dy0=dy;
 		this.width=width;
 		this.height=height;
 		figura=new Ellipse2D.Double(x, y, TAMX, TAMY);
+		
 		
 	}
 	public void muevePelotaca() {
@@ -42,14 +45,16 @@ public class Bola {
 			x=750-TAMX;
 			dx=-dx;
 		}
+		/*
 		if(y<20) {
 			y=20;
 			dy=-dy;
 		}
-		//if(y>650) {
-		//	y=650;
-		//	dy=-dy;
-		//}
+		if(y>650) {
+			y=650;
+			dy=-dy;
+		}
+		*/
 		figura.setFrame(x,y,TAMX, TAMY);
 	}
 	public void setXPosition(int x) {
@@ -67,16 +72,23 @@ public class Bola {
 		return (int) y;
 	}
 	public void choqueRaqueta(int xPos,int yPos,int width,int height) {
-		Rectangle centroIzquierda=new Rectangle(xPos + width/6,yPos,width/6,height/4);
-		Rectangle centroDerecha=new Rectangle(xPos + width / 2, yPos, width / 3, height / 4);
-		if(figura.intersects(centroIzquierda)) {
-			dy=Math.abs(dx0);
-			dx=-Math.abs(dx0);
-		}else if (figura.intersects(centroDerecha)) {
-			dy=Math.abs(dy0);
-			dx=Math.abs(dx0);
+		Rectangle r=new Rectangle(xPos,yPos,width,height/4);
+		if(figura.intersects(r)) {
+			dy=-dy;
 		}
+	
 	}
+	public boolean salio(int yPos) {
+		Rectangle arriba=new Rectangle(0,0,873,10);
+		Rectangle abajo=new Rectangle(0,670,873,10);
+		if(figura.intersects(arriba)) {
+			salio=true;
+		}else if(figura.intersects(abajo)) {
+			salio=true;
+		}
+		return salio;
+	}
+	
 
 	
 }

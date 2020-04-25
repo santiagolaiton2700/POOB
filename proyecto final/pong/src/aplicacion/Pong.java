@@ -6,7 +6,7 @@ public class Pong {
 	private int width;
 	private int heigth;
 	private int jugadores;
-	private boolean enJuego;
+	private boolean enJuego=true;
 	private boolean estaEnInicio;
 	private boolean estaDetenida;
 	private String color1,color2;
@@ -37,8 +37,8 @@ public class Pong {
 	}
 	public void elegirCondicionesJuego(String nombre1,String nombre2) {
 		
-		addRaquetas(476,650,132,23,nombre1);
-		addRaquetas(476,0,132,23,nombre2);
+		addRaquetas(476,660,132,23,nombre1);
+		addRaquetas(476,20,132,23,nombre2);
 	}
 	public void addRaquetas(int x, int y, int width, int height, String nombreImg) {
 		raquetas.add(new Raquetas(x,y,width,height,nombreImg));
@@ -62,19 +62,21 @@ public class Pong {
 		raquetas.get(i).moverDerecha();}		
 	}
 	public void moverRaquetaIzquierda(int i) {
-		Raquetas p = raquetas.get(i);
-		if (p == null || p.getXPosition() - p.getDistancia() <= 200) {
-			raquetas.get(i).moverIzquierda(Math.abs(p.getXPosition() - 200));
-			auxMoverAlInicio(p);
+		Raquetas r = raquetas.get(i);
+		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
+	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
+			auxMoverAlInicio(r);
 			return;
 		}
 		raquetas.get(i).moverIzquierda();
-		auxMoverAlInicio(p);
+		auxMoverAlInicio(r);
 	}
 	private void chocaRaquetas() {
 		for(Raquetas r:raquetas) {
 			if(bola.getShape().getBounds().intersects(r.getShape())) {
 				bola.choqueRaqueta(r.getXPosition(),r.getYPosition(),r.getWidth(),r.getHeight());
+			}else {
+				//System.out.println(bola.getYPosition());
 			}
 		}
 	}
@@ -82,5 +84,17 @@ public class Pong {
 	public void auxMoverAlInicio(Raquetas r) {
 		
 	}
-	
+	public void moverPelotaInicio() {	
+		
+	}
+	public void setEnJuego() {
+		if(enJuego) {
+			enJuego=false;
+		}else {
+			enJuego=true;
+		}
+	}
+	public boolean getEnJuego() {
+		return enJuego;
+	}
 }

@@ -1,11 +1,14 @@
 package presentacion;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.AbstractAction;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,9 +32,10 @@ public class Dibuje extends JPanel{
 	private boolean moverRightArriba;
 	private boolean moverLeftArriba;
 	
+	
 	public Dibuje(int jugadores, int width,int height,String nombre1,String nombre2,String bola) {
 		this.jugadores=jugadores;
-		this.width=width;
+	 	this.width=width;
 		this.height=height;
 		this.nombre1=nombre1;
 		this.nombre2=nombre2;
@@ -39,7 +43,7 @@ public class Dibuje extends JPanel{
 		prepareJuego();
 		prepareAcciones();
 		prepareMarco();
-		hilos();	
+		//hilos();	
 	}
 	private void prepareJuego() {
 		game = new Pong(600 + width / 5, height, jugadores, nombre1, nombre2);
@@ -69,7 +73,7 @@ public class Dibuje extends JPanel{
 	private void hilos() {
 		pelota = new Thread() {
 			public void run() {
-				while (true) {
+				while (game.getEnJuego()) {
 					movimientosRaquetas();
 					game.moverBola();
 					try {
@@ -149,5 +153,41 @@ public class Dibuje extends JPanel{
 				moverLeftArriba = false;
 			}
 		});
+		
+		addKeyListener(new KeyAdapter() {
+			
+			public void keyTyped(KeyEvent e) {
+				moverJuego(e);
+			}
+
+			public void keyReleased(KeyEvent e) {
+				
+			}
+			
+			public void keyPressed(KeyEvent e) {
+				moverJuego(e);
+			}
+		});	
 	}
-}
+	private void moverJuego(KeyEvent e) {
+		int id=e.getKeyCode();
+		
+		if(id==KeyEvent.VK_SPACE) {
+			hilos();
+		}
+		if(id==KeyEvent.VK_P) {
+			detenerHilos();
+		}
+		
+	}
+	public void detenerHilos() {
+		if (game.getEnJuego()) {
+			pelota.stop();
+			game.setEnJuego();
+		} else {
+			game.setEnJuego();
+			pelota.start();
+		}
+	}
+	}
+

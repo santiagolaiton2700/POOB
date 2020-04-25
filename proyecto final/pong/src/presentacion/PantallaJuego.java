@@ -15,7 +15,7 @@ public class PantallaJuego extends JFrame {
 		this.jugadores=jugadores;
 		this.nombre1=nombre1;
 		this.nombre2=nombre2;
-		this.bola=bola;
+	 	this.bola=bola;
 		prepareElementos();
 	}
 	private void prepareElementos() {
@@ -27,7 +27,7 @@ public class PantallaJuego extends JFrame {
 		dibuje=new Dibuje(jugadores,ancho,alto,nombre1,nombre2,bola);
 		dibuje.setBackground(Color.white);
 		add(dibuje);
-		setResizable(false);
+		//setResizable(false);
 		this.setBounds(0, 0,953,750);
 	}
 }
