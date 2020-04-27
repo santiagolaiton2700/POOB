@@ -10,7 +10,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.*;
-
+/**
+ * Esta clase dibuja el tablero de juego con todos sus componentes
+ * @author Santiago Laiton - Lina Buitrago
+ * @version 1.0 Abril 24 de 2020
+ */
 public class PongGUI extends JFrame{
 	private JPanel panelPantalla;
 	private JButton botonJugar,botonCargar,botonImportar,botonConfiguracion,botonSalir,cpuVsCpu,twoPlayer,playerVsCPU,volver;
@@ -31,11 +35,18 @@ public class PongGUI extends JFrame{
 		prepareElementos();
 		prepareAcciones();
 	}
+	/**
+	 * Crea un objeto 
+	 * @param lista de Strings
+	 */
 	public static void main(String[] args) {
 		PongGUI pantallaPrincipal  = new PongGUI();
 		pantallaPrincipal.setVisible(true);
 		
 	}
+	/**
+	 * Prepara los elementos del tablero de juego (botones)
+	 */
 	public void prepareElementos() {
 		getContentPane().setLayout(null);
 		
@@ -76,6 +87,9 @@ public class PongGUI extends JFrame{
 		getContentPane().add(panelPantalla);
 		
 	}
+	/**
+	 * Prepare los metodos que atienden a cada uno de los botones
+	 */
 	public void prepareAcciones() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -111,12 +125,18 @@ public class PongGUI extends JFrame{
 				}
 			});  
 	}
+	/**
+	 * Genera opciones para el boton salir 
+	 */
 	private void salir() {
 		int siNo = JOptionPane.showConfirmDialog(null, "Esta seguro que desea salir?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
 		if (siNo == 0) {
 			System.exit(0);
 		} 		
 	}
+	/**
+	 * Prepara los elementos necesarios para jugar (paneles, botones)
+	 */
 	private void prepareElementosjugar() {
 		refresque();
 		cpuVsCpu=new JButton("");
@@ -147,6 +167,9 @@ public class PongGUI extends JFrame{
 		prepareAccionesJuego();
 		
 	}
+	/**
+	 * Prepara los metodos necesarios para jugar
+	 */
 	public void prepareAccionesJuego() {
 		twoPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,6 +183,9 @@ public class PongGUI extends JFrame{
 			}					
 		});
 	}
+	/**
+	 * Retrosede a la pestaña anterior 
+	 */
 private void volver() {
 		
 		botonSalir.setVisible(true);
@@ -187,11 +213,15 @@ private void volver() {
 		
 		this.revalidate();
 	}
+	
 	private void configuracion() {
 		configuracion= new MenuConfiguracion(this);
 		configuracion.setVisible(true);
 	}
-	
+	/**
+	 * Inicia una partida creando una pantalla de juego
+	 * @param i
+	 */
 	private void iniciarJuego(int i) {
 		dispose();
 		PJuego=new PantallaJuego(i,color1,color2,true,bola);

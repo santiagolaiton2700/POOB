@@ -3,7 +3,11 @@ package presentacion;
 import java.awt.*;
 
 import javax.swing.*;
-
+/**
+ * Esta clase crea la pantalla de juego 
+ * @author Santiago Laiton - Lina Buitrago
+ * @version 1.0 Abril 24 de 2020
+ */
 public class PantallaJuego extends JFrame {
 	private Dibuje dibuje;
 	private int jugadores;
@@ -18,6 +22,9 @@ public class PantallaJuego extends JFrame {
 	 	this.bola=bola;
 		prepareElementos();
 	}
+	/** 
+	 * Prepara los elementos necesarios para crear la pantalla de juego(dimensiones, titulos, tamaños)
+	 */
 	private void prepareElementos() {
 		setTitle("Pong Game");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
