@@ -22,8 +22,8 @@ public class PongGUI extends JFrame{
 	private String maquina;
 	private MenuConfiguracion configuracion;
 	private PantallaJuego  PJuego;
-	private String color1 = "hola";
-	private String color2 = "chao";
+	private String color1 = "jugador1";
+	private String color2 = "jugador2";
 	private String bola = "bolaGris.gif";
 	public PongGUI(){
 		super("PONG GAME");

@@ -92,7 +92,7 @@ public class Dibuje extends JPanel{
 	private void hilos() {
 		pelota = new Thread() {
 			public void run() {
-				while (game.getEnJuego()) {
+				while (game.getEnJuego()&&(game.getScore1()<=45||game.getScore2()<=45)) {
 					movimientosRaquetas();
 					game.moverBola();
 					try {

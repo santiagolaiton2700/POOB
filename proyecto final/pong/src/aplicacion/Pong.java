@@ -17,6 +17,8 @@ public class Pong {
 	private String color1,color2;
 	private Bola bola;
 	private String bolaString;
+	private int score1;
+	private int score2;
 	private ArrayList<Raquetas> raquetas;
 	/**
 	 * Constructor del juego PONG
@@ -36,6 +38,8 @@ public class Pong {
 		this.estaDetenida=false;
 		this.color1=nombre1;
 		this.color2=nombre2;
+		this.score1=0;
+		this.score2=0;
 		elegirCondicionesJuego(nombre1,nombre2);
 		addBola(300, 650, 0.5, 1.2, width, height);
 		
@@ -65,6 +69,7 @@ public class Pong {
 		
 		addRaquetas(476,660,132,23,nombre1);
 		addRaquetas(476,20,132,23,nombre2);
+		
 	}
 	/**
 	 * Añade raquetas 
@@ -132,7 +137,7 @@ public class Pong {
 			if(bola.getShape().getBounds().intersects(r.getShape())) {
 				bola.choqueRaqueta(r.getXPosition(),r.getYPosition(),r.getWidth(),r.getHeight());
 			}else {
-				//System.out.println(bola.getYPosition());
+				moverPelotaInicio(salio());
 			}
 		}
 	}
@@ -140,8 +145,12 @@ public class Pong {
 	public void auxMoverAlInicio(Raquetas r) {
 		
 	}
-	public void moverPelotaInicio() {	
-		
+	public void moverPelotaInicio(String x) {
+		if(x=="arriba") {
+			bola.setPosition(476, 650);
+		}else if (x=="abajo") {
+			bola.setPosition(476, 30);
+		}
 	}
 	/**
 	 * Cambia el estado del juego
@@ -160,21 +169,44 @@ public class Pong {
 	public boolean getEnJuego() {
 		return enJuego;
 	}
+<<<<<<< HEAD
+	private String salio() {
+=======
 	/**
 	 * Indica por donde sale la bola del tablero
 	 * @return salio 
 	 */
 	public String salio() {
+>>>>>>> ab2544ff71c0beae7b99828b50e72d540c09be03
 		String salio="";
-		//enJuego=false;
 		if(bola.getYPosition()>heigth) {
+			sumarPuntaje("abajo");
 			salio="abajo";
 		}else if(bola.getYPosition()<0) {
+			sumarPuntaje("arriba");
 			salio="arriba";
 		}
 		return salio;
 	}
+<<<<<<< HEAD
+	private void sumarPuntaje(String salio) {
+		if(score1<=45||score2<=45) {
+			if (salio=="abajo") {
+				score1=score1+15;
+			}else if(salio=="arriba") {
+				score2=score2+15;	
+			}
+		}
+	}
+	public int getScore1() {
+		return score1;
+	}
+	public int getScore2() {
+		return score2;
+	}
+=======
 	
+>>>>>>> ab2544ff71c0beae7b99828b50e72d540c09be03
 	public boolean esta() {
 		return estaEnInicio;
 	}
