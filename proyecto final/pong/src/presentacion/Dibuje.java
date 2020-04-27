@@ -15,7 +15,11 @@ import javax.swing.*;
 
 import aplicacion.Pong;
 import aplicacion.Raquetas;
-
+/**
+ * Esta clase es la encargada de todos los metodos paraa dibujar tablero
+ * @author Mary
+ *
+ */
 public class Dibuje extends JPanel{
 	private Pong game;
 	private int width;
@@ -32,7 +36,9 @@ public class Dibuje extends JPanel{
 	private boolean moverRightArriba;
 	private boolean moverLeftArriba;
 	
-	
+	/**
+	 * Constructor clase dibuje
+	 */
 	public Dibuje(int jugadores, int width,int height,String nombre1,String nombre2,String bola) {
 		this.jugadores=jugadores;
 	 	this.width=width;
@@ -45,9 +51,15 @@ public class Dibuje extends JPanel{
 		prepareMarco();
 		//hilos();	
 	}
+	/**
+	 * Crea un nuevo pong
+	 */
 	private void prepareJuego() {
 		game = new Pong(600 + width / 5, height, jugadores, nombre1, nombre2);
 	}
+	/** 
+	 * Prepara los elementos necesario para el diseño del marco
+	 */
 	private void prepareMarco() {
 		try {
 			fondoPuntos = ImageIO.read(new File("src/Recursos/fondo.png"));
@@ -55,9 +67,16 @@ public class Dibuje extends JPanel{
 			System.out.println("La imagen no se encuentra");
 		}
 	}
+	/** 
+	 * Retorna imagen
+	 * @param objeto
+	 */
 	private Image generarImagen(String objeto) {
 		return new ImageIcon(recursos+objeto).getImage();
 	}
+	/**
+	 * Dibuja
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
@@ -86,6 +105,9 @@ public class Dibuje extends JPanel{
 		};
 		pelota.start();
 	}
+	/** 
+	 * Llama a los metodos necesarios para mover las raquetas
+	 */
 	private void movimientosRaquetas() {
 		if(moverRightAbajo) {
 			game.moverRaquetaDerecha(0);
@@ -100,6 +122,9 @@ public class Dibuje extends JPanel{
 			game.moverRaquetaIzquierda(1);
 		}
 	}
+	/**
+	 * Prepara las acciones para mover las raquetas
+	 */
 	private void prepareAcciones() {
 		setFocusable(true);
 		getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0, false), "right1down");
@@ -169,6 +194,9 @@ public class Dibuje extends JPanel{
 			}
 		});	
 	}
+	/**
+	 * Mueve el juego
+	 */
 	private void moverJuego(KeyEvent e) {
 		int id=e.getKeyCode();
 		

@@ -160,6 +160,10 @@ public class Pong {
 	public boolean getEnJuego() {
 		return enJuego;
 	}
+	/**
+	 * Indica por donde sale la bola del tablero
+	 * @return salio 
+	 */
 	public String salio() {
 		String salio="";
 		//enJuego=false;
@@ -170,6 +174,7 @@ public class Pong {
 		}
 		return salio;
 	}
+	
 	public boolean esta() {
 		return estaEnInicio;
 	}

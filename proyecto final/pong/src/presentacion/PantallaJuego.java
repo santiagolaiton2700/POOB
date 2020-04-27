@@ -13,7 +13,14 @@ public class PantallaJuego extends JFrame {
 	private int jugadores;
 	private String nombre1,nombre2,bola;
 	
-	
+	/**
+	 * Constructor de la clase PantallaJuego
+	 * @param jugadores numero de jugadores
+	 * @param nombre1 nombre raqueta 1
+	 * @param nombre2 nombre raqueta 2
+	 * @param configuracion
+	 * @param bola bola en juego
+	 */
 	public PantallaJuego(int jugadores,String nombre1,String nombre2,boolean configuracion,String bola) {
 		super("PONG GAME");
 		this.jugadores=jugadores;

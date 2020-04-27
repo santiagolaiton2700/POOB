@@ -72,19 +72,34 @@ public class Raquetas implements Serializable{
 	public int getWidth() {
 		return width;
 	}
+	/**
+	 * 	Mueve la raqueta cierta distancia a la derecha
+	 * @param x distancia que se movera
+	 */
 	public void moverDerecha(int x) {
 		this.x += x;
 		figura.setLocation(this.x, this.y);
 	}
+	/**
+	 * Mueve la raqueta a la izquierda
+	 */
 	public void moverIzquierda() {
 		x -= distancia;
 		figura.setLocation(this.x, this.y);
 	}
+	/**
+	 * 	Mueve la raqueta cierta distancia a la izquierda
+	 * @param x distancia que se movera
+	 */
 	
 	public void moverIzquierda(int x) {
 		this.x -= x;
 		figura.setLocation(this.x, this.y);
 	}
+	/**
+	 * Retorna altura
+	 * @return int height
+	 */
 	public int getHeight() {
 		return height;
 	}

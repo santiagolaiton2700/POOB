@@ -117,9 +117,9 @@ public class Bola {
 	
 	}
 	/**
-	 * Verifica si la bola sale del tablero
-	 * @param yPos
-	 * @return
+	 * Cambia la posicion de la bola 
+	 * @param x posicion en x a cambiar
+	 * @param y posicion en y a cambiar
 	 */
 	public void setPosition(double x, double y) {
 		this.x = x;
