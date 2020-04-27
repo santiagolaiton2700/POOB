@@ -121,16 +121,12 @@ public class Bola {
 	 * @param yPos
 	 * @return
 	 */
-	public boolean salio(int yPos) {
-		Rectangle arriba=new Rectangle(0,0,873,10);
-		Rectangle abajo=new Rectangle(0,670,873,10);
-		if(figura.intersects(arriba)) {
-			salio=true;
-		}else if(figura.intersects(abajo)) {
-			salio=true;
-		}
-		return salio;
+	public void setPosition(double x, double y) {
+		this.x = x;
+		this.y = y;
+		figura.setFrame(x , y, TAMX, TAMY);
 	}
+	
 	
 
 	

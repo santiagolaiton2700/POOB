@@ -160,4 +160,17 @@ public class Pong {
 	public boolean getEnJuego() {
 		return enJuego;
 	}
+	public String salio() {
+		String salio="";
+		//enJuego=false;
+		if(bola.getYPosition()>heigth) {
+			salio="abajo";
+		}else if(bola.getYPosition()<0) {
+			salio="arriba";
+		}
+		return salio;
+	}
+	public boolean esta() {
+		return estaEnInicio;
+	}
 }
