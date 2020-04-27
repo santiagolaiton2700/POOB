@@ -145,6 +145,10 @@ public class Pong {
 	public void auxMoverAlInicio(Raquetas r) {
 		
 	}
+	/**
+	 * Mueve la pelota a una posicion especifica despues de que esta alla salido del tablero
+	 * @param x  lado del tablero por el que salio la pelota
+	 */
 	public void moverPelotaInicio(String x) {
 		if(x=="arriba") {
 			bola.setPosition(476, 650);
@@ -169,15 +173,12 @@ public class Pong {
 	public boolean getEnJuego() {
 		return enJuego;
 	}
-<<<<<<< HEAD
-	private String salio() {
-=======
+
 	/**
 	 * Indica por donde sale la bola del tablero
 	 * @return salio 
 	 */
 	public String salio() {
->>>>>>> ab2544ff71c0beae7b99828b50e72d540c09be03
 		String salio="";
 		if(bola.getYPosition()>heigth) {
 			sumarPuntaje("abajo");
@@ -188,7 +189,10 @@ public class Pong {
 		}
 		return salio;
 	}
-<<<<<<< HEAD
+	/**
+	 * Suma el puntaje de cada jugador
+	 * @param salio indica por donde salio la bola para saber a quien asignarle el puntaje
+	 */
 	private void sumarPuntaje(String salio) {
 		if(score1<=45||score2<=45) {
 			if (salio=="abajo") {
@@ -198,15 +202,24 @@ public class Pong {
 			}
 		}
 	}
+	/**
+	 * Retorna puntaje de jugador 1
+	 * @return int score1
+	 */
 	public int getScore1() {
 		return score1;
 	}
+	/**
+	 * Retorna puntaje de jugador 2
+	 * @return int score2
+	 */
 	public int getScore2() {
 		return score2;
 	}
-=======
-	
->>>>>>> ab2544ff71c0beae7b99828b50e72d540c09be03
+	/**
+	 * Indica si la bola esta en el inicio
+	 * @return estaEnInicio true o false
+	 */
 	public boolean esta() {
 		return estaEnInicio;
 	}
