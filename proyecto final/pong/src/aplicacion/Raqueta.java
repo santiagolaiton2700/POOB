@@ -5,14 +5,16 @@ import java.io.Serializable;
 /**
  * Las raquetas son las encargadas de hacer rebotar la pelota
  */
-public class Raquetas implements Serializable{
+public class Raqueta implements Serializable{
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 	private Rectangle figura;
 	private String nombreImg;
-	private int distancia = 2; 
+	private int distancia = 2;
+	private int puntaje;
+	private int fortaleza;
 	/**
 	 * Constructor de la clase raquetas
 	 * @param x posicion en x
@@ -21,13 +23,15 @@ public class Raquetas implements Serializable{
 	 * @param height alto
 	 * @param nombreImg nombre de la imagen
 	 */
-	public Raquetas(int x, int y, int width, int height, String nombreImg) {
+	public Raqueta(int x, int y, int width, int height, String nombreImg) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 	 	this.height = height;
 		this.nombreImg = nombreImg;
 		this.figura = new Rectangle(x, y, width, height);
+		this.puntaje=0;
+		this.fortaleza=1000000;
 	}
 	/**
 	 * Retorna la figura de la raqueta
@@ -103,5 +107,18 @@ public class Raquetas implements Serializable{
 	public int getHeight() {
 		return height;
 	}
+	public int getPuntaje() {
+		return puntaje;
+	}
+	public int getFortaleza() {
+		return fortaleza;
+	}
+	public void setFortaleza(int nuevo) {
+		fortaleza-=nuevo;
+	}
+	public void setPuntaje(int nuevo) {
+		puntaje+=nuevo;
+	}
+	
 	
 }

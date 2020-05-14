@@ -1,6 +1,11 @@
 package aplicacion;
 
+import java.awt.Rectangle;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Timer;
 /**
  * Esta es la clase principal ,encargada de delegar las acciones del juego 
  * @author Santiago Laiton - Lina Buitrago
@@ -17,9 +22,10 @@ public class Pong {
 	private String color1,color2;
 	private Bola bola;
 	private String bolaString;
-	private int score1;
-	private int score2;
-	private ArrayList<Raquetas> raquetas;
+	private ArrayList<Raqueta> raquetas;
+	private ArrayList<Poder> poderes;
+	private Timer tiempo;
+	private boolean puedoCrear;
 	/**
 	 * Constructor del juego PONG
 	 * @param width Ancho del tablero
@@ -32,17 +38,15 @@ public class Pong {
 		this.width=width;
 		this.heigth=height;
 		this.jugadores=jugadores;
-		this.enJuego=true;
-		raquetas = new ArrayList<Raquetas>();
+		raquetas = new ArrayList<Raqueta>();
+		poderes=new ArrayList<Poder>();
 		this.estaEnInicio=true;
 		this.estaDetenida=false;
 		this.color1=nombre1;
 		this.color2=nombre2;
-		this.score1=0;
-		this.score2=0;
 		elegirCondicionesJuego(nombre1,nombre2);
 		addBola(300, 650, 0.5, 1.2, width, height);
-		
+		this.puedoCrear=false;
 	}
 	/**
 	 * Añade una bola basada en parametros
@@ -66,10 +70,8 @@ public class Pong {
 	 * @param nombre2 Nombre plataforma 2
 	 */
 	public void elegirCondicionesJuego(String nombre1,String nombre2) {
-		
 		addRaquetas(476,660,132,23,nombre1);
 		addRaquetas(476,20,132,23,nombre2);
-		
 	}
 	/**
 	 * Añade raquetas 
@@ -80,7 +82,7 @@ public class Pong {
 	 * @param nombreImg nombre de la imagen
 	 */
 	public void addRaquetas(int x, int y, int width, int height, String nombreImg) {
-		raquetas.add(new Raquetas(x,y,width,height,nombreImg));
+		raquetas.add(new Raqueta(x,y,width,height,nombreImg));
 	}
 	/**
 	 * Retorna una bola de la clase bola
@@ -94,13 +96,25 @@ public class Pong {
 	 */
 	public void moverBola() {
 		chocaRaquetas();
+		//soltarPoder();
 		bola.muevePelotaca();
+		
 	}
+	/**
+	public void soltarPoder() {
+		if(seguido>5) {
+			poderes.add(new AumentarVelocidad());
+		}
+		for(Poder p:poderes) {
+			p.activarPoder(this, 1);
+		}
+	}
+	**/
 	/**
 	 * Retorna un ArrayList de raquetas
 	 * @return raquetas
 	 */
-	public ArrayList<Raquetas>getRaquetas() {
+	public ArrayList<Raqueta>getRaquetas() {
 		return raquetas;
 	}
 	/**
@@ -108,19 +122,20 @@ public class Pong {
 	 * @param i Raqueta a mover
 	 */
 	public void moverRaquetaDerecha(int i) {
-		Raquetas r=raquetas.get(i);
+		Raqueta r=raquetas.get(i);
 		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
 			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
 			auxMoverAlInicio(r);
 		}else {
-		raquetas.get(i).moverDerecha();}		
+		raquetas.get(i).moverDerecha();}
+		r.setFortaleza(100);
 	}
 	/**
 	 * Mueve la raqueta hacia su lado izquierda 
 	 * @param i Raqueta a mover
 	 */
 	public void moverRaquetaIzquierda(int i) {
-		Raquetas r = raquetas.get(i);
+		Raqueta r = raquetas.get(i);
 		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
 	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
 			auxMoverAlInicio(r);
@@ -128,21 +143,24 @@ public class Pong {
 		}
 		raquetas.get(i).moverIzquierda();
 		auxMoverAlInicio(r);
+		r.setFortaleza(100);
+		
 	}
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta
 	 */
 	private void chocaRaquetas() {
-		for(Raquetas r:raquetas) {
+		for(Raqueta r:raquetas) {
 			if(bola.getShape().getBounds().intersects(r.getShape())) {
 				bola.choqueRaqueta(r.getXPosition(),r.getYPosition(),r.getWidth(),r.getHeight());
+				//seguido+=1;
 			}else {
 				moverPelotaInicio(salio());
 			}
 		}
 	}
 	
-	public void auxMoverAlInicio(Raquetas r) {
+	public void auxMoverAlInicio(Raqueta r) {
 		
 	}
 	/**
@@ -180,7 +198,9 @@ public class Pong {
 	 */
 	public String salio() {
 		String salio="";
+		
 		if(bola.getYPosition()>heigth) {
+			
 			sumarPuntaje("abajo");
 			salio="abajo";
 		}else if(bola.getYPosition()<0) {
@@ -189,33 +209,49 @@ public class Pong {
 		}
 		return salio;
 	}
+	public void crearPoder() {
+		int x=1;
+		int poderesVivos=0;
+		poderes.add(new AumentarVelocidad());
+		System.out.println("poner");
+		for(Poder p:poderes) {
+			p.activarPoder(this, 1);
+		}
+		/**
+		if(poderesVivos<=4) {
+			Poder poder=Poder.CrearPoder(200,300,20,60,1);
+			poderes.add(poder);
+			puedoCrear=true;
+		}**/
+	}
+	public void quitarPoder() {
+		System.out.println("quitar");
+		for(Poder p:poderes) {
+			p.quitarPoder(this, 2);
+		}
+	}
+	public Rectangle ultimoPoder() {
+		return poderes.get(0).getShape();
+	}
+	
+	public boolean getPuedoCrear() {
+		return puedoCrear;
+	}
 	/**
 	 * Suma el puntaje de cada jugador
 	 * @param salio indica por donde salio la bola para saber a quien asignarle el puntaje
 	 */
 	private void sumarPuntaje(String salio) {
-		if(score1<=45||score2<=45) {
+		if(raquetas.get(1).getPuntaje()<=45||raquetas.get(0).getPuntaje()<=45) {
 			if (salio=="abajo") {
-				score1=score1+15;
+				raquetas.get(1).setPuntaje(10);
 			}else if(salio=="arriba") {
-				score2=score2+15;	
+				raquetas.get(0).setPuntaje(10);
 			}
 		}
 	}
-	/**
-	 * Retorna puntaje de jugador 1
-	 * @return int score1
-	 */
-	public int getScore1() {
-		return score1;
-	}
-	/**
-	 * Retorna puntaje de jugador 2
-	 * @return int score2
-	 */
-	public int getScore2() {
-		return score2;
-	}
+	
+
 	/**
 	 * Indica si la bola esta en el inicio
 	 * @return estaEnInicio true o false
@@ -223,4 +259,17 @@ public class Pong {
 	public boolean esta() {
 		return estaEnInicio;
 	}
+	public Raqueta getRaqueta(int i) {
+		return raquetas.get(i);
+	}
+	public void salvar(String nombreArchivo) throws PongException {
+		try {
+			ObjectOutputStream archivo=new ObjectOutputStream(new FileOutputStream(nombreArchivo));
+			archivo.writeObject(this);
+			archivo.close();
+		}catch (IOException e) {
+			throw new PongException(PongException.NO_GUARDADO);
+		}
+	}
+	
 }

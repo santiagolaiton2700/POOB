@@ -102,6 +102,9 @@ public class Bola {
 	public int getYPosition() {
 		return (int) y;
 	}
+	public int getXPosition() {
+		return (int) x;
+	}
 	/**
 	 * Hace rebotar la pelota en las raquetas
 	 * @param xPos posicion en x de la raqueta
@@ -110,7 +113,7 @@ public class Bola {
 	 * @param height alto
 	 */
 	public void choqueRaqueta(int xPos,int yPos,int width,int height) {
-		Rectangle r=new Rectangle(xPos,yPos,width,height/4);
+		Rectangle r=new Rectangle(xPos,yPos,width,height/9);
 		if(figura.intersects(r)) {
 			dy=-dy;
 		}
@@ -126,7 +129,49 @@ public class Bola {
 		this.y = y;
 		figura.setFrame(x , y, TAMX, TAMY);
 	}
-	
+	public void aumentarVelocidad(double multiplicidad) {
+		if (isSlow) {
+			dx = dx * multiplicidad;
+			dy = dy * multiplicidad;
+			dx0 = dx0 * multiplicidad;
+			dy0 = dy0 * multiplicidad;
+			isSlow = false;
+		}
+		if (!isFast) {
+			int signo = 1;
+			if (dy > 0) signo = 1;
+			if (dy < 0) signo = -1;
+			if (dx > 0) signo = 1;
+			if (dx < 0) signo = -1;
+			dy = dy * multiplicidad ;
+			dx = dx * multiplicidad ;
+			dx0 = dx0 * multiplicidad;
+			dy0 = dy0 * multiplicidad;
+			isFast = true;
+			isSlow = false;
+		}
+	}
+	public void disminuirVelocidad(double multiplicidad) {
+		if (isFast) {
+			dx = dx / multiplicidad;
+			dy = dy / multiplicidad;
+			dx0 = dx0 / multiplicidad;
+			dy0 = dy0 / multiplicidad;
+			isFast = false;
+		}
+		if (!isSlow) {
+			int signo = 1;
+			if (dy > 0) signo = 1;
+			if (dy < 0) signo = -1;
+			if (dx > 0) signo = 1;
+			if (dx < 0) signo = -1;
+			dx = dx / multiplicidad ;
+			dy = dy / multiplicidad ;
+			dx0 = dx0 / multiplicidad;
+			dy0 = dy0 / multiplicidad;
+			isSlow = true;
+		}
+	}
 	
 
 	

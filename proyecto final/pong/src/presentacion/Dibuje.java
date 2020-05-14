@@ -1,6 +1,8 @@
 package presentacion;
 
 import java.awt.*;
+
+
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -14,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import aplicacion.Pong;
-import aplicacion.Raquetas;
+import aplicacion.Raqueta;
 /**
  * Esta clase es la encargada de todos los metodos paraa dibujar tablero
  * @author Mary
@@ -35,6 +37,9 @@ public class Dibuje extends JPanel{
 	private boolean moverLeftAbajo;
 	private boolean moverRightArriba;
 	private boolean moverLeftArriba;
+	private boolean pausa = false;
+	private boolean bloquearP = false;
+	private boolean bloquearEsc = false;
 	
 	/**
 	 * Constructor clase dibuje
@@ -49,7 +54,6 @@ public class Dibuje extends JPanel{
 		prepareJuego();
 		prepareAcciones();
 		prepareMarco();
-		//hilos();	
 	}
 	/**
 	 * Crea un nuevo pong
@@ -81,18 +85,42 @@ public class Dibuje extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		g2.drawImage(fondoPuntos, 0, 0, null);
-		for(Raquetas p:game.getRaquetas()) {
+		for(Raqueta p:game.getRaquetas()) {
 			g2.setColor(Color.green);
 			g2.fill(p.getShape());
 		}
 		g2.setColor(Color.red);
-		g2.fill(game.getBola().getShape());
+		//g2.fill(game.getBola().getShape());
+		g2.drawImage(generarImagen("bolaUno.png"),game.getBola().getXPosition(),game.getBola().getYPosition(),this);
+		/**
+		Timer tiempo=new Timer(20000,new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				g2.fill(game.ultimoPoder());
+			}
+		});
 		
+		tiempo.start();
+		**/
 	}
 	private void hilos() {
+		game.quitarPoder();
 		pelota = new Thread() {
 			public void run() {
-				while (game.getEnJuego()&&(game.getScore1()<=45||game.getScore2()<=45)) {
+				Timer tiempo=new Timer(20000,new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						game.crearPoder();
+					}
+				});
+				/**
+				tiempo.start();
+				Timer tiempo1=new Timer(20000,new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						game.quitarPoder();
+					}
+				});
+				tiempo1.start();
+				**/
+				while (game.getEnJuego()&&(game.getRaqueta(1).getPuntaje()<=45 && game.getRaqueta(0).getPuntaje()<=45 && game.getRaqueta(0).getFortaleza()>=0 && game.getRaqueta(1).getFortaleza()>=0)) {
 					movimientosRaquetas();
 					game.moverBola();
 					try {
@@ -201,21 +229,42 @@ public class Dibuje extends JPanel{
 		int id=e.getKeyCode();
 		
 		if(id==KeyEvent.VK_SPACE) {
-			hilos();
+			if(!bloquearEsc) {
+				hilos();
+				setBloquearP();
+			}
 		}
 		if(id==KeyEvent.VK_P) {
-			detenerHilos();
+			if(!bloquearP) {
+				detenerHilos();
+				cambiarPausa();
+			}
+			
 		}
 		
+	}
+	public void setBloquearP() {
+		if(bloquearP) {
+			bloquearP=false;
+		}else {
+			bloquearP=true;
+		}
+	}
+	private void cambiarPausa() {
+		if(pausa) {
+			pausa=false;
+		}else {
+			pausa=true;
+		}
 	}
 	public void detenerHilos() {
 		if (game.getEnJuego()) {
 			pelota.stop();
 			game.setEnJuego();
-		} else {
+		} else if(!game.getEnJuego()){
 			game.setEnJuego();
 			pelota.start();
 		}
 	}
-	}
+}
 

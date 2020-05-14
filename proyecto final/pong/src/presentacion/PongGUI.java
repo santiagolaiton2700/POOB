@@ -30,7 +30,8 @@ public class PongGUI extends JFrame{
 		setResizable(false);
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = screenSize.width/2;
-		int alto = screenSize.height/2 + screenSize.height/10 ;
+		int alto = screenSize.height/2 + screenSize.height/10 ; 
+		this.setLocation(100, 100);
 		setBounds((screenSize.width - ancho) / 2, (screenSize.height - alto) / 2, 960, 670);
 		prepareElementos();
 		prepareAcciones();
