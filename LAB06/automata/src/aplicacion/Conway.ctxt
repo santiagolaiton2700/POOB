@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=Conway
-comment0.text=\r\n\ Las\ celulas\ conway\ son\ celulas\ del\ juego\ de\ la\ vida\ que\ cumplen\ con\ ciertas\ condiciones;\ son\ azules\ su\ estado\ inicial\ es\ VIVA.\r\n\ \r\n\ @author\ (Lina\ Buitrago-\ Santiago\ Laiton\ )\ \r\n\ @version\ (12\ de\ marzo\ 2020)\r\n
-comment1.params=ac\ fila\ columna
-comment1.target=Conway(AutomataCelular,\ int,\ int)
-numComments=2
