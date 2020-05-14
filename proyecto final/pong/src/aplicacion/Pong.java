@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.lang.*;
+
 /**
  * Esta es la clase principal ,encargada de delegar las acciones del juego 
  * @author Santiago Laiton - Lina Buitrago
@@ -25,7 +27,8 @@ public class Pong {
 	private ArrayList<Raqueta> raquetas;
 	private ArrayList<Poder> poderes;
 	private Timer tiempo;
-	private boolean puedoCrear;
+
+	private String[] listaPoderes;
 	/**
 	 * Constructor del juego PONG
 	 * @param width Ancho del tablero
@@ -46,7 +49,8 @@ public class Pong {
 		this.color2=nombre2;
 		elegirCondicionesJuego(nombre1,nombre2);
 		addBola(300, 650, 0.5, 1.2, width, height);
-		this.puedoCrear=false;
+
+		this.listaPoderes = new String[]{ "Fastball","Freezer","Flash","Turtle","Cold Racket", "Phantom Racket","Energy"}; 
 	}
 	/**
 	 * Añade una bola basada en parametros
@@ -100,52 +104,46 @@ public class Pong {
 		bola.muevePelotaca();
 		
 	}
-	/**
-	public void soltarPoder() {
-		if(seguido>5) {
-			poderes.add(new AumentarVelocidad());
-		}
-		for(Poder p:poderes) {
-			p.activarPoder(this, 1);
-		}
+	
+	public void crearPoder() {
+		int random = (int)(Math.random() * 7 + 1);
+		poderes.add(new fastBall(500,500));
 	}
-	**/
-	/**
-	 * Retorna un ArrayList de raquetas
-	 * @return raquetas
-	 */
-	public ArrayList<Raqueta>getRaquetas() {
-		return raquetas;
+	
+	public int getPoderXPosition(int i) {
+		return poderes.get(i).getX();
 	}
-	/**
-	 * Mueve la raqueta hacia su lado derecho
-	 * @param i Raqueta a mover
-	 */
-	public void moverRaquetaDerecha(int i) {
-		Raqueta r=raquetas.get(i);
-		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
-			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
-			auxMoverAlInicio(r);
-		}else {
-		raquetas.get(i).moverDerecha();}
-		r.setFortaleza(100);
+	
+	public int getPoderYPosition(int i) {
+		return poderes.get(i).getY();
 	}
-	/**
-	 * Mueve la raqueta hacia su lado izquierda 
-	 * @param i Raqueta a mover
-	 */
-	public void moverRaquetaIzquierda(int i) {
-		Raqueta r = raquetas.get(i);
-		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
-	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
-			auxMoverAlInicio(r);
-			return;
-		}
-		raquetas.get(i).moverIzquierda();
-		auxMoverAlInicio(r);
-		r.setFortaleza(100);
+	public String getPoder(int i) {
 		
+		return listaPoderes[i];
 	}
+	public int getNumPoderes() {
+		return poderes.size();
+	}
+
+	public int getRaquetaXPosition(int i) {
+		return raquetas.get(i).getXPosition();
+	}
+	
+	public int 	getRaquetaYPosition(int i) {
+		return raquetas.get(i).getYPosition();
+	}
+	
+	public void moverTodo() {
+		for(Poder p: poderes) {
+			p.mover();
+		}
+	}
+	public int getPuntajeRaqueta(int i) {
+		return raquetas.get(i).getPuntaje();
+	}
+	
+
+	
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta
 	 */
@@ -209,34 +207,10 @@ public class Pong {
 		}
 		return salio;
 	}
-	public void crearPoder() {
-		int x=1;
-		int poderesVivos=0;
-		poderes.add(new AumentarVelocidad());
-		System.out.println("poner");
-		for(Poder p:poderes) {
-			p.activarPoder(this, 1);
-		}
-		/**
-		if(poderesVivos<=4) {
-			Poder poder=Poder.CrearPoder(200,300,20,60,1);
-			poderes.add(poder);
-			puedoCrear=true;
-		}**/
-	}
-	public void quitarPoder() {
-		System.out.println("quitar");
-		for(Poder p:poderes) {
-			p.quitarPoder(this, 2);
-		}
-	}
-	public Rectangle ultimoPoder() {
-		return poderes.get(0).getShape();
-	}
 	
-	public boolean getPuedoCrear() {
-		return puedoCrear;
-	}
+
+
+	
 	/**
 	 * Suma el puntaje de cada jugador
 	 * @param salio indica por donde salio la bola para saber a quien asignarle el puntaje
@@ -259,9 +233,36 @@ public class Pong {
 	public boolean esta() {
 		return estaEnInicio;
 	}
-	public Raqueta getRaqueta(int i) {
-		return raquetas.get(i);
+	/**
+	 * Mueve la raqueta hacia su lado derecho
+	 * @param i Raqueta a mover
+	 */
+	public void moverRaquetaDerecha(int i) {
+		Raqueta r=raquetas.get(i);
+		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
+			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
+			auxMoverAlInicio(r);
+		}else {
+		raquetas.get(i).moverDerecha();}
+		r.setFortaleza(100);
 	}
+	/**
+	 * Mueve la raqueta hacia su lado izquierda 
+	 * @param i Raqueta a mover
+	 */
+	public void moverRaquetaIzquierda(int i) {
+		Raqueta r = raquetas.get(i);
+		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
+	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
+			auxMoverAlInicio(r);
+			return;
+		}
+		raquetas.get(i).moverIzquierda();
+		auxMoverAlInicio(r);
+		r.setFortaleza(100);
+		
+	}
+
 	public void salvar(String nombreArchivo) throws PongException {
 		try {
 			ObjectOutputStream archivo=new ObjectOutputStream(new FileOutputStream(nombreArchivo));

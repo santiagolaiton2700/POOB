@@ -17,18 +17,12 @@ public class DisminuirVelocidad extends Poder {
 	public DisminuirVelocidad(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
-		this.width = width;
-		this.height = height;
+
 		this.figura = new Rectangle(x, y, width, height);
-		this.imagen = "disminuirVelocidad.gif";
+
 	}
 	
-	/**
-	 * Retorna el nombre de su imagen
-	 */
-	public String getImagen() {
-		return imagen;
-	}
+
 	
 	/**
 	 * Activa el poder que es capaz de realizar
@@ -37,15 +31,4 @@ public class DisminuirVelocidad extends Poder {
 		game.getBola().disminuirVelocidad(3.0/2.0);
 	}
 
-	@Override
-	public Rectangle getShape() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void quitarPoder(Pong game, int indice) {
-		// TODO Auto-generated method stub
-		
-	}
 }

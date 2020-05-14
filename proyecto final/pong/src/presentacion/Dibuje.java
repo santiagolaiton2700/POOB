@@ -85,9 +85,14 @@ public class Dibuje extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		g2.drawImage(fondoPuntos, 0, 0, null);
+		/*
 		for(Raqueta p:game.getRaquetas()) {
 			g2.setColor(Color.green);
 			g2.fill(p.getShape());
+		}*/
+		for(int i=0;i<2;i++) {
+			//no olvidar cambiar nombre
+			g2.drawImage(generarImagen("raquetaName.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),this);
 		}
 		g2.setColor(Color.red);
 		//g2.fill(game.getBola().getShape());
@@ -101,14 +106,18 @@ public class Dibuje extends JPanel{
 		
 		tiempo.start();
 		**/
+		for(int i=0;i<game.getNumPoderes();i++) {
+			g2.drawImage(generarImagen(game.getPoder(i)+".png"),game.getPoderXPosition(i),game.getPoderYPosition(i),this);
+		}
 	}
 	private void hilos() {
-		game.quitarPoder();
+		//game.quitarPoder();
 		pelota = new Thread() {
 			public void run() {
 				Timer tiempo=new Timer(20000,new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						game.crearPoder();
+						//string nombre poder y las posiciones en las que va a aparecer
 					}
 				});
 				/**
@@ -120,7 +129,7 @@ public class Dibuje extends JPanel{
 				});
 				tiempo1.start();
 				**/
-				while (game.getEnJuego()&&(game.getRaqueta(1).getPuntaje()<=45 && game.getRaqueta(0).getPuntaje()<=45 && game.getRaqueta(0).getFortaleza()>=0 && game.getRaqueta(1).getFortaleza()>=0)) {
+				while (game.getEnJuego()&&(game.getPuntajeRaqueta(1)<=45 && game.getPuntajeRaqueta(0)<=45 )) {
 					movimientosRaquetas();
 					game.moverBola();
 					try {
@@ -250,6 +259,7 @@ public class Dibuje extends JPanel{
 			bloquearP=true;
 		}
 	}
+	
 	private void cambiarPausa() {
 		if(pausa) {
 			pausa=false;
@@ -257,6 +267,7 @@ public class Dibuje extends JPanel{
 			pausa=true;
 		}
 	}
+	
 	public void detenerHilos() {
 		if (game.getEnJuego()) {
 			pelota.stop();

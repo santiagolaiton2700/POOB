@@ -6,38 +6,46 @@ import java.io.Serializable;
 public abstract class Poder implements Serializable{
 	protected int x;
 	protected int y;
-	protected int width;
-	protected int height;
+	protected double dx;
 	protected Rectangle figura;
-	protected String imagen;
-	protected boolean esVivo;
-	protected int tipo;
-	public static Poder CrearPoder (int x,int y, int width,int heigth,int llave) {
-		Poder poderReturn = null;
-		switch (llave) {
-		case 1: {
-			poderReturn=new AumentarVelocidad(x,y,width,heigth,llave);
+
+	
+	
+	public void mover() {
+		this.x+=dx;
+		if(x<200) {
+			x=200;
+			dx=-dx;
 		}
+		if(x >= 730) {
+			x=730;
+			dx=-dx;
+		}
+		x+=dx;
+		
 	}
-		return poderReturn;
+	public boolean impactado(Bola bola) {
+		return ( bola.getShape().intersects(figura))? true: false; 
 	}
-	public abstract String getImagen();
-	
-	public abstract void activarPoder(Pong game ,int indice);
-	
-	//public Rectangle getShape() {
-		//return figura;
-	//}
-	public void descender() {
-		y+=1;
-		figura.setLocation(this.x, this.y);
+
+
+
+	public int getX() {
+		return x;
 	}
-	public int getYPositon() {
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+	public int getY() {
 		return y;
 	}
-	public boolean esVivo() {
-		return esVivo;
+
+
+	public void setY(int y) {
+		this.y = y;
 	}
-	public abstract Rectangle getShape();
-	public abstract void quitarPoder(Pong game,int indice);
 }
