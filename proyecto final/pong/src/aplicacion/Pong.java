@@ -99,6 +99,7 @@ public class Pong {
 	 * Mueve la bola de un lado al otro del tablero 
 	 */
 	public void moverBola() {
+		System.out.println("mover Pelota");
 		chocaRaquetas();
 		//soltarPoder();
 		bola.muevePelotaca();
@@ -238,6 +239,7 @@ public class Pong {
 	 * @param i Raqueta a mover
 	 */
 	public void moverRaquetaDerecha(int i) {
+		System.out.println("Mover raqueta derecha");
 		Raqueta r=raquetas.get(i);
 		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
 			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
@@ -251,6 +253,7 @@ public class Pong {
 	 * @param i Raqueta a mover
 	 */
 	public void moverRaquetaIzquierda(int i) {
+		System.out.println("Mover raqueta izquierda");
 		Raqueta r = raquetas.get(i);
 		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
 	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
@@ -262,7 +265,11 @@ public class Pong {
 		r.setFortaleza(100);
 		
 	}
-
+	/**
+	 * 
+	 * @param nombreArchivo
+	 * @throws PongException
+	 */
 	public void salvar(String nombreArchivo) throws PongException {
 		try {
 			ObjectOutputStream archivo=new ObjectOutputStream(new FileOutputStream(nombreArchivo));

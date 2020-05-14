@@ -90,9 +90,11 @@ public class Dibuje extends JPanel{
 			g2.setColor(Color.green);
 			g2.fill(p.getShape());
 		}*/
+		
 		for(int i=0;i<2;i++) {
 			//no olvidar cambiar nombre
-			g2.drawImage(generarImagen("raquetaName.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),this);
+			System.out.println("go to draw raqueta");
+			g2.drawImage(generarImagen("raquetaPrueba.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),89,21,this);
 		}
 		g2.setColor(Color.red);
 		//g2.fill(game.getBola().getShape());
@@ -129,7 +131,9 @@ public class Dibuje extends JPanel{
 				});
 				tiempo1.start();
 				**/
+				System.out.println(game.getEnJuego()&&(game.getPuntajeRaqueta(1)<=45 && game.getPuntajeRaqueta(0)<=45 ));
 				while (game.getEnJuego()&&(game.getPuntajeRaqueta(1)<=45 && game.getPuntajeRaqueta(0)<=45 )) {
+					System.out.println("Jugando");
 					movimientosRaquetas();
 					game.moverBola();
 					try {

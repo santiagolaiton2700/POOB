@@ -25,6 +25,7 @@ public class PongGUI extends JFrame{
 	private String color1 = "jugador1";
 	private String color2 = "jugador2";
 	private String bola = "bolaGris.gif";
+	
 	public PongGUI(){
 		super("PONG GAME");
 		setResizable(false);
@@ -36,6 +37,7 @@ public class PongGUI extends JFrame{
 		prepareElementos();
 		prepareAcciones();
 	}
+	
 	/**
 	 * Crea un objeto 
 	 * @param lista de Strings
@@ -200,6 +202,7 @@ private void volver() {
 		volver.setVisible(false);
 		
 	}
+	
 	private void refresque() {
 		//this.removeAll();
 		botonSalir.setVisible(false);
@@ -219,6 +222,7 @@ private void volver() {
 		configuracion= new MenuConfiguracion(this);
 		configuracion.setVisible(true);
 	}
+	
 	/**
 	 * Inicia una partida creando una pantalla de juego
 	 * @param i
