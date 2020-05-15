@@ -93,7 +93,7 @@ public class Dibuje extends JPanel{
 		
 		for(int i=0;i<2;i++) {
 			//no olvidar cambiar nombre
-			System.out.println("go to draw raqueta");
+			//System.out.println("go to draw raqueta");
 			g2.drawImage(generarImagen("raquetaPrueba.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),89,21,this);
 		}
 		g2.setColor(Color.red);
@@ -109,20 +109,23 @@ public class Dibuje extends JPanel{
 		tiempo.start();
 		**/
 		for(int i=0;i<game.getNumPoderes();i++) {
-			g2.drawImage(generarImagen(game.getPoder(i)+".png"),game.getPoderXPosition(i),game.getPoderYPosition(i),this);
+			System.out.println("go to draw poder");
+			g2.drawImage(generarImagen(game.getPoder(i)+".gif"),game.getPoderXPosition(i),game.getPoderYPosition(i),50,50,this);
 		}
+
 	}
 	private void hilos() {
 		//game.quitarPoder();
 		pelota = new Thread() {
 			public void run() {
-				Timer tiempo=new Timer(20000,new ActionListener() {
+				/*Timer tiempo=new Timer(1000,new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						System.out.println("Poder generador");
 						game.crearPoder();
 						//string nombre poder y las posiciones en las que va a aparecer
 					}
 				});
-				/**
+				
 				tiempo.start();
 				Timer tiempo1=new Timer(20000,new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -131,15 +134,39 @@ public class Dibuje extends JPanel{
 				});
 				tiempo1.start();
 				**/
+				Long startTime = System.currentTimeMillis();
+				Long quitarPoderTime = System.currentTimeMillis();
+				 
 				System.out.println(game.getEnJuego()&&(game.getPuntajeRaqueta(1)<=45 && game.getPuntajeRaqueta(0)<=45 ));
 				while (game.getEnJuego()&&(game.getPuntajeRaqueta(1)<=45 && game.getPuntajeRaqueta(0)<=45 )) {
-					System.out.println("Jugando");
-					movimientosRaquetas();
-					game.moverBola();
+					//System.out.println("Jugando");
+					
+		
+					game.moverTodo();
+					
 					try {
-						this.sleep(1);
+						this.sleep(10);
 					} catch (InterruptedException e) {
 					}
+					if((System.currentTimeMillis() - startTime)>20000 ) {
+						
+						System.out.println("Poder generador");
+						game.crearPoder();
+						startTime = System.currentTimeMillis();
+						quitarPoderTime = System.currentTimeMillis();
+						
+					}
+					
+					repaint();
+					if((game.getNumCurrentPoderes()>0) && ((System.currentTimeMillis() - startTime)>10000) ) {
+						
+						System.out.println("Poder generador");
+						game.quitarPoder();
+						quitarPoderTime = System.currentTimeMillis();
+						
+					}
+					
+					movimientosRaquetas();
 					repaint();
 				}
 			}

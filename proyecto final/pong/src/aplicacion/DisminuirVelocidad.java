@@ -31,4 +31,20 @@ public class DisminuirVelocidad extends Poder {
 		game.getBola().disminuirVelocidad(3.0/2.0);
 	}
 
+
+
+	@Override
+	public void iniciar(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void detener(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

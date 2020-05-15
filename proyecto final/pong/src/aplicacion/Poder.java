@@ -22,8 +22,9 @@ public abstract class Poder implements Serializable{
 			dx=-dx;
 		}
 		x+=dx;
-		
+		figura.setFrame(x,y,50,50);
 	}
+	
 	public boolean impactado(Bola bola) {
 		return ( bola.getShape().intersects(figura))? true: false; 
 	}
@@ -48,4 +49,6 @@ public abstract class Poder implements Serializable{
 	public void setY(int y) {
 		this.y = y;
 	}
+	public abstract void iniciar(Object o);
+	public abstract void detener(Object o);
 }

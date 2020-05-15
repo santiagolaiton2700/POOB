@@ -26,6 +26,7 @@ public class Pong {
 	private String bolaString;
 	private ArrayList<Raqueta> raquetas;
 	private ArrayList<Poder> poderes;
+	private ArrayList<Poder> currentPoderes;
 	private Timer tiempo;
 
 	private String[] listaPoderes;
@@ -43,6 +44,7 @@ public class Pong {
 		this.jugadores=jugadores;
 		raquetas = new ArrayList<Raqueta>();
 		poderes=new ArrayList<Poder>();
+		currentPoderes = new ArrayList<Poder>();
 		this.estaEnInicio=true;
 		this.estaDetenida=false;
 		this.color1=nombre1;
@@ -50,7 +52,8 @@ public class Pong {
 		elegirCondicionesJuego(nombre1,nombre2);
 		addBola(300, 650, 0.5, 1.2, width, height);
 
-		this.listaPoderes = new String[]{ "Fastball","Freezer","Flash","Turtle","Cold Racket", "Phantom Racket","Energy"}; 
+		this.listaPoderes = new String[]{ "Fastball","Freezer","Flash","Turtle","Cold Racket", "Phantom Racket","Energy"};
+		
 	}
 	/**
 	 * Añade una bola basada en parametros
@@ -99,7 +102,7 @@ public class Pong {
 	 * Mueve la bola de un lado al otro del tablero 
 	 */
 	public void moverBola() {
-		System.out.println("mover Pelota");
+		//System.out.println("mover Pelota");
 		chocaRaquetas();
 		//soltarPoder();
 		bola.muevePelotaca();
@@ -108,7 +111,7 @@ public class Pong {
 	
 	public void crearPoder() {
 		int random = (int)(Math.random() * 7 + 1);
-		poderes.add(new fastBall(500,500));
+		poderes.add(new Fastball(500,500));
 	}
 	
 	public int getPoderXPosition(int i) {
@@ -120,7 +123,9 @@ public class Pong {
 	}
 	public String getPoder(int i) {
 		
-		return listaPoderes[i];
+		var p = poderes.get(i);
+		return p.getClass().getName().substring(11,p.getClass().getName().length());
+		
 	}
 	public int getNumPoderes() {
 		return poderes.size();
@@ -135,15 +140,50 @@ public class Pong {
 	}
 	
 	public void moverTodo() {
-		for(Poder p: poderes) {
-			p.mover();
+		moverBola();
+		var b= false;
+		for(int i=0;i<poderes.size();i++) {
+			if(!b) {
+				System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
+			
+				b = poderImpactado( bola);
+				if(!b) poderes.get(i).mover();
+			}
 		}
+		
 	}
 	public int getPuntajeRaqueta(int i) {
 		return raquetas.get(i).getPuntaje();
 	}
+	public boolean poderImpactado(Bola bola) {
+		int posPoderImpactado = -1;
+		for(int i=0;i<poderes.size();i++) {
+			if(poderes.get(i).impactado(bola)) {
+				posPoderImpactado= i;
+			}
+		}
+		
+		if(posPoderImpactado!=-1) {
+			Poder p = poderes.get(posPoderImpactado);
+			p.iniciar(bola);
+			
+			poderes.remove(posPoderImpactado);
+			currentPoderes.add(p);
+			return true;
+		}
+		return false;
+		
+	}
 	
-
+	public void quitarPoder() {
+		Poder p = currentPoderes.get(0);
+		p.detener(bola);
+		currentPoderes.remove(0);
+	}
+	public int getNumCurrentPoderes() {
+		return currentPoderes.size();
+	}
+	
 	
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta
