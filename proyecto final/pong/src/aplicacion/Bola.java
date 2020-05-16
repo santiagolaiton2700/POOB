@@ -24,6 +24,7 @@ public class Bola {
 	private boolean isSlow=false;
 	private boolean diagonal = false;
 	private boolean salio = false;
+	private String quien;
 	/**
 	 *  Constructor de la clase bola
 	 * @param x posicion en x
@@ -42,6 +43,7 @@ public class Bola {
 		this.dy0=dy;
 		this.width=width;
 		this.height=height;
+		this.quien=null;
 		figura=new Ellipse2D.Double(x, y, TAMX, TAMY);
 		
 		
@@ -129,6 +131,7 @@ public class Bola {
 		this.y = y;
 		figura.setFrame(x , y, TAMX, TAMY);
 	}
+	/**
 	public void aumentarVelocidad(double multiplicidad) {
 		if (isSlow) {
 			dx = dx * multiplicidad;
@@ -151,6 +154,8 @@ public class Bola {
 			isSlow = false;
 		}
 	}
+	**/
+	/**
 	public void disminuirVelocidad(double multiplicidad) {
 		if (isFast) {
 			dx = dx / multiplicidad;
@@ -172,7 +177,47 @@ public class Bola {
 			isSlow = true;
 		}
 	}
-	
-
-	
+	**/
+	public double getDx() {
+		return dx;
+	}
+	public void setDx(double dx) {
+		this.dx = dx;
+	}
+	public double getDy() {
+		return dy;
+	}
+	public void setDy(double dy) {
+		this.dy = dy;
+	}
+	public double getDy0() {
+		return dy0;
+	}
+	public void setDy0(double dy0) {
+		this.dy0 = dy0;
+	}
+	public double getDx0() {
+		return dx0;
+	}
+	public void setDx0(double dx0) {
+		this.dx0 = dx0;
+	}
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+	public void setQuien(String quien) {
+		this.quien=quien;
+	}
+	public String getQuien() {
+		return quien;
+	}
 }

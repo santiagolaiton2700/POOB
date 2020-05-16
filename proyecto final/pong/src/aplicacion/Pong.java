@@ -1,11 +1,12 @@
 package aplicacion;
-
 import java.awt.Rectangle;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.lang.*;
+
 /**
  * Esta es la clase principal ,encargada de delegar las acciones del juego 
  * @author Santiago Laiton - Lina Buitrago
@@ -24,8 +25,10 @@ public class Pong {
 	private String bolaString;
 	private ArrayList<Raqueta> raquetas;
 	private ArrayList<Poder> poderes;
+	private ArrayList<Poder> currentPoderes;
 	private Timer tiempo;
-	private boolean puedoCrear;
+
+	private String[] listaPoderes;
 	/**
 	 * Constructor del juego PONG
 	 * @param width Ancho del tablero
@@ -40,13 +43,16 @@ public class Pong {
 		this.jugadores=jugadores;
 		raquetas = new ArrayList<Raqueta>();
 		poderes=new ArrayList<Poder>();
+		currentPoderes = new ArrayList<Poder>();
 		this.estaEnInicio=true;
 		this.estaDetenida=false;
 		this.color1=nombre1;
 		this.color2=nombre2;
 		elegirCondicionesJuego(nombre1,nombre2);
 		addBola(300, 650, 0.5, 1.2, width, height);
-		this.puedoCrear=false;
+
+		this.listaPoderes = new String[]{ "Fastball","Freezer","Flash","Turtle","Cold Racket", "Phantom Racket","Energy"};
+		
 	}
 	/**
 	 * Añade una bola basada en parametros
@@ -95,65 +101,138 @@ public class Pong {
 	 * Mueve la bola de un lado al otro del tablero 
 	 */
 	public void moverBola() {
+		//System.out.println("mover Pelota");
 		chocaRaquetas();
 		//soltarPoder();
 		bola.muevePelotaca();
 		
 	}
-	/**
-	public void soltarPoder() {
-		if(seguido>5) {
-			poderes.add(new AumentarVelocidad());
-		}
-		for(Poder p:poderes) {
-			p.activarPoder(this, 1);
+	
+	public void crearPoder() {
+		//int random = (int)(Math.random() * 3 + 1);
+		int random =3;
+		if(random>=0 && random<8) {
+			if (listaPoderes[random].equals("Fastball")) {
+				poderes.add(new Fastball(300,300));
+			}else if(listaPoderes[random].equals("Freezer")){
+				poderes.add(new Freezer(300,300));
+			}else if(listaPoderes[random].equals("Energy")) {
+				poderes.add(new Energy(300,300));
+			}else if(listaPoderes[random].equals("Turtle")) {
+				poderes.add(new Turtle(300,300));
+			}
+				
 		}
 	}
-	**/
-	/**
-	 * Retorna un ArrayList de raquetas
-	 * @return raquetas
-	 */
-	public ArrayList<Raqueta>getRaquetas() {
-		return raquetas;
+		
+	
+	
+	public int getPoderXPosition(int i) {
+		return poderes.get(i).getX();
 	}
-	/**
-	 * Mueve la raqueta hacia su lado derecho
-	 * @param i Raqueta a mover
-	 */
-	public void moverRaquetaDerecha(int i) {
-		Raqueta r=raquetas.get(i);
-		if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
-			raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
-			auxMoverAlInicio(r);
-		}else {
-		raquetas.get(i).moverDerecha();}
-		r.setFortaleza(100);
+	
+	public int getPoderYPosition(int i) {
+		return poderes.get(i).getY();
 	}
-	/**
-	 * Mueve la raqueta hacia su lado izquierda 
-	 * @param i Raqueta a mover
-	 */
-	public void moverRaquetaIzquierda(int i) {
-		Raqueta r = raquetas.get(i);
-		if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
-	 		raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
-			auxMoverAlInicio(r);
-			return;
-		}
-		raquetas.get(i).moverIzquierda();
-		auxMoverAlInicio(r);
-		r.setFortaleza(100);
+	public String getPoder(int i) {
+		
+		var p = poderes.get(i);
+		return p.getClass().getName().substring(11,p.getClass().getName().length());
 		
 	}
+	public String getPoderActual(int i) {
+		
+		var p = currentPoderes.get(i);
+		return p.getClass().getName().substring(11,p.getClass().getName().length());
+		
+	}
+	public int getNumPoderes() {
+		return poderes.size();
+	}
+
+	public int getRaquetaXPosition(int i) {
+		return raquetas.get(i).getXPosition();
+	}
+	
+	public int 	getRaquetaYPosition(int i) {
+		return raquetas.get(i).getYPosition();
+	}
+	
+	public void moverTodo() {
+		moverBola();
+		var b= false;
+		for(int i=0;i<poderes.size();i++) {
+			if(!b) {
+				System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
+			
+				b = poderImpactado(bola);
+				if(!b) poderes.get(i).mover();
+			}
+		}
+		
+	}
+	public int getPuntajeRaqueta(int i) {
+		return raquetas.get(i).getPuntaje();
+	}
+	public boolean poderImpactado(Bola bola) {
+		int posPoderImpactado = -1;
+		for(int i=0;i<poderes.size();i++) {
+			if(poderes.get(i).impactado(bola)) {
+				posPoderImpactado= i;
+			}
+		}
+		
+		if(posPoderImpactado!=-1) {
+			Poder p = poderes.get(posPoderImpactado);
+			if(getPoder(posPoderImpactado).equals("FastBall")) {
+				p.iniciar(bola);
+			}else if(getPoder(posPoderImpactado).equals("Freezer")||getPoder(posPoderImpactado).equals("Turtle")){
+				if(bola.getQuien().equals("jugador1")) {
+					p.iniciar(raquetas.get(1));
+				}else {
+					p.iniciar(raquetas.get(0));
+				}
+			}else if(getPoder(posPoderImpactado).equals("Energy")) {
+				if(bola.getQuien().equals("jugador1")) {
+					p.iniciar(raquetas.get(0));
+				}else {
+					p.iniciar(raquetas.get(1));
+				}
+			}
+			poderes.remove(posPoderImpactado);
+			currentPoderes.add(p);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public void quitarPoder() {
+		Poder p = currentPoderes.get(0);
+		if(getPoderActual(0).equals("FastBall")) {
+			p.detener(bola);
+		}else if(getPoderActual(0).equals("Freezer")||getPoderActual(0).equals("Turtle")) {
+			if(bola.getQuien().equals("jugador1")) {
+				p.detener(raquetas.get(1));
+			}else {
+				p.detener(raquetas.get(0));
+			}
+		}
+		currentPoderes.remove(0);
+	}
+	public int getNumCurrentPoderes() {
+		return currentPoderes.size();
+	}
+	
+	
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta
 	 */
 	private void chocaRaquetas() {
 		for(Raqueta r:raquetas) {
 			if(bola.getShape().getBounds().intersects(r.getShape())) {
+				bola.setQuien(r.getImagen());
 				bola.choqueRaqueta(r.getXPosition(),r.getYPosition(),r.getWidth(),r.getHeight());
-				//seguido+=1;
 			}else {
 				moverPelotaInicio(salio());
 			}
@@ -209,34 +288,10 @@ public class Pong {
 		}
 		return salio;
 	}
-	public void crearPoder() {
-		int x=1;
-		int poderesVivos=0;
-		poderes.add(new AumentarVelocidad());
-		System.out.println("poner");
-		for(Poder p:poderes) {
-			p.activarPoder(this, 1);
-		}
-		/**
-		if(poderesVivos<=4) {
-			Poder poder=Poder.CrearPoder(200,300,20,60,1);
-			poderes.add(poder);
-			puedoCrear=true;
-		}**/
-	}
-	public void quitarPoder() {
-		System.out.println("quitar");
-		for(Poder p:poderes) {
-			p.quitarPoder(this, 2);
-		}
-	}
-	public Rectangle ultimoPoder() {
-		return poderes.get(0).getShape();
-	}
 	
-	public boolean getPuedoCrear() {
-		return puedoCrear;
-	}
+
+
+	
 	/**
 	 * Suma el puntaje de cada jugador
 	 * @param salio indica por donde salio la bola para saber a quien asignarle el puntaje
@@ -259,9 +314,43 @@ public class Pong {
 	public boolean esta() {
 		return estaEnInicio;
 	}
-	public Raqueta getRaqueta(int i) {
-		return raquetas.get(i);
+	/**
+	 * Mueve la raqueta hacia su lado derecho
+	 * @param i Raqueta a mover
+	 */
+	public void moverRaquetaDerecha(int i) {
+		Raqueta r=raquetas.get(i);
+		if(!r.getBloqueada()) {
+			if(r.getXPosition()+ r.getDistancia()>=width-150-r.getWidth()) {
+				raquetas.get(i).moverDerecha(Math.abs(r.getXPosition() - (width -150-r.getWidth())));
+				auxMoverAlInicio(r);
+			}else {
+				raquetas.get(i).moverDerecha();}
+				r.setFortaleza(100);
+		}
 	}
+	/**
+	 * Mueve la raqueta hacia su lado izquierda 
+	 * @param i Raqueta a mover
+	 */
+	public void moverRaquetaIzquierda(int i) {
+		Raqueta r = raquetas.get(i);
+		if(!r.getBloqueada()) {
+			if (r == null || r.getXPosition() - r.getDistancia() <= 200) {
+				raquetas.get(i).moverIzquierda(Math.abs(r.getXPosition() - 200));
+				auxMoverAlInicio(r);
+				return;
+			}
+			raquetas.get(i).moverIzquierda();
+			auxMoverAlInicio(r);
+			r.setFortaleza(100);
+		}
+	}
+	/**
+	 * 
+	 * @param nombreArchivo
+	 * @throws PongException
+	 */
 	public void salvar(String nombreArchivo) throws PongException {
 		try {
 			ObjectOutputStream archivo=new ObjectOutputStream(new FileOutputStream(nombreArchivo));
