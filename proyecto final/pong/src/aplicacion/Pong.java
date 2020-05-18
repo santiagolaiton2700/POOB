@@ -109,8 +109,8 @@ public class Pong {
 	}
 	
 	public void crearPoder() {
-		//int random = (int)(Math.random() * 3 + 1);
-		int random =3;
+		int random = (int)(Math.random() * 7 + 1);
+		//int random =3;
 		if(random>=0 && random<8) {
 			if (listaPoderes[random].equals("Fastball")) {
 				poderes.add(new Fastball(300,300));
