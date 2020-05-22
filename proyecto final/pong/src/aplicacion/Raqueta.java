@@ -16,6 +16,7 @@ public class Raqueta implements Serializable{
 	private int puntaje;
 	private int fortaleza;
 	private boolean isBLoqueada;
+	private int avancePuntaje;
 	/**
 	 * Constructor de la clase raquetas
 	 * @param x posicion en x
@@ -32,9 +33,10 @@ public class Raqueta implements Serializable{
 		this.nombreImg = nombreImg;
 		this.figura = new Rectangle(x, y, width, height);
 		this.puntaje=0;
-		this.fortaleza=1000000;
+		this.fortaleza=10000;
 		this.isBLoqueada=false;
 		this.distancia=2;
+		avancePuntaje=10;
 	}
 	/**
 	 * Retorna la figura de la raqueta
@@ -137,5 +139,11 @@ public class Raqueta implements Serializable{
 	}
 	public void setDistancia(int cambiar) {
 		distancia=cambiar;	
+	}
+	public int getAvancePuntaje() {
+		return avancePuntaje;
+	}
+	public void setAvancePuntaje(int nuevo) {
+		avancePuntaje=nuevo;
 	}
 }

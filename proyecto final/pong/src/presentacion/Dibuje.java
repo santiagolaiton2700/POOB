@@ -99,20 +99,17 @@ public class Dibuje extends JPanel{
 		g2.setColor(Color.red);
 		//g2.fill(game.getBola().getShape());
 		g2.drawImage(generarImagen("bolaUno.png"),game.getBola().getXPosition(),game.getBola().getYPosition(),this);
-		/**
-		Timer tiempo=new Timer(20000,new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				g2.fill(game.ultimoPoder());
-			}
-		});
 		
-		tiempo.start();
-		**/
 		for(int i=0;i<game.getNumPoderes();i++) {
 			System.out.println("go to draw poder");
 			g2.drawImage(generarImagen(game.getPoder(i)+".gif"),game.getPoderXPosition(i),game.getPoderYPosition(i),50,50,this);
 		}
-
+		dibujarElementosJugadorDos(g2);
+		if(game.getSizeTarget()>0) {
+			System.out.println("hola target");
+			g2.drawImage(generarImagen(game.getTarget()+"git"),game.getTargetXPosition(),game.getTargetyPosition(),50,50,this);
+		}
+		
 	}
 	private void hilos() {
 		//game.quitarPoder();
@@ -135,6 +132,10 @@ public class Dibuje extends JPanel{
 						
 						System.out.println("Poder generador");
 						game.crearPoder();
+						if(game.getSizeTarget()>0) {
+							game.quitarTarget();
+						}
+						
 						startTime = System.currentTimeMillis();
 						quitarPoderTime = System.currentTimeMillis();
 						
@@ -144,6 +145,7 @@ public class Dibuje extends JPanel{
 					if((game.getNumCurrentPoderes()>0) && ((System.currentTimeMillis() - startTime)>10000) ) {
 						System.out.println("quitar poder");
 						game.quitarPoder();
+						game.crearTarget();
 						quitarPoderTime = System.currentTimeMillis();
 						
 					}
@@ -290,5 +292,22 @@ public class Dibuje extends JPanel{
 			pelota.start();
 		}
 	}
+	private void dibujarElementosJugadorDos(Graphics2D g) {
+			Font puntos =new Font("Serif",Font.BOLD,25);
+			g.setFont(puntos);
+			g.setColor(Color.BLUE);
+			g.drawString("Score J2 :", 750, 40);
+			g.drawString("Fortaleza J2 :", 10, 40);
+			g.setColor(Color.magenta);
+			g.drawString("Score J1 :", 750, 680);
+			g.drawString("Fortaleza J1 :", 10, 680);
+			g.setColor(Color.blue);
+			g.drawString(Integer.toString(game.getPuntajeRaqueta(1)),860,40);
+			g.drawString(Integer.toString(game.getFortalezaRaqueta(1)),160,40);
+			g.setColor(Color.magenta);
+			g.drawString(Integer.toString(game.getPuntajeRaqueta(0)),860,680);
+			g.drawString(Integer.toString(game.getFortalezaRaqueta(0)),160,680);
+	}
+	
 }
 

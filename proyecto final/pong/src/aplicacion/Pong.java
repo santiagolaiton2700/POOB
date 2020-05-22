@@ -12,7 +12,6 @@ import java.lang.*;
  * @author Santiago Laiton - Lina Buitrago
  * @version 1.0 Abril 24 de 2020
  */
-
 public class Pong {
 	private int width;
 	private int heigth;
@@ -27,6 +26,8 @@ public class Pong {
 	private ArrayList<Poder> poderes;
 	private ArrayList<Poder> currentPoderes;
 	private Timer tiempo;
+	private ArrayList<Target>objetivos;
+	
 
 	private String[] listaPoderes;
 	/**
@@ -44,6 +45,7 @@ public class Pong {
 		raquetas = new ArrayList<Raqueta>();
 		poderes=new ArrayList<Poder>();
 		currentPoderes = new ArrayList<Poder>();
+		objetivos=new ArrayList<Target>();
 		this.estaEnInicio=true;
 		this.estaDetenida=false;
 		this.color1=nombre1;
@@ -109,8 +111,8 @@ public class Pong {
 	}
 	
 	public void crearPoder() {
-		int random = (int)(Math.random() * 7 + 1);
-		//int random =3;
+		//int random = (int)(Math.random() * 7 + 1);
+		int random =0;
 		if(random>=0 && random<8) {
 			if (listaPoderes[random].equals("Fastball")) {
 				poderes.add(new Fastball(300,300));
@@ -124,6 +126,9 @@ public class Pong {
 				
 		}
 	}
+	public void crearTarget() {
+		objetivos.add(new Target(100,30,50,50));
+	}
 		
 	
 	
@@ -134,11 +139,21 @@ public class Pong {
 	public int getPoderYPosition(int i) {
 		return poderes.get(i).getY();
 	}
+	
+	public int getTargetXPosition() {
+		return objetivos.get(0).getX();
+	}
+	public int getTargetyPosition() {
+		return objetivos.get(0).getY();
+	}
 	public String getPoder(int i) {
 		
 		var p = poderes.get(i);
 		return p.getClass().getName().substring(11,p.getClass().getName().length());
 		
+	}
+	public String getTarget() {
+		return objetivos.get(0).getImagen();
 	}
 	public String getPoderActual(int i) {
 		
@@ -161,18 +176,30 @@ public class Pong {
 	public void moverTodo() {
 		moverBola();
 		var b= false;
+		var f=false;
 		for(int i=0;i<poderes.size();i++) {
-			if(!b) {
+			if(!b || !f) {
 				System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
-			
 				b = poderImpactado(bola);
+				f=targetImpactado(bola);
 				if(!b) poderes.get(i).mover();
 			}
 		}
 		
 	}
+	public boolean targetImpactado(Bola bola) {
+		Target t=objetivos.get(0);
+		if (objetivos.get(0).TargetImpactado(bola)) {
+			t.iniciar(bola);
+			return true;
+		}
+		return false;
+	}
 	public int getPuntajeRaqueta(int i) {
 		return raquetas.get(i).getPuntaje();
+	}
+	public int getFortalezaRaqueta(int i) {
+		return raquetas.get(i).getFortaleza();
 	}
 	public boolean poderImpactado(Bola bola) {
 		int posPoderImpactado = -1;
@@ -206,6 +233,9 @@ public class Pong {
 		return false;
 		
 	}
+	public void quitarTarget() {
+		objetivos.remove(0);
+	}
 	
 	public void quitarPoder() {
 		Poder p = currentPoderes.get(0);
@@ -223,7 +253,9 @@ public class Pong {
 	public int getNumCurrentPoderes() {
 		return currentPoderes.size();
 	}
-	
+	public int getSizeTarget() {
+		return objetivos.size();
+	}
 	
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta
@@ -299,9 +331,9 @@ public class Pong {
 	private void sumarPuntaje(String salio) {
 		if(raquetas.get(1).getPuntaje()<=45||raquetas.get(0).getPuntaje()<=45) {
 			if (salio=="abajo") {
-				raquetas.get(1).setPuntaje(10);
+				raquetas.get(1).setPuntaje(raquetas.get(1).getAvancePuntaje());
 			}else if(salio=="arriba") {
-				raquetas.get(0).setPuntaje(10);
+				raquetas.get(0).setPuntaje(raquetas.get(0).getAvancePuntaje());
 			}
 		}
 	}
@@ -326,7 +358,7 @@ public class Pong {
 				auxMoverAlInicio(r);
 			}else {
 				raquetas.get(i).moverDerecha();}
-				r.setFortaleza(100);
+				r.setFortaleza(1);
 		}
 	}
 	/**
@@ -343,7 +375,7 @@ public class Pong {
 			}
 			raquetas.get(i).moverIzquierda();
 			auxMoverAlInicio(r);
-			r.setFortaleza(100);
+			r.setFortaleza(1);
 		}
 	}
 	/**
