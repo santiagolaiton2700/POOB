@@ -26,7 +26,6 @@ public class Pong {
 	private ArrayList<Poder> poderes;
 	private ArrayList<Poder> currentPoderes;
 	private Timer tiempo;
-	private ArrayList<Target>objetivos;
 	
 
 	private String[] listaPoderes;
@@ -45,7 +44,6 @@ public class Pong {
 		raquetas = new ArrayList<Raqueta>();
 		poderes=new ArrayList<Poder>();
 		currentPoderes = new ArrayList<Poder>();
-		objetivos=new ArrayList<Target>();
 		this.estaEnInicio=true;
 		this.estaDetenida=false;
 		this.color1=nombre1;
@@ -126,12 +124,6 @@ public class Pong {
 				
 		}
 	}
-	public void crearTarget() {
-		objetivos.add(new Target(100,30,50,50));
-	}
-		
-	
-	
 	public int getPoderXPosition(int i) {
 		return poderes.get(i).getX();
 	}
@@ -140,20 +132,12 @@ public class Pong {
 		return poderes.get(i).getY();
 	}
 	
-	public int getTargetXPosition() {
-		return objetivos.get(0).getX();
-	}
-	public int getTargetyPosition() {
-		return objetivos.get(0).getY();
-	}
+
 	public String getPoder(int i) {
 		
 		var p = poderes.get(i);
 		return p.getClass().getName().substring(11,p.getClass().getName().length());
 		
-	}
-	public String getTarget() {
-		return objetivos.get(0).getImagen();
 	}
 	public String getPoderActual(int i) {
 		
@@ -181,19 +165,10 @@ public class Pong {
 			if(!b || !f) {
 				System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
 				b = poderImpactado(bola);
-				f=targetImpactado(bola);
 				if(!b) poderes.get(i).mover();
 			}
 		}
 		
-	}
-	public boolean targetImpactado(Bola bola) {
-		Target t=objetivos.get(0);
-		if (objetivos.get(0).TargetImpactado(bola)) {
-			t.iniciar(bola);
-			return true;
-		}
-		return false;
 	}
 	public int getPuntajeRaqueta(int i) {
 		return raquetas.get(i).getPuntaje();
@@ -233,10 +208,6 @@ public class Pong {
 		return false;
 		
 	}
-	public void quitarTarget() {
-		objetivos.remove(0);
-	}
-	
 	public void quitarPoder() {
 		Poder p = currentPoderes.get(0);
 		if(getPoderActual(0).equals("FastBall")) {
@@ -253,9 +224,7 @@ public class Pong {
 	public int getNumCurrentPoderes() {
 		return currentPoderes.size();
 	}
-	public int getSizeTarget() {
-		return objetivos.size();
-	}
+	
 	
 	/**
 	 * Verifica si la bola se choca con la raqueta , de ser asi rebota en la raqueta

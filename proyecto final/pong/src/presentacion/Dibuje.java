@@ -105,10 +105,6 @@ public class Dibuje extends JPanel{
 			g2.drawImage(generarImagen(game.getPoder(i)+".gif"),game.getPoderXPosition(i),game.getPoderYPosition(i),50,50,this);
 		}
 		dibujarElementosJugadorDos(g2);
-		if(game.getSizeTarget()>0) {
-			System.out.println("hola target");
-			g2.drawImage(generarImagen(game.getTarget()+"git"),game.getTargetXPosition(),game.getTargetyPosition(),50,50,this);
-		}
 		
 	}
 	private void hilos() {
@@ -132,9 +128,6 @@ public class Dibuje extends JPanel{
 						
 						System.out.println("Poder generador");
 						game.crearPoder();
-						if(game.getSizeTarget()>0) {
-							game.quitarTarget();
-						}
 						
 						startTime = System.currentTimeMillis();
 						quitarPoderTime = System.currentTimeMillis();
@@ -145,7 +138,6 @@ public class Dibuje extends JPanel{
 					if((game.getNumCurrentPoderes()>0) && ((System.currentTimeMillis() - startTime)>10000) ) {
 						System.out.println("quitar poder");
 						game.quitarPoder();
-						game.crearTarget();
 						quitarPoderTime = System.currentTimeMillis();
 						
 					}
