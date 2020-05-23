@@ -45,6 +45,7 @@ public class Raqueta implements Serializable{
 	public Rectangle getShape() {
 		return figura;
 	}
+	
 	/**
 	 * Mueve la raqueta a la derecha
 	 */

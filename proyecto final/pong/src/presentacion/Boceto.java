@@ -22,7 +22,7 @@ import aplicacion.Raqueta;
  * @author Mary
  *
  */
-public class Dibuje extends JPanel{
+public class Boceto extends JPanel{
 	private Pong game;
 	private int width;
 	private int height;
@@ -42,9 +42,9 @@ public class Dibuje extends JPanel{
 	private boolean bloquearEsc = false;
 	
 	/**
-	 * Constructor clase dibuje
+	 * Constructor clase bosquejo
 	 */
-	public Dibuje(int jugadores, int width,int height,String nombre1,String nombre2,String bola) {
+	public Boceto(int jugadores, int width,int height,String nombre1,String nombre2,String bola) {
 		this.jugadores=jugadores;
 	 	this.width=width;
 		this.height=height;
@@ -94,14 +94,14 @@ public class Dibuje extends JPanel{
 		for(int i=0;i<2;i++) {
 			//no olvidar cambiar nombre
 			//System.out.println("go to draw raqueta");
-			g2.drawImage(generarImagen("raquetaPrueba.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),89,21,this);
+			g2.drawImage(generarImagen("personaje.png"),game.getRaquetaXPosition(i),game.getRaquetaYPosition(i),120,60,this);
 		}
 		g2.setColor(Color.red);
 		//g2.fill(game.getBola().getShape());
 		g2.drawImage(generarImagen("bolaUno.png"),game.getBola().getXPosition(),game.getBola().getYPosition(),this);
 		
 		for(int i=0;i<game.getNumPoderes();i++) {
-			System.out.println("go to draw poder");
+			//System.out.println("go to draw poder");
 			g2.drawImage(generarImagen(game.getPoder(i)+".gif"),game.getPoderXPosition(i),game.getPoderYPosition(i),50,50,this);
 		}
 		dibujarElementosJugadorDos(g2);

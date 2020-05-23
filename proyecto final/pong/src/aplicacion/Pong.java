@@ -131,6 +131,16 @@ public class Pong {
 	public int getPoderYPosition(int i) {
 		return poderes.get(i).getY();
 	}
+	/**
+	 * Retorna una lista de las plataformas
+	 * @return plataformas
+	 */
+	public ArrayList<Raqueta> getRaquetas() {
+		return raquetas;
+	}
+	public ArrayList<Poder> getPoderes() {
+		return poderes;
+	}
 	
 
 	public String getPoder(int i) {
@@ -163,7 +173,7 @@ public class Pong {
 		var f=false;
 		for(int i=0;i<poderes.size();i++) {
 			if(!b || !f) {
-				System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
+				//System.out.println(poderes.get(i).getX()+" "+poderes.get(i).getY()+" "+bola.getX()+" "+bola.getY());
 				b = poderImpactado(bola);
 				if(!b) poderes.get(i).mover();
 			}

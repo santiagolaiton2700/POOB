@@ -9,7 +9,7 @@ import javax.swing.*;
  * @version 1.0 Abril 24 de 2020
  */
 public class PantallaJuego extends JFrame {
-	private Dibuje dibuje;
+	private Boceto dibuje;
 	private int jugadores;
 	private String nombre1,nombre2,bola;
 	
@@ -38,7 +38,7 @@ public class PantallaJuego extends JFrame {
 		int ancho = screenSize.width;
 		int alto = screenSize.height;
 		this.setLayout(new GridLayout(1,3));
-		dibuje=new Dibuje(jugadores,ancho,alto,nombre1,nombre2,bola);
+		dibuje=new Boceto(jugadores,ancho,alto,nombre1,nombre2,bola);
 		dibuje.setBackground(Color.white);
 		add(dibuje);
 		//setResizable(false);
